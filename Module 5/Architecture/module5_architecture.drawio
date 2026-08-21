@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="Electron">
+  <diagram id="module5_tech_transfer" name="Kiến trúc Hệ thống Module 5 - Chuyển giao Công nghệ &amp; Kết nối Doanh nghiệp (Mô hình 2+2)">
+    <mxGraphModel dx="1600" dy="1500" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1500" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Title Block -->
+        <mxCell id="title" value="&lt;b style=&quot;font-size: 20px; color: #1a237e;&quot;&gt;KIẾN TRÚC HỆ THỐNG MODULE 5: CHUYỂN GIAO CÔNG NGHỆ &amp;amp; KẾT NỐI DOANH NGHIỆP&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 13px; color: #546e7a;&quot;&gt;VN–RU Portal · Nền tảng Khớp nối Cung–Cầu Công nghệ, Điều phối Bày tỏ Quan tâm (EOI), Xác thực Liên danh 2+2 &amp;amp; Tư vấn Pháp lý / SHTT&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8f9fa;strokeColor=#4a6b82;strokeWidth=1.5;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="30" width="1520" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- TIER 1: CLIENT ACCESS & 3 CANONICAL ZONES -->
+        <mxCell id="tier1_container" value="TẦNG 1: TRẢI NGHIỆM TRUY CẬP (3 CANONICAL ACCESS ZONES)" style="swimlane;startSize=30;fillColor=#e1f5fe;strokeColor=#0288d1;fontStyle=1;fontSize=12;fontColor=#01579b;rounded=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="40" y="120" width="1520" height="190" as="geometry" />
+        </mxCell>
+
+        <!-- Zone 1: Public / Discovery -->
+        <mxCell id="zone_public" value="&lt;b&gt;PUBLIC / DISCOVERY ZONE&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color:#555;&quot;&gt;(Khách vãng lai / Doanh nghiệp tìm kiếm)&lt;/span&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.45;&quot;&gt;• &lt;b&gt;Danh mục Công nghệ Chuyển giao:&lt;/b&gt; Sáng chế, giải pháp TRL 4–9&lt;br&gt;• &lt;b&gt;Nhu cầu R&amp;amp;D Doanh nghiệp (Public):&lt;/b&gt; Bài toán công nghệ mở&lt;br&gt;• &lt;b&gt;Tìm kiếm &amp;amp; Lọc Faceted:&lt;/b&gt; Theo ngành, mức sẵn sàng (TRL), quốc gia&lt;br&gt;• &lt;b&gt;Cổng gửi Quan tâm (EOI Entry):&lt;/b&gt; Bày tỏ quan tâm &amp;amp; hướng dẫn hợp tác&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0288d1;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="tier1_container">
+          <mxGeometry x="30" y="45" width="440" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- Zone 2: Role-based Workspace -->
+        <mxCell id="zone_workspace" value="&lt;b&gt;ROLE-BASED WORKSPACE ZONE&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color:#555;&quot;&gt;(Thành viên đã xác thực / Authenticated)&lt;/span&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.45;&quot;&gt;• &lt;b&gt;Research Org Rep (VN &amp;amp; RU):&lt;/b&gt; Quản lý hồ sơ công nghệ, nhận phản hồi EOI&lt;br&gt;• &lt;b&gt;Enterprise Rep (VN &amp;amp; RU):&lt;/b&gt; Đăng bài toán R&amp;amp;D, theo dõi case đàm phán&lt;br&gt;• &lt;b&gt;2+2 Consortium Workspace:&lt;/b&gt; Thiết lập &amp;amp; xác nhận liên danh 4 bên&lt;br&gt;• &lt;b&gt;IP &amp;amp; Legal Vault:&lt;/b&gt; Trao đổi tài liệu mật, thỏa thuận NDA &amp;amp; Hợp đồng&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0288d1;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="tier1_container">
+          <mxGeometry x="510" y="45" width="500" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- Zone 3: Governance & Administration -->
+        <mxCell id="zone_gov" value="&lt;b&gt;GOVERNANCE &amp;amp; ADMIN ZONE&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color:#555;&quot;&gt;(Ban Điều phối Quỹ &amp;amp; Quản trị Chuyển giao)&lt;/span&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.45;&quot;&gt;• &lt;b&gt;Technology Moderation Queue:&lt;/b&gt; Kiểm duyệt nguồn gốc &amp;amp; tính sẵn sàng&lt;br&gt;• &lt;b&gt;Taxonomy &amp;amp; TRL Management:&lt;/b&gt; Chuẩn hóa phân loại công nghệ &amp;amp; lĩnh vực&lt;br&gt;• &lt;b&gt;Consortium 2+2 Compliance:&lt;/b&gt; Kiểm soát tính hợp lệ của liên danh song phương&lt;br&gt;• &lt;b&gt;Audit &amp;amp; Sensitive Case Monitoring:&lt;/b&gt; Giám sát luồng thông tin bảo mật&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0288d1;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="tier1_container">
+          <mxGeometry x="1050" y="45" width="440" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- TIER 2: API GATEWAY & PIPELINE -->
+        <mxCell id="tier2_container" value="TẦNG 2: API GATEWAY &amp; XỬ LÝ QUY TRÌNH NGHIỆP VỤ (MATCHING, NEGOTIATION &amp; 2+2 CONSORTIUM PIPELINE)" style="swimlane;startSize=30;fillColor=#fff3e0;strokeColor=#ef6c00;fontStyle=1;fontSize=12;fontColor=#e65100;rounded=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="40" y="340" width="1520" height="210" as="geometry" />
+        </mxCell>
+
+        <mxCell id="gw_entry" value="&lt;b&gt;API Gateway &amp;amp; Traffic Controller&lt;/b&gt;&lt;br&gt;• SSL/TLS Termination&lt;br&gt;• Forward Auth Context (Module 1)&lt;br&gt;• Enforce Org Scope &amp;amp; Ownership&lt;br&gt;• Rate Limiting &amp;amp; Correlation Header" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#fb8c00;strokeWidth=1.5;fontSize=11;verticalAlign=middle;" vertex="1" parent="tier2_container">
+          <mxGeometry x="30" y="50" width="240" height="135" as="geometry" />
+        </mxCell>
+
+        <mxCell id="pipe_matching" value="&lt;b&gt;1. Tech &amp;amp; Demand Matching Engine&lt;/b&gt;&lt;br&gt;• Thuật toán khớp nối Cung – Cầu&lt;br&gt;• Phân loại mức độ sẵn sàng TRL (1–9)&lt;br&gt;• Sàng lọc công nghệ phù hợp lĩnh vực&lt;br&gt;• State: &lt;i&gt;DRAFT → READY → PUBLISHED&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#f57c00;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" vertex="1" parent="tier2_container">
+          <mxGeometry x="310" y="50" width="260" height="135" as="geometry" />
+        </mxCell>
+
+        <mxCell id="pipe_eoi" value="&lt;b&gt;2. EOI &amp;amp; Negotiation Pipeline&lt;/b&gt;&lt;br&gt;• Gửi &amp;amp; tiếp nhận Thư quan tâm (EOI)&lt;br&gt;• Idempotent Submission (Chống trùng)&lt;br&gt;• Khởi tạo Phòng đàm phán bảo mật&lt;br&gt;• State: &lt;i&gt;OPEN → DISCUSSION → CASE&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#f57c00;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" vertex="1" parent="tier2_container">
+          <mxGeometry x="610" y="50" width="260" height="135" as="geometry" />
+        </mxCell>
+
+        <mxCell id="pipe_2plus2" value="&lt;b&gt;3. 2+2 Structural Validation Engine&lt;/b&gt;&lt;br&gt;• Xác thực cấu trúc chuẩn 4 thành phần:&lt;br&gt;&lt;b style=&quot;color:#b71c1c;&quot;&gt;[VN Uni + VN Ent + RU Uni + RU Ent]&lt;/b&gt;&lt;br&gt;• Distributed Lock chống race-condition xác nhận&lt;br&gt;• State: &lt;i&gt;FORMING → COMPLETE → ACTIVE&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#f57c00;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" vertex="1" parent="tier2_container">
+          <mxGeometry x="910" y="50" width="280" height="135" as="geometry" />
+        </mxCell>
+
+        <mxCell id="pipe_event" value="&lt;b&gt;4. Transfer Event &amp;amp; Audit Broker&lt;/b&gt;&lt;br&gt;• Phát sự kiện: &lt;i&gt;TechnologyPublished&lt;/i&gt;&lt;br&gt;• &lt;i&gt;EOISubmitted, Consortium2Plus2Completed&lt;/i&gt;&lt;br&gt;• &lt;i&gt;TransferOutcomeRecorded (Bàn giao)&lt;/i&gt;&lt;br&gt;• OpenTelemetry Traces &amp;amp; Sensitive Audit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#f57c00;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" vertex="1" parent="tier2_container">
+          <mxGeometry x="1230" y="50" width="260" height="135" as="geometry" />
+        </mxCell>
+
+        <!-- TIER 3: CORE DOMAIN SERVICES -->
+        <mxCell id="tier3_container" value="TẦNG 3: CÁC DỊCH VỤ NGHIỆP VỤ LÕI (CORE DOMAIN SERVICES - BUSINESS LOGIC)" style="swimlane;startSize=30;fillColor=#ede7f6;strokeColor=#7e57c2;fontStyle=1;fontSize=12;fontColor=#4a148c;rounded=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="40" y="580" width="1520" height="230" as="geometry" />
+        </mxCell>
+
+        <mxCell id="svc_technology" value="&lt;b&gt;Technology Profile Service&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10px; color: #555;&quot;&gt;Route: /technologies, /tech-profiles&lt;/span&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px;&quot;&gt;• Quản lý hồ sơ công nghệ, sáng chế viện-trường&lt;br&gt;• Đánh giá TRL, phạm vi bảo hộ &amp;amp; chủ sở hữu&lt;br&gt;• Kiểm tra quyền đăng tải theo Org Scope&lt;br&gt;• State: &lt;i&gt;DRAFT / READY / PUBLISHED / ARCHIVED&lt;/i&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7e57c2;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="tier3_container">
+          <mxGeometry x="30" y="45" width="270" height="160" as="geometry" />
+        </mxCell>
+
+        <mxCell id="svc_demand" value="&lt;b&gt;Enterprise Demand &amp;amp; EOI Service&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10px; color: #555;&quot;&gt;Route: /demands, /expressions-of-interest&lt;/span&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px;&quot;&gt;• Quản lý bài toán công nghệ &amp;amp; nhu cầu R&amp;amp;D của DN&lt;br&gt;• Tiếp nhận Thư bày tỏ quan tâm (EOI)&lt;br&gt;• Quản lý quyền hiển thị: Public vs Controlled Scope&lt;br&gt;• State: &lt;i&gt;OPEN / ACKNOWLEDGED / MATCHED&lt;/i&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7e57c2;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="tier3_container">
+          <mxGeometry x="330" y="45" width="280" height="160" as="geometry" />
+        </mxCell>
+
+        <mxCell id="svc_collab" value="&lt;b&gt;Collaboration Case &amp;amp; Match Service&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10px; color: #555;&quot;&gt;Route: /collaborations, /transfer-cases&lt;/span&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px;&quot;&gt;• Quản lý phiên đàm phán chuyển giao trực tiếp&lt;br&gt;• Điều phối trao đổi kỹ thuật &amp;amp; phương án ứng dụng&lt;br&gt;• Phân quyền truy cập hồ sơ theo tổ chức tham gia&lt;br&gt;• State: &lt;i&gt;DISCUSSION / NEGOTIATION / AGREED&lt;/i&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7e57c2;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="tier3_container">
+          <mxGeometry x="640" y="45" width="280" height="160" as="geometry" />
+        </mxCell>
+
+        <mxCell id="svc_consortium" value="&lt;b&gt;2+2 Consortium Engine Service&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10px; color: #555;&quot;&gt;Route: /consortiums, /2plus2-slots&lt;/span&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px;&quot;&gt;• Quản trị 4 slot tổ chức: Viện/Trường &amp;amp; DN VN–RU&lt;br&gt;• Quản lý thư mời tham gia &amp;amp; xác nhận chính thức&lt;br&gt;• Đảm bảo xác thực đa phương trước khi kích hoạt&lt;br&gt;• State: &lt;i&gt;FORMING / COMPLETE / CONFIRMED / ACTIVE&lt;/i&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7e57c2;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="tier3_container">
+          <mxGeometry x="950" y="45" width="260" height="160" as="geometry" />
+        </mxCell>
+
+        <mxCell id="svc_ip_outcome" value="&lt;b&gt;IP Advisory &amp;amp; Transfer Outcome Service&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10px; color: #555;&quot;&gt;Route: /ip-advisory, /transfer-outcomes&lt;/span&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px;&quot;&gt;• Quản lý tham chiếu tư vấn pháp lý, NDA &amp;amp; License&lt;br&gt;• Không tự suy diễn quyền SHTT (lưu reference)&lt;br&gt;• Ghi nhận kết quả chuyển giao &amp;amp; thương mại hóa&lt;br&gt;• State: &lt;i&gt;ADVISORY / SIGNED / COMPLETED&lt;/i&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7e57c2;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="tier3_container">
+          <mxGeometry x="1240" y="45" width="250" height="160" as="geometry" />
+        </mxCell>
+
+        <!-- TIER 4: PERSISTENCE & STORAGE -->
+        <mxCell id="tier4_container" value="TẦNG 4: LƯU TRỮ GIAO DỊCH, HỒ SƠ &amp; KIỂM TOÁN (MULTI-MODEL PERSISTENCE &amp; AUDIT STORE)" style="swimlane;startSize=30;fillColor=#e8f5e9;strokeColor=#43a047;fontStyle=1;fontSize=12;fontColor=#1b5e20;rounded=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="40" y="840" width="1520" height="190" as="geometry" />
+        </mxCell>
+
+        <mxCell id="db_relational" value="&lt;b&gt;Primary Relational DB (PostgreSQL)&lt;/b&gt;&lt;br&gt;&lt;i&gt;Source of Truth (ACID Transactions)&lt;/i&gt;&lt;br&gt;• Tables: &lt;i&gt;TechnologyProfiles, EnterpriseNeeds&lt;/i&gt;&lt;br&gt;• &lt;i&gt;EOIs, CollaborationCases, CaseParties&lt;/i&gt;&lt;br&gt;• &lt;i&gt;Consortiums, ConsortiumOrgSlots&lt;/i&gt;&lt;br&gt;• &lt;i&gt;AdvisoryCases, TransferOutcomes&lt;/i&gt;&lt;br&gt;• Optimistic Locking Control (&lt;i&gt;version, updatedAt&lt;/i&gt;)" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#c8e6c9;strokeColor=#388e3c;strokeWidth=1.5;size=15;fontSize=11;verticalAlign=middle;" vertex="1" parent="tier4_container">
+          <mxGeometry x="30" y="45" width="320" height="125" as="geometry" />
+        </mxCell>
+
+        <mxCell id="db_redis" value="&lt;b&gt;Redis Cache &amp;amp; Distributed Locks&lt;/b&gt;&lt;br&gt;&lt;i&gt;Performance &amp;amp; Concurrency Control&lt;/i&gt;&lt;br&gt;• Cache danh mục công nghệ &amp;amp; Search Index&lt;br&gt;• Distributed Lock cho xác nhận Slot 2+2&lt;br&gt;• Idempotency Token cho submit EOI&lt;br&gt;• Cache quyền truy cập phòng đàm phán" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#c8e6c9;strokeColor=#388e3c;strokeWidth=1.5;size=15;fontSize=11;verticalAlign=middle;" vertex="1" parent="tier4_container">
+          <mxGeometry x="390" y="45" width="340" height="125" as="geometry" />
+        </mxCell>
+
+        <mxCell id="db_storage" value="&lt;b&gt;Object Store / Encrypted S3 Repository&lt;/b&gt;&lt;br&gt;&lt;i&gt;Confidential Documents &amp;amp; IP Dossiers&lt;/i&gt;&lt;br&gt;• Hồ sơ mô tả sáng chế, giải pháp kỹ thuật&lt;br&gt;• Thỏa thuận bảo mật thông tin (NDA)&lt;br&gt;• Dự thảo &amp;amp; Hợp đồng chuyển giao công nghệ&lt;br&gt;• Minh chứng thỏa thuận liên danh 4 bên" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#c8e6c9;strokeColor=#388e3c;strokeWidth=1.5;size=15;fontSize=11;verticalAlign=middle;" vertex="1" parent="tier4_container">
+          <mxGeometry x="770" y="45" width="340" height="125" as="geometry" />
+        </mxCell>
+
+        <mxCell id="db_audit" value="&lt;b&gt;Security Audit &amp;amp; Compliance Event Store&lt;/b&gt;&lt;br&gt;&lt;i&gt;Immutable Log &amp;amp; Sensitive Traceability&lt;/i&gt;&lt;br&gt;• &lt;i&gt;TechnologyPublished, EOISubmitted&lt;/i&gt;&lt;br&gt;• &lt;i&gt;ConsortiumSlotConfirmed, 2Plus2Validated&lt;/i&gt;&lt;br&gt;• &lt;i&gt;TransferOutcomeRecorded (Bàn giao)&lt;/i&gt;&lt;br&gt;• &lt;i&gt;UnauthorizedTechnologyChangeDenied&lt;/i&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#c8e6c9;strokeColor=#388e3c;strokeWidth=1.5;size=15;fontSize=11;verticalAlign=middle;" vertex="1" parent="tier4_container">
+          <mxGeometry x="1150" y="45" width="340" height="125" as="geometry" />
+        </mxCell>
+
+        <!-- TIER 5: INTEGRATION BOUNDARIES -->
+        <mxCell id="tier5_container" value="TẦNG 5: RANH GIỚI TÍCH HỢP LIÊN PHÂN HỆ &amp; MẠNG LƯỚI BÊN NGOÀI (INTEGRATION BOUNDARIES &amp; DOMAIN SEPARATION)" style="swimlane;startSize=30;fillColor=#eceff1;strokeColor=#607d8b;fontStyle=1;fontSize=12;fontColor=#263238;rounded=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1060" width="1520" height="180" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dom_iam" value="&lt;b&gt;Module 1: IAM &amp;amp; Access Governance&lt;/b&gt;&lt;br&gt;• Xác thực định danh &amp;amp; vai trò Enterprise / Org&lt;br&gt;• Kiểm tra Org Scope &amp;amp; quyền đại diện hợp pháp&lt;br&gt;&lt;i style=&quot;color:#0288d1;&quot;&gt;→ IAM không sở hữu trạng thái chuyển giao&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#607d8b;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" vertex="1" parent="tier5_container">
+          <mxGeometry x="30" y="50" width="270" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dom_knowledge" value="&lt;b&gt;Module 2: Kho Tri thức &amp;amp; Chuyên gia&lt;/b&gt;&lt;br&gt;• Cung cấp tham chiếu bài báo, sáng chế, kết quả&lt;br&gt;• Gợi ý Chuyên gia công nghệ &amp;amp; Nhà khoa học&lt;br&gt;&lt;i style=&quot;color:#d32f2f;&quot;&gt;→ Mod 5 sở hữu Tech Transfer Profile riêng&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#607d8b;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" vertex="1" parent="tier5_container">
+          <mxGeometry x="330" y="50" width="270" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dom_grant" value="&lt;b&gt;Module 3: Quản lý Tài trợ &amp;amp; Dự án&lt;/b&gt;&lt;br&gt;• Đề tài hoàn thành có thể đề xuất chuyển giao&lt;br&gt;• Mô hình 2+2 thuộc Module 5 (loại bỏ khỏi Mod 3)&lt;br&gt;&lt;i style=&quot;color:#d32f2f;&quot;&gt;→ Không tự động insert khi chưa có thao tác rõ ràng&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#607d8b;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" vertex="1" parent="tier5_container">
+          <mxGeometry x="630" y="50" width="270" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dom_kpi" value="&lt;b&gt;Module 6: Dashboard Giám sát&lt;/b&gt;&lt;br&gt;• Thống kê số lượng công nghệ, EOI, case hợp tác&lt;br&gt;• Chỉ số liên danh 2+2 thành công &amp;amp; giá trị bàn giao&lt;br&gt;&lt;i style=&quot;color:#d32f2f;&quot;&gt;→ Mod 6 chỉ đọc Business Facts, không write-back&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#607d8b;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" vertex="1" parent="tier5_container">
+          <mxGeometry x="930" y="50" width="270" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dom_external_ip" value="&lt;b&gt;IP Offices &amp;amp; Legal Advisory Partners&lt;/b&gt;&lt;br&gt;• Cục SHTT (VN) &amp;amp; Rospatent (Nga) tra cứu bằng&lt;br&gt;• Tổ chức tư vấn độc lập về định giá &amp;amp; sở hữu trí tuệ&lt;br&gt;&lt;i style=&quot;color:#0288d1;&quot;&gt;→ Portal chỉ lưu reference văn bản pháp lý&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#607d8b;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" vertex="1" parent="tier5_container">
+          <mxGeometry x="1230" y="50" width="260" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- LEGEND & ARCHITECTURE PRINCIPLES -->
+        <mxCell id="legend_box" value="&lt;b&gt;CHÚ THÍCH (LEGEND)&lt;/b&gt;&lt;hr&gt;&lt;table style=&quot;font-size: 11px;&quot;&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#e1f5fe; width:20px; border:1px solid #0288d1;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;Client &amp;amp; Access Zone&lt;/td&gt;&lt;td style=&quot;background-color:#fff3e0; width:20px; border:1px solid #ef6c00;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;API Gateway &amp;amp; Matching Pipeline&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#ede7f6; width:20px; border:1px solid #7e57c2;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;Core Domain Services&lt;/td&gt;&lt;td style=&quot;background-color:#e8f5e9; width:20px; border:1px solid #43a047;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;Multi-Model Storage &amp;amp; Audit&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#eceff1; width:20px; border:1px solid #607d8b;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;Integration &amp;amp; External Boundaries&lt;/td&gt;&lt;td style=&quot;color:#ef6c00; font-weight:bold;&quot;&gt;---&amp;gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;Tech Transfer &amp;amp; 2+2 Workflow Flow&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b0bec5;align=left;verticalAlign=top;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1260" width="580" height="190" as="geometry" />
+        </mxCell>
+
+        <mxCell id="principles_box" value="&lt;b&gt;NGUYÊN TẮC THIẾT KẾ CỐT LÕI (ARCHITECTURE PRINCIPLES - MODULE 5)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.45;&quot;&gt;1. &lt;b&gt;Bản chất Không chỉ là Catalog Công nghệ:&lt;/b&gt; Triển khai trọn vẹn lifecycle &lt;i&gt;Discovery → Interest (EOI) → Matching → Collaboration → IP/Legal Advisory → Transfer Outcome&lt;/i&gt;.&lt;br&gt;2. &lt;b&gt;Chuẩn hóa Ranh giới Mô hình 2+2:&lt;/b&gt; Mô hình 2+2 thuộc Module 5 (đã bóc tách hoàn toàn khỏi Module 3). Xác thực cấu trúc bắt buộc 4 slot: &lt;b&gt;1 Viện/Trường VN + 1 Doanh nghiệp VN + 1 Viện/Trường Nga + 1 Doanh nghiệp Nga&lt;/b&gt;. Không lưu kiểu chuỗi đơn giản, kiểm soát trạng thái xác nhận độc lập từng slot.&lt;br&gt;3. &lt;b&gt;Ranh giới Pháp lý &amp;amp; Sở hữu Trí tuệ (IP Boundary):&lt;/b&gt; Portal đóng vai trò hỗ trợ kết nối, lưu trữ tham chiếu vụ việc tư vấn (&lt;i&gt;AdvisoryCase&lt;/i&gt;) và văn bản pháp lý liên quan (&lt;i&gt;IPLegalArtifactRef&lt;/i&gt;); tuyệt đối không tự suy diễn hoặc tự động cấp quyền sở hữu trí tuệ.&lt;br&gt;4. &lt;b&gt;Phân tách Trạng thái Độc lập &amp;amp; Chống Tương tranh:&lt;/b&gt; Tách biệt 4 state machine độc lập (&lt;i&gt;Technology State, EOI State, Consortium State, Legal/Outcome State&lt;/i&gt;). Áp dụng Redis Distributed Lock và Idempotency Token chống race condition khi đồng thời xác nhận thành viên liên danh hoặc gửi lặp EOI.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#90a4ae;align=left;verticalAlign=top;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="640" y="1260" width="920" height="190" as="geometry" />
+        </mxCell>
+
+        <!-- CONNECTING EDGES -->
+
+        <!-- From Tier 1 to Tier 2 -->
+        <mxCell id="edge_t1_t2_1" value="Tra cứu Công nghệ &amp;amp; Nhu cầu Public" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#0288d1;strokeWidth=1.5;labelBackgroundColor=#ffffff;fontSize=10;" edge="1" parent="1" source="zone_public" target="gw_entry">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_t1_t2_2" value="Đăng tải Tech / Bài toán DN / Gửi EOI" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#0288d1;strokeWidth=1.5;labelBackgroundColor=#ffffff;fontSize=10;" edge="1" parent="1" source="zone_workspace" target="pipe_matching">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_t1_t2_3" value="Kiểm duyệt Công nghệ / Giám sát 2+2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#0288d1;strokeWidth=1.5;labelBackgroundColor=#ffffff;fontSize=10;" edge="1" parent="1" source="zone_gov" target="pipe_eoi">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Pipeline Internal Flow in Tier 2 -->
+        <mxCell id="edge_p_match_eoi" value="Gợi ý Khớp nối" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#ef6c00;strokeWidth=1.5;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="pipe_matching" target="pipe_eoi">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_p_eoi_2plus2" value="Mô hình 2+2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#ef6c00;strokeWidth=1.5;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="pipe_eoi" target="pipe_2plus2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_p_2plus2_event" value="Xác thực Đủ 4 Bên" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#ef6c00;strokeWidth=1.5;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="pipe_2plus2" target="pipe_event">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- From Tier 2 to Tier 3 -->
+        <mxCell id="edge_t2_t3_1" value="Đăng ký &amp;amp; TRL Check" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#ef6c00;strokeWidth=1.2;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="pipe_matching" target="svc_technology">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_t2_t3_2" value="Xử lý Nhu cầu &amp;amp; EOI" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#ef6c00;strokeWidth=1.2;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="pipe_eoi" target="svc_demand">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_t2_t3_3" value="Mở Case Đàm phán" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#ef6c00;strokeWidth=1.2;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="pipe_eoi" target="svc_collab">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_t2_t3_4" value="Xác nhận 4 Slots" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#ef6c00;strokeWidth=1.2;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="pipe_2plus2" target="svc_consortium">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_t2_t3_5" value="Tư vấn NDA &amp;amp; Bàn giao" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#ef6c00;strokeWidth=1.2;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="pipe_event" target="svc_ip_outcome">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- From Tier 3 to Tier 4 -->
+        <mxCell id="edge_t3_t4_db" value="ACID Operations &amp;amp; State Machine" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#7e57c2;strokeWidth=1.5;labelBackgroundColor=#ffffff;fontSize=10;" edge="1" parent="1" source="svc_technology" target="db_relational">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_t3_t4_cache" value="Lock Slot &amp;amp; Idempotency Token" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#7e57c2;strokeWidth=1.5;labelBackgroundColor=#ffffff;fontSize=10;" edge="1" parent="1" source="svc_consortium" target="db_redis">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_t3_t4_storage" value="Lưu Hồ sơ Sáng chế &amp;amp; NDA" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#7e57c2;strokeWidth=1.5;labelBackgroundColor=#ffffff;fontSize=10;" edge="1" parent="1" source="svc_ip_outcome" target="db_storage">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_t3_t4_audit" value="Bắn sự kiện kiểm toán bất biến" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#7e57c2;strokeWidth=1.5;labelBackgroundColor=#ffffff;fontSize=10;" edge="1" parent="1" source="svc_collab" target="db_audit">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- From Tier 4 to Tier 5 -->
+        <mxCell id="edge_t4_t5_1" value="Identity &amp;amp; Scope Check" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.3;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#43a047;strokeWidth=1.2;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="db_relational" target="dom_iam">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_t4_t5_2" value="Sáng chế &amp;amp; Chuyên gia Ref" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.7;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#43a047;strokeWidth=1.2;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="db_relational" target="dom_knowledge">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_t4_t5_3" value="Đề tài Hoàn thành Ref" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#43a047;strokeWidth=1.2;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="db_redis" target="dom_grant">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_t4_t5_4" value="Chỉ số Chuyển giao &amp;amp; 2+2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#43a047;strokeWidth=1.2;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="db_audit" target="dom_kpi">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_t4_t5_5" value="Tra cứu Bằng &amp;amp; Pháp lý SHTT" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#43a047;strokeWidth=1.2;fontSize=10;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="db_storage" target="dom_external_ip">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

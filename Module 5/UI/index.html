@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VN–RU Portal · Chuyển giao Công nghệ & Kết nối Doanh nghiệp (Mô hình 2+2)</title>
+<style>
+:root {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-2: #f1f5f9;
+  --text: #0f172a;
+  --muted: #64748b;
+  --line: #e2e8f0;
+  --primary: #2563eb;
+  --primary-50: #eff6ff;
+  --primary-100: #dbeafe;
+  --primary-dark: #1d4ed8;
+  --success: #16a34a;
+  --success-bg: #dcfce7;
+  --warning: #d97706;
+  --warning-bg: #fef3c7;
+  --danger: #dc2626;
+  --danger-bg: #fee2e2;
+  --purple: #7c3aed;
+  --purple-50: #f5f3ff;
+  --amber: #b45309;
+  --sidebar: #0f172a;
+  --sidebar-hover: #1e293b;
+  --sidebar-active: #1d4ed8;
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 18px;
+  --shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 20px 40px rgba(15, 23, 42, 0.1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+}
+button, input, select, textarea { font-family: inherit; }
+button { cursor: pointer; border: none; }
+
+/* Sidebar */
+.sidebar {
+  width: 280px;
+  background: var(--sidebar);
+  color: #fff;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.brand-logo {
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 16px;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+.brand-info strong { display: block; font-size: 14px; font-weight: 700; letter-spacing: -0.2px; }
+.brand-info span { font-size: 11px; color: #94a3b8; }
+.brand-badge {
+  display: inline-block;
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-top: 3px;
+}
+
+.nav-section { margin-top: 24px; }
+.nav-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #64748b;
+  padding: 0 12px 8px;
+}
+.nav-btn {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 10px;
+  background: transparent;
+  color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: left;
+  transition: all 0.2s ease;
+  margin-bottom: 4px;
+}
+.nav-btn:hover { background: var(--sidebar-hover); color: #fff; }
+.nav-btn.active {
+  background: var(--sidebar-active);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(29, 78, 216, 0.35);
+}
+.nav-btn .icon { font-size: 16px; width: 20px; text-align: center; }
+.nav-btn .badge-pill {
+  margin-left: auto;
+  background: rgba(255, 255, 255, 0.15);
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  color: #fff;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.user-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 10px 12px;
+  border-radius: 10px;
+}
+.user-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #3b82f6;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+.user-meta strong { display: block; font-size: 11px; color: #f8fafc; }
+.user-meta small { font-size: 10px; color: #94a3b8; }
+
+/* Main Content */
+.main-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+.top-header {
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  padding: 16px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.header-titles .breadcrumb {
+  font-size: 11px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+.header-titles h1 {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: #0f172a;
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.tag-context {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 11px;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.tag-context b { color: #0f172a; }
+
+.btn {
+  padding: 8px 16px;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.15s;
+}
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-outline { background: #fff; border: 1px solid var(--line); color: #334155; }
+.btn-outline:hover { background: var(--surface-2); }
+.btn-purple { background: var(--purple); color: #fff; }
+.btn-purple:hover { background: #6d28d9; }
+.btn-success { background: var(--success); color: #fff; }
+.btn-success:hover { background: #15803d; }
+.btn-sm { padding: 5px 10px; font-size: 11px; }
+
+/* Page Container */
+.page-container {
+  padding: 28px 32px 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+.view-panel { display: none; }
+.view-panel.active { display: block; animation: fadeIn 0.25s ease; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hero Section */
+.hero-box {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e1b4b 50%, #31104b 100%);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  padding: 36px 40px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow-lg);
+}
+.hero-box::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.hero-box h2 { font-size: 28px; font-weight: 800; letter-spacing: -0.6px; margin-bottom: 10px; line-height: 1.25; }
+.hero-box p { font-size: 13px; color: #cbd5e1; max-width: 780px; line-height: 1.6; margin-bottom: 24px; }
+
+.search-bar-grid {
+  display: grid;
+  grid-template-columns: 1fr 200px 180px auto;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px;
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.search-input {
+  background: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: #0f172a;
+  outline: none;
+}
+.search-select {
+  background: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 12px;
+  color: #334155;
+  outline: none;
+}
+
+/* Stats Row */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.stat-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.stat-icon.blue { background: var(--primary-50); color: var(--primary); }
+.stat-icon.purple { background: var(--purple-50); color: var(--purple); }
+.stat-icon.amber { background: #fef3c7; color: #b45309; }
+.stat-icon.green { background: var(--success-bg); color: var(--success); }
+.stat-info span { font-size: 11px; color: var(--muted); display: block; font-weight: 500; }
+.stat-info strong { font-size: 24px; font-weight: 800; color: #0f172a; line-height: 1.2; }
+
+/* Filter Tabs */
+.filter-tabs-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 12px;
+}
+.tab-pills { display: flex; gap: 8px; }
+.tab-pill {
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid var(--line);
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  transition: all 0.15s;
+}
+.tab-pill.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+}
+
+/* Card Grid */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.tech-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+.tech-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: #cbd5e1;
+}
+.tech-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.trl-badge {
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.3px;
+}
+.trl-high { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
+.trl-mid { background: #dbeafe; color: #1d4ed8; border: 1px solid #bfdbfe; }
+.trl-low { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+
+.tech-country {
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #475569;
+}
+.tech-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.35;
+  margin-bottom: 8px;
+}
+.tech-org {
+  font-size: 11px;
+  color: #64748b;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.tech-desc {
+  font-size: 12px;
+  color: #475569;
+  line-height: 1.55;
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+.tech-meta-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.meta-chip {
+  font-size: 10px;
+  background: var(--surface-2);
+  color: #475569;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+.tech-footer {
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 2+2 Consortium Builder Section */
+.consortium-builder-panel {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+}
+.consortium-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+.consortium-header h2 { font-size: 18px; font-weight: 800; color: #0f172a; }
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.status-complete { background: #dcfce7; color: #15803d; border: 1px solid #86efac; }
+.status-forming { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+
+.slots-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 28px;
+}
+.slot-box {
+  border: 2px dashed #cbd5e1;
+  border-radius: var(--radius);
+  padding: 20px;
+  background: #f8fafc;
+  position: relative;
+  transition: all 0.2s;
+}
+.slot-box.confirmed {
+  border: 2px solid #22c55e;
+  background: #f0fdf4;
+}
+.slot-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+.slot-badge.confirmed { background: #dcfce7; color: #15803d; }
+.slot-badge.pending { background: #fef3c7; color: #b45309; }
+
+.slot-num {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+.slot-title { font-size: 15px; font-weight: 800; color: #0f172a; margin-bottom: 10px; }
+.slot-org {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-top: 8px;
+}
+.slot-org strong { display: block; font-size: 12px; color: #1e293b; }
+.slot-org small { font-size: 10px; color: #64748b; }
+.slot-action { margin-top: 12px; display: flex; gap: 8px; }
+
+.validation-bar {
+  background: #f1f5f9;
+  border-radius: 12px;
+  padding: 18px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.val-text strong { display: block; font-size: 13px; color: #0f172a; }
+.val-text span { font-size: 11px; color: #64748b; }
+
+/* Table Section */
+.data-table-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.table-head {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.table-head h3 { font-size: 14px; font-weight: 700; color: #0f172a; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th {
+  background: #f8fafc;
+  padding: 12px 18px;
+  text-align: left;
+  font-weight: 600;
+  color: #475569;
+  border-bottom: 1px solid var(--line);
+}
+td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+  color: #334155;
+}
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #f8fafc; }
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  display: none;
+  place-items: center;
+  z-index: 100;
+  padding: 20px;
+}
+.modal-overlay.active { display: grid; }
+.modal-box {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  max-width: 640px;
+  width: 100%;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  animation: modalUp 0.25s ease;
+}
+@keyframes modalUp {
+  from { opacity: 0; transform: scale(0.96) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.modal-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.modal-header h3 { font-size: 16px; font-weight: 800; color: #0f172a; }
+.modal-close {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: #64748b;
+  cursor: pointer;
+}
+.modal-body { padding: 24px; }
+.form-group { margin-bottom: 16px; }
+.form-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 6px;
+}
+.form-control {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 12px;
+  outline: none;
+}
+.form-control:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15); }
+.modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--line);
+  background: #f8fafc;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar">
+  <div class="brand">
+    <div class="brand-logo">M5</div>
+    <div class="brand-info">
+      <strong>VN–RU Portal</strong>
+      <span>Tech Transfer & Matching</span>
+      <span class="brand-badge">2+2 Consortium</span>
+    </div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-title">Khu vực Truy cập (3 Zones)</div>
+    <button class="nav-btn active" onclick="switchView('public-discovery')">
+      <span class="icon">🌐</span>
+      <span>Public Discovery</span>
+    </button>
+    <button class="nav-btn" onclick="switchView('enterprise-demands')">
+      <span class="icon">💼</span>
+      <span>Bài toán Doanh nghiệp</span>
+      <span class="badge-pill">18 mới</span>
+    </button>
+    <button class="nav-btn" onclick="switchView('consortium-2plus2')">
+      <span class="icon">🤝</span>
+      <span>Liên danh 2+2 Workspace</span>
+      <span class="badge-pill" style="background:#22c55e;">Chuẩn</span>
+    </button>
+    <button class="nav-btn" onclick="switchView('eoi-negotiation')">
+      <span class="icon">💬</span>
+      <span>Case Đàm phán & EOI</span>
+      <span class="badge-pill">6 đang mở</span>
+    </button>
+    <button class="nav-btn" onclick="switchView('ip-legal-vault')">
+      <span class="icon">⚖️</span>
+      <span>Hồ sơ SHTT & Hợp đồng</span>
+    </button>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-title">Quản trị & Giám sát</div>
+    <button class="nav-btn" onclick="switchView('gov-moderation')">
+      <span class="icon">🛡️</span>
+      <span>Kiểm duyệt & Audit Log</span>
+    </button>
+    <button class="nav-btn" onclick="alert('Module 6 Analytics: Dữ liệu chuyển giao đã được đồng bộ tự động.')">
+      <span class="icon">📊</span>
+      <span>Chỉ số Sang Module 6</span>
+    </button>
+  </div>
+
+  <div class="sidebar-footer">
+    <div class="user-card">
+      <div class="user-avatar">DR</div>
+      <div class="user-meta">
+        <strong>Dr. Nguyen Van A (VAST)</strong>
+        <small>Research Org Rep · Verified</small>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- Main Wrapper -->
+<div class="main-wrapper">
+  <!-- Top Header -->
+  <header class="top-header">
+    <div class="header-titles">
+      <div class="breadcrumb">
+        <span>VN–RU Portal</span> / <span>Module 5</span> / <span id="current-breadcrumb">Public Discovery</span>
+      </div>
+      <h1 id="current-title">Chuyển giao Công nghệ & Kết nối Doanh nghiệp</h1>
+    </div>
+    <div class="header-actions">
+      <div class="tag-context">
+        <span>Active Context:</span>
+        <b>VAST / Research Institution Rep</b>
+      </div>
+      <button class="btn btn-outline" onclick="openEoiModal('Đăng ký Công nghệ Mới')">➕ Đăng tải Công nghệ</button>
+      <button class="btn btn-primary" onclick="switchView('consortium-2plus2')">🚀 Khởi tạo Liên danh 2+2</button>
+    </div>
+  </header>
+
+  <!-- Page Container -->
+  <main class="page-container">
+
+    <!-- VIEW 1: PUBLIC DISCOVERY -->
+    <div id="view-public-discovery" class="view-panel active">
+      <!-- Hero Box -->
+      <div class="hero-box">
+        <div class="hero-tag">✨ NỀN TẢNG CHUYỂN GIAO KHOA HỌC CÔNG NGHỆ SONG PHƯƠNG VIỆT – NGA</div>
+        <h2>Khớp nối Sáng chế Viện – Trường với Doanh nghiệp</h2>
+        <p>Khám phá hơn 140+ giải pháp công nghệ TRL 4–9 sẵn sàng chuyển giao, nộp Thư bày tỏ quan tâm (EOI), và thành lập mô hình liên danh 2+2 (Viện/Trường VN + Doanh nghiệp VN + Viện/Trường Nga + Doanh nghiệp Nga) với hỗ trợ tư vấn pháp lý SHTT toàn diện.</p>
+        
+        <div class="search-bar-grid">
+          <input type="text" class="search-input" placeholder="Tìm kiếm công nghệ, sáng chế, từ khóa, tên viện-trường...">
+          <select class="search-select">
+            <option>Tất cả lĩnh vực</option>
+            <option>AI, Robotics & Tự động hóa</option>
+            <option>Năng lượng mới & Vật liệu tiên tiến</option>
+            <option>Công nghệ Sinh học & Y dược</option>
+            <option>Hàng hải & Công nghệ Viễn thông</option>
+          </select>
+          <select class="search-select">
+            <option>Mức TRL (Tất cả)</option>
+            <option>TRL 7–9 (Thương mại hóa)</option>
+            <option>TRL 5–6 (Thử nghiệm thực tế)</option>
+            <option>TRL 4 (Mẫu phòng lab)</option>
+          </select>
+          <button class="btn btn-primary" style="background:#3b82f6;">🔍 Tìm kiếm</button>
+        </div>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon blue">🔬</div>
+          <div class="stat-info">
+            <span>Công nghệ Sẵn sàng</span>
+            <strong>148</strong>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon amber">💼</div>
+          <div class="stat-info">
+            <span>Bài toán Doanh nghiệp</span>
+            <strong>62</strong>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon purple">🤝</div>
+          <div class="stat-info">
+            <span>Liên danh 2+2 Đang chạy</span>
+            <strong>19</strong>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon green">📜</div>
+          <div class="stat-info">
+            <span>Hợp đồng Chuyển giao</span>
+            <strong>34</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="filter-tabs-row">
+        <div class="tab-pills">
+          <button class="tab-pill active">Tất cả công nghệ</button>
+          <button class="tab-pill">Nổi bật Việt Nam 🇻🇳</button>
+          <button class="tab-pill">Nổi bật LB Nga 🇷🇺</button>
+          <button class="tab-pill">Đã có bằng sáng chế</button>
+          <button class="tab-pill">Mô hình 2+2 ưu tiên</button>
+        </div>
+        <span style="font-size:12px; color:var(--muted);">Hiển thị <b>6</b> trong 148 kết quả</span>
+      </div>
+
+      <!-- Cards Grid -->
+      <div class="cards-grid">
+        <!-- Card 1 -->
+        <div class="tech-card">
+          <div>
+            <div class="tech-header">
+              <span class="trl-badge trl-high">TRL 8 · Thử nghiệm thương mại</span>
+              <span class="tech-country">🇻🇳 Viện Hàn lâm VAST</span>
+            </div>
+            <div class="tech-title">Hệ thống Cảm biến Quang sợi Giám sát An toàn Công trình Cầu cảng</div>
+            <div class="tech-org">🏢 Viện Vật lý & Viện Cơ học (VAST)</div>
+            <div class="tech-desc">Công nghệ giám sát biến dạng và dao động thời gian thực bằng cảm biến FBG, độ chính xác dưới micromet, chịu được môi trường nước biển khắc nghiệt.</div>
+            <div class="tech-meta-row">
+              <span class="meta-chip">Bằng độc quyền GPHI #2890</span>
+              <span class="meta-chip">IoT & Smart Structure</span>
+            </div>
+          </div>
+          <div class="tech-footer">
+            <span style="font-size:11px; font-weight:700; color:var(--primary);">Hợp tác 2+2 khả thi</span>
+            <button class="btn btn-outline btn-sm" onclick="openEoiModal('Hệ thống Cảm biến Quang sợi (VAST)')">Gửi EOI ➔</button>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="tech-card">
+          <div>
+            <div class="tech-header">
+              <span class="trl-badge trl-high">TRL 9 · Ứng dụng thực tế</span>
+              <span class="tech-country">🇷🇺 ĐH Bách khoa Tomsk (TPU)</span>
+            </div>
+            <div class="tech-title">Công nghệ Lớp phủ Gốm Siêu cứng Chống mài mòn Chi tiết Tuabin Khí</div>
+            <div class="tech-org">🏢 Viện Kỹ thuật Nhiệt & Vật liệu TPU</div>
+            <div class="tech-desc">Lắng đọng màng mỏng PVD magnetron thế hệ mới, tăng tuổi thọ chi tiết máy lên 3.5 lần trong môi trường nhiệt độ trên 1200°C và áp suất cao.</div>
+            <div class="tech-meta-row">
+              <span class="meta-chip">Rospatent #RU2754891</span>
+              <span class="meta-chip">Vật liệu chịu nhiệt</span>
+            </div>
+          </div>
+          <div class="tech-footer">
+            <span style="font-size:11px; font-weight:700; color:var(--purple);">Sẵn sàng Cấp phép</span>
+            <button class="btn btn-outline btn-sm" onclick="openEoiModal('Lớp phủ Gốm Siêu cứng TPU')">Gửi EOI ➔</button>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="tech-card">
+          <div>
+            <div class="tech-header">
+              <span class="trl-badge trl-mid">TRL 6 · Mẫu thử nghiệm</span>
+              <span class="tech-country">🇻🇳 ĐH Bách khoa Hà Nội (HUST)</span>
+            </div>
+            <div class="tech-title">Thuật toán Điều khiển Bầy Drone Cứu hộ Tự hành trong Môi trường Không GPS</div>
+            <div class="tech-org">🏢 Trung tâm Nghiên cứu Quốc tế NAVIS (HUST)</div>
+            <div class="tech-desc">Định vị bằng thị giác máy tính kết hợp SLAM UWB đa kênh, tự động phân luồng tìm kiếm cứu nạn trong rừng rậm và hang động ngập nước.</div>
+            <div class="tech-meta-row">
+              <span class="meta-chip">Mã nguồn & Patent Pending</span>
+              <span class="meta-chip">Autonomous AI</span>
+            </div>
+          </div>
+          <div class="tech-footer">
+            <span style="font-size:11px; font-weight:700; color:var(--primary);">Tìm Doanh nghiệp Test</span>
+            <button class="btn btn-outline btn-sm" onclick="openEoiModal('Thuật toán Drone Cứu hộ HUST')">Gửi EOI ➔</button>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="tech-card">
+          <div>
+            <div class="tech-header">
+              <span class="trl-badge trl-high">TRL 8 · Chuyển giao Pilot</span>
+              <span class="tech-country">🇷🇺 ĐH Quốc gia Moskva (MSU)</span>
+            </div>
+            <div class="tech-title">Chế phẩm Sinh học Nano Xử lý Tràn dầu & Ô nhiễm Kim loại Nặng Vùng biển</div>
+            <div class="tech-org">🏢 Khoa Sinh học & Trung tâm Đổi mới MSU</div>
+            <div class="tech-desc">Chủng vi sinh vật ưa lạnh/nhiệt đới cố định trên hạt nano xốp silica, phân hủy 92% hydrocacbon dầu mỏ trong 72 giờ không tạo độc tố phụ.</div>
+            <div class="tech-meta-row">
+              <span class="meta-chip">Rospatent #RU2698124</span>
+              <span class="meta-chip">Công nghệ Xanh</span>
+            </div>
+          </div>
+          <div class="tech-footer">
+            <span style="font-size:11px; font-weight:700; color:var(--success);">Đã có Case 2+2</span>
+            <button class="btn btn-outline btn-sm" onclick="openEoiModal('Chế phẩm Sinh học MSU')">Gửi EOI ➔</button>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="tech-card">
+          <div>
+            <div class="tech-header">
+              <span class="trl-badge trl-mid">TRL 7 · Đã thử nghiệm Field</span>
+              <span class="tech-country">🇻🇳 Viện Công nghệ Môi trường (VAST)</span>
+            </div>
+            <div class="tech-title">Hệ thống Lọc Nước Biển Thành Nước Ngọt Bằng Năng lượng Mặt trời Tích hợp</div>
+            <div class="tech-org">🏢 Viện Công nghệ Môi trường & ĐH MIPT</div>
+            <div class="tech-desc">Thiết bị khử mặn màng thẩm thấu ngược RO kết hợp bộ thu nhiệt bức xạ mặt trời hiệu suất cao, công suất 5m3/ngày cho đảo xa và tàu đánh cá.</div>
+            <div class="tech-meta-row">
+              <span class="meta-chip">GPHI VN #3104</span>
+              <span class="meta-chip">Thiết bị Hải đảo</span>
+            </div>
+          </div>
+          <div class="tech-footer">
+            <span style="font-size:11px; font-weight:700; color:var(--primary);">Hợp tác 2+2 khả thi</span>
+            <button class="btn btn-outline btn-sm" onclick="openEoiModal('Hệ thống Khử mặn Năng lượng Mặt trời')">Gửi EOI ➔</button>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="tech-card">
+          <div>
+            <div class="tech-header">
+              <span class="trl-badge trl-high">TRL 9 · Sẵn sàng sản xuất</span>
+              <span class="tech-country">🇷🇺 Viện Hàng không Moskva (MAI)</span>
+            </div>
+            <div class="tech-title">Trạm Sạc Không dây Siêu nhanh Dành cho Robot Tự hành Nhà kho Thông minh</div>
+            <div class="tech-org">🏢 Trung tâm Robotics & Điện tử Hàng không MAI</div>
+            <div class="tech-desc">Công nghệ truyền năng lượng cộng hưởng từ 15kW, hiệu suất truyền đạt 94.5%, tự cân chỉnh góc lệch ±15 độ, chống nhiễu điện từ công nghiệp.</div>
+            <div class="tech-meta-row">
+              <span class="meta-chip">Rospatent & CE Certified</span>
+              <span class="meta-chip">Smart Logistics</span>
+            </div>
+          </div>
+          <div class="tech-footer">
+            <span style="font-size:11px; font-weight:700; color:var(--purple);">Sẵn sàng Cấp phép</span>
+            <button class="btn btn-outline btn-sm" onclick="openEoiModal('Trạm Sạc Không dây MAI')">Gửi EOI ➔</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 2: 2+2 CONSORTIUM WORKSPACE -->
+    <div id="view-consortium-2plus2" class="view-panel">
+      <div class="consortium-builder-panel">
+        <div class="consortium-header">
+          <div>
+            <span style="font-size:11px; font-weight:700; color:var(--purple); text-transform:uppercase;">Workspace Hợp tác Song phương Liên danh</span>
+            <h2>Dự án 2+2: Chế tạo Module Pin Thể rắn & Hệ thống Quản lý Nhiệt cho Xe điện</h2>
+            <p style="font-size:12px; color:var(--muted); margin-top:4px;">Mã định danh: <b>CS-2026-VN-RU-008</b> · Đơn vị khởi xướng: Viện Hàn lâm VAST</p>
+          </div>
+          <div>
+            <span class="status-pill status-complete">✅ Cấu trúc 2+2 Đạt chuẩn (4/4 Slots Confirmed)</span>
+          </div>
+        </div>
+
+        <!-- 4 Slots Grid -->
+        <div class="slots-grid">
+          <!-- Slot 1: VN Research Inst -->
+          <div class="slot-box confirmed">
+            <span class="slot-badge confirmed">Đã xác nhận ✔</span>
+            <div class="slot-num">🇻🇳 Slot 1 · Viện / Trường Việt Nam</div>
+            <div class="slot-title">Viện Khoa học Vật liệu (VAST)</div>
+            <p style="font-size:11px; color:#475569;">Chủ trì nghiên cứu tổng hợp điện giải rắn sulfua và cơ chế dẫn ion lithium ở nhiệt độ cao.</p>
+            <div class="slot-org">
+              <strong>Đại diện pháp lý: GS. TSKH. Trần Văn B</strong>
+              <small>Văn bản ủy quyền: QĐ-VAST/2026-0412 · Đã ký số</small>
+            </div>
+            <div class="slot-action">
+              <button class="btn btn-outline btn-sm">Xem Thỏa thuận</button>
+              <button class="btn btn-outline btn-sm" style="color:var(--primary);">Hồ sơ năng lực</button>
+            </div>
+          </div>
+
+          <!-- Slot 2: VN Enterprise -->
+          <div class="slot-box confirmed">
+            <span class="slot-badge confirmed">Đã xác nhận ✔</span>
+            <div class="slot-num">🇻🇳 Slot 2 · Doanh nghiệp Việt Nam</div>
+            <div class="slot-title">Tập đoàn VinFast Auto (EV Battery Lab)</div>
+            <p style="font-size:11px; color:#475569;">Đơn vị tiếp nhận công nghệ, đầu tư dây chuyền pilot và thử nghiệm tích hợp pack pin trên xe thực tế.</p>
+            <div class="slot-org">
+              <strong>Đại diện pháp lý: Ông Lê Hoàng C (CTO)</strong>
+              <small>Thỏa thuận cam kết đầu tư: NDA-VF-2026-99 · Đã ký số</small>
+            </div>
+            <div class="slot-action">
+              <button class="btn btn-outline btn-sm">Xem Thỏa thuận</button>
+              <button class="btn btn-outline btn-sm" style="color:var(--primary);">Báo cáo Pilot</button>
+            </div>
+          </div>
+
+          <!-- Slot 3: RU Research Inst -->
+          <div class="slot-box confirmed">
+            <span class="slot-badge confirmed">Đã xác nhận ✔</span>
+            <div class="slot-num">🇷🇺 Slot 3 · Viện / Trường LB Nga</div>
+            <div class="slot-title">Viện Hóa học Vô cơ Kurnakov (RAS - Viện HL Nga)</div>
+            <p style="font-size:11px; color:#475569;">Đồng chủ trì công nghệ phủ màng bảo vệ bề mặt cực âm và phân tích cấu trúc tinh thể nano.</p>
+            <div class="slot-org">
+              <strong>Đại diện pháp lý: Prof. Dmitry Ivanov</strong>
+              <small>Hợp đồng hợp tác khoa học: RAS-RU-VIE-8812 · Verified</small>
+            </div>
+            <div class="slot-action">
+              <button class="btn btn-outline btn-sm">Xem Thỏa thuận</button>
+              <button class="btn btn-outline btn-sm" style="color:var(--primary);">Sáng chế đính kèm</button>
+            </div>
+          </div>
+
+          <!-- Slot 4: RU Enterprise -->
+          <div class="slot-box confirmed">
+            <span class="slot-badge confirmed">Đã xác nhận ✔</span>
+            <div class="slot-num">🇷🇺 Slot 4 · Doanh nghiệp LB Nga</div>
+            <div class="slot-title">Rosatom Energy Storage Division (RENERA)</div>
+            <p style="font-size:11px; color:#475569;">Cung cấp vật liệu tiền chất tiêu chuẩn công nghiệp và đồng phát triển hệ thống quản lý nhiệt BMS thông minh.</p>
+            <div class="slot-org">
+              <strong>Đại diện pháp lý: Mikhail Petrov (VP Technology)</strong>
+              <small>Cam kết cung ứng & thương mại: RENERA-INT-2026 · Verified</small>
+            </div>
+            <div class="slot-action">
+              <button class="btn btn-outline btn-sm">Xem Thỏa thuận</button>
+              <button class="btn btn-outline btn-sm" style="color:var(--primary);">Điều khoản Cung ứng</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Validation & Action Bar -->
+        <div class="validation-bar">
+          <div class="val-text">
+            <strong>Động cơ Kiểm định Cấu trúc: 2+2 STRUCTURALLY COMPLETE</strong>
+            <span>Hệ thống Backend đã xác thực 4/4 slots độc lập, không phát hiện xung đột sở hữu hay trùng lặp tư cách pháp nhân.</span>
+          </div>
+          <div style="display:flex; gap:10px;">
+            <button class="btn btn-outline" onclick="alert('Đã tải xuống trọn bộ tài liệu liên danh CS-2026-VN-RU-008.zip')">📥 Xuất Hồ sơ Liên danh</button>
+            <button class="btn btn-purple" onclick="switchView('ip-legal-vault')">⚖️ Chuyển sang Ký kết NDA & IP</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 3: ENTERPRISE DEMANDS -->
+    <div id="view-enterprise-demands" class="view-panel">
+      <div class="filter-tabs-row">
+        <div class="tab-pills">
+          <button class="tab-pill active">Tất cả Nhu cầu R&D (62)</button>
+          <button class="tab-pill">Doanh nghiệp Việt Nam (38)</button>
+          <button class="tab-pill">Doanh nghiệp Nga (24)</button>
+          <button class="tab-pill">Ngân sách > 500k USD</button>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="alert('Mở form đăng ký nhu cầu công nghệ mới cho doanh nghiệp')">➕ Đăng Nhu cầu R&D</button>
+      </div>
+
+      <div class="data-table-card">
+        <div class="table-head">
+          <h3>Danh mục Bài toán Công nghệ & Nhu cầu R&D Đang tìm Đối tác</h3>
+          <span style="font-size:11px; color:var(--muted);">Cập nhật 2 giờ trước</span>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Mã YC</th>
+              <th>Tên Bài toán / Nhu cầu R&D</th>
+              <th>Doanh nghiệp Đăng</th>
+              <th>Lĩnh vực</th>
+              <th>Ngân sách Dự kiến</th>
+              <th>Trạng thái</th>
+              <th>Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>RD-2026-012</b></td>
+              <td><b>Tìm công nghệ xử lý bề mặt hợp kim Titan dùng trong y tế</b><br><small style="color:var(--muted);">Yêu cầu độ tương thích sinh học cao, đạt chuẩn ISO 10993</small></td>
+              <td>🇻🇳 Vinmec Healthcare System</td>
+              <td>Vật liệu Y sinh</td>
+              <td>$250,000 USD</td>
+              <td><span class="status-pill status-forming" style="font-size:10px; padding:2px 8px;">Đang tìm Viện</span></td>
+              <td><button class="btn btn-outline btn-sm" onclick="alert('Gửi đề xuất giải pháp cho Vinmec')">Đề xuất Giải pháp</button></td>
+            </tr>
+            <tr>
+              <td><b>RD-2026-015</b></td>
+              <td><b>Hệ thống AI nhận diện khuyết tật vi mạch bán dẫn tốc độ cao</b><br><small style="color:var(--muted);">Xử lý 120 sản phẩm/giây trên băng chuyền tự động</small></td>
+              <td>🇻🇳 Viettel High Tech (VHT)</td>
+              <td>AI & Bán dẫn</td>
+              <td>$600,000 USD</td>
+              <td><span class="status-pill status-complete" style="font-size:10px; padding:2px 8px;">Đã ghép 2 Viện</span></td>
+              <td><button class="btn btn-outline btn-sm" onclick="switchView('consortium-2plus2')">Xem Liên danh</button></td>
+            </tr>
+            <tr>
+              <td><b>RD-2026-019</b></td>
+              <td><b>Vật liệu composite nhẹ chống ăn mòn cho tàu cao tốc ven biển</b><br><small style="color:var(--muted);">Chịu tải va đập cao trong điều kiện bão nhiệt đới</small></td>
+              <td>🇷🇺 United Shipbuilding Corp (USC)</td>
+              <td>Hàng hải</td>
+              <td>$800,000 USD</td>
+              <td><span class="status-pill status-forming" style="font-size:10px; padding:2px 8px;">Mở nộp EOI</span></td>
+              <td><button class="btn btn-outline btn-sm" onclick="openEoiModal('Composite Tàu cao tốc USC')">Gửi EOI</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- VIEW 4: EOI & NEGOTIATION -->
+    <div id="view-eoi-negotiation" class="view-panel">
+      <div class="data-table-card">
+        <div class="table-head">
+          <h3>Các Phiên Đàm phán Chuyển giao Đang hoạt động (Active Collaboration Cases)</h3>
+          <button class="btn btn-outline btn-sm" onclick="alert('Tạo phòng họp trực tuyến bảo mật mới')">🔒 Mở Phòng đàm phán</button>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Mã Case</th>
+              <th>Công nghệ / Nhu cầu</th>
+              <th>Bên Cung (Supply)</th>
+              <th>Bên Cầu (Demand)</th>
+              <th>Tiến độ</th>
+              <th>Trạng thái Case</th>
+              <th>Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>CASE-2026-081</b></td>
+              <td>Cảm biến Quang sợi Giám sát Cầu cảng</td>
+              <td>Viện Hàn lâm VAST (VN)</td>
+              <td>Tập đoàn Đèo Cả (VN)</td>
+              <td>Giai đoạn 3: Báo giá & NDA</td>
+              <td><span class="status-pill status-forming" style="font-size:10px; padding:2px 8px;">NEGOTIATION</span></td>
+              <td><button class="btn btn-primary btn-sm" onclick="alert('Vào phòng họp bảo mật CASE-2026-081')">Vào Phòng họp 💬</button></td>
+            </tr>
+            <tr>
+              <td><b>CASE-2026-044</b></td>
+              <td>Module Pin Thể rắn 2+2</td>
+              <td>VAST + Viện Kurnakov</td>
+              <td>VinFast + RENERA</td>
+              <td>Giai đoạn 4: Ký hợp đồng</td>
+              <td><span class="status-pill status-complete" style="font-size:10px; padding:2px 8px;">TERMS_AGREED</span></td>
+              <td><button class="btn btn-purple btn-sm" onclick="switchView('ip-legal-vault')">Xem Hợp đồng 📄</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- VIEW 5: IP & LEGAL VAULT -->
+    <div id="view-ip-legal-vault" class="view-panel">
+      <div class="consortium-builder-panel">
+        <div class="consortium-header">
+          <div>
+            <span style="font-size:11px; font-weight:700; color:#b45309; text-transform:uppercase;">Kho Lưu trữ Pháp lý & Sở hữu Trí tuệ (IP Legal Vault)</span>
+            <h2>Hồ sơ Pháp lý & Thỏa thuận Cấp phép Chuyển giao</h2>
+            <p style="font-size:12px; color:var(--muted); margin-top:4px;">Lưu trữ mã hóa trên Encrypted S3 Repository · Phân quyền truy cập theo vai trò xác thực</p>
+          </div>
+          <div>
+            <span class="status-pill status-complete">🔒 Encrypted AES-256</span>
+          </div>
+        </div>
+
+        <div class="data-table-card" style="box-shadow:none; border:none;">
+          <table>
+            <thead>
+              <tr>
+                <th>Văn bản / Thỏa thuận</th>
+                <th>Phân loại</th>
+                <th>Các bên ký kết</th>
+                <th>Ngày hiệu lực</th>
+                <th>Trạng thái</th>
+                <th>Tải xuống</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>NDA-2026-CS008-MULTILATERAL.pdf</b><br><small style="color:var(--muted);">Thỏa thuận bảo mật thông tin 4 bên mô hình 2+2</small></td>
+                <td>NDA Bảo mật</td>
+                <td>VAST, VinFast, Kurnakov, RENERA</td>
+                <td>15/05/2026</td>
+                <td><span class="status-pill status-complete" style="font-size:10px; padding:2px 8px;">Đã ký số 4/4</span></td>
+                <td><button class="btn btn-outline btn-sm">Tải PDF (1.4MB)</button></td>
+              </tr>
+              <tr>
+                <td><b>PATENT-DISCLOSURE-VN3104.pdf</b><br><small style="color:var(--muted);">Bản công bố sáng chế và phạm vi độc quyền</small></td>
+                <td>Bằng SHTT</td>
+                <td>Cục SHTT Việt Nam</td>
+                <td>02/01/2026</td>
+                <td><span class="status-pill status-complete" style="font-size:10px; padding:2px 8px;">Xác thực Hợp lệ</span></td>
+                <td><button class="btn btn-outline btn-sm">Tải PDF (3.2MB)</button></td>
+              </tr>
+              <tr>
+                <td><b>TECH-TRANSFER-AGREEMENT-DRAFT-V2.docx</b><br><small style="color:var(--muted);">Dự thảo hợp đồng chuyển giao công nghệ và cơ chế chia sẻ Royalty</small></td>
+                <td>Hợp đồng Chuyển giao</td>
+                <td>Tổ tư vấn Pháp lý Quỹ Hữu nghị</td>
+                <td>Đang duyệt</td>
+                <td><span class="status-pill status-forming" style="font-size:10px; padding:2px 8px;">Đang review</span></td>
+                <td><button class="btn btn-outline btn-sm">Tải Bản thảo</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 6: GOVERNANCE & MODERATION -->
+    <div id="view-gov-moderation" class="view-panel">
+      <div class="consortium-builder-panel">
+        <div class="consortium-header">
+          <div>
+            <span style="font-size:11px; font-weight:700; color:var(--danger); text-transform:uppercase;">Khu vực Quản trị Quỹ (Governance & Moderation)</span>
+            <h2>Hàng đợi Kiểm duyệt Công nghệ & Giám sát An ninh</h2>
+            <p style="font-size:12px; color:var(--muted); margin-top:4px;">Kiểm soát tính hợp lệ của hồ sơ công nghệ, quyền sở hữu của Viện/Trường và ghi vết kiểm toán bất biến</p>
+          </div>
+        </div>
+
+        <div class="data-table-card" style="box-shadow:none; border:none;">
+          <table>
+            <thead>
+              <tr>
+                <th>Hồ sơ gửi duyệt</th>
+                <th>Đơn vị gửi</th>
+                <th>Mức TRL</th>
+                <th>Minh chứng Sở hữu</th>
+                <th>Audit Action</th>
+                <th>Quyết định</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>Hệ thống lọc nước biển năng lượng mặt trời</b></td>
+                <td>Viện Công nghệ Môi trường (VAST)</td>
+                <td>TRL 7</td>
+                <td>Bằng GPHI #3104 đính kèm</td>
+                <td><code style="font-size:10px;">TechnologySubmitted</code></td>
+                <td>
+                  <button class="btn btn-success btn-sm" onclick="alert('Đã duyệt công khai công nghệ lên Portal!')">Phê duyệt</button>
+                  <button class="btn btn-outline btn-sm">Yêu cầu sửa</button>
+                </td>
+              </tr>
+              <tr>
+                <td><b>Chế phẩm Sinh học Nano xử lý tràn dầu</b></td>
+                <td>ĐH Quốc gia Moskva (MSU)</td>
+                <td>TRL 8</td>
+                <td>Rospatent #RU2698124</td>
+                <td><code style="font-size:10px;">TechnologySubmitted</code></td>
+                <td>
+                  <button class="btn btn-success btn-sm" onclick="alert('Đã duyệt công khai công nghệ lên Portal!')">Phê duyệt</button>
+                  <button class="btn btn-outline btn-sm">Yêu cầu sửa</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- Modal Expression of Interest -->
+<div id="eoi-modal" class="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 id="modal-tech-title">Gửi Thư Bày tỏ Quan tâm (Expression of Interest)</h3>
+      <button class="modal-close" onclick="closeEoiModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Tên Doanh nghiệp / Tổ chức của bạn</label>
+        <input type="text" class="form-control" value="Tập đoàn Công nghệ Viettel (VHT)" placeholder="Nhập tên doanh nghiệp...">
+      </div>
+      <div class="form-group">
+        <label>Đại diện liên hệ & Chức vụ</label>
+        <input type="text" class="form-control" value="Nguyễn Hoàng Nam - Giám đốc R&D" placeholder="Họ tên và chức vụ...">
+      </div>
+      <div class="form-group">
+        <label>Mục đích Ứng dụng & Nhu cầu Hợp tác</label>
+        <textarea class="form-control" rows="4" placeholder="Mô tả bài toán ứng dụng, quy mô dự kiến, phương thức phối hợp (Chuyển giao đứt đoạn / Mua license / Liên danh 2+2)...">Chúng tôi mong muốn ứng dụng công nghệ này vào dự án giám sát hạ tầng cáp quang ven biển năm 2026. Đề xuất mở phiên trao đổi kỹ thuật và thử nghiệm pilot trong Q3/2026.</textarea>
+      </div>
+      <div class="form-group">
+        <label>Hình thức Chuyển giao Kỳ vọng</label>
+        <select class="form-control">
+          <option>Mô hình Liên danh 2+2 (Đề xuất có viện/doanh nghiệp Nga tham gia)</option>
+          <option>Chuyển giao Công nghệ Trực tiếp (1–1)</option>
+          <option>Cấp phép Sử dụng Độc quyền (Exclusive License)</option>
+          <option>Hợp tác Nghiên cứu & Hoàn thiện Sản phẩm</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeEoiModal()">Hủy</button>
+      <button class="btn btn-primary" onclick="submitEoiForm()">🚀 Gửi Thư Quan tâm (EOI)</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function switchView(viewId) {
+  document.querySelectorAll('.view-panel').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+  
+  const targetView = document.getElementById('view-' + viewId);
+  if (targetView) targetView.classList.add('active');
+  
+  // Highlight nav
+  event.currentTarget.classList.add('active');
+  
+  // Update breadcrumb
+  const titles = {
+    'public-discovery': 'Public Discovery · Danh mục Công nghệ & Sáng chế',
+    'enterprise-demands': 'Bài toán R&D & Nhu cầu Doanh nghiệp',
+    'consortium-2plus2': 'Không gian Liên danh 2+2 (2+2 Consortium Workspace)',
+    'eoi-negotiation': 'Case Đàm phán & Bày tỏ Quan tâm (EOI)',
+    'ip-legal-vault': 'Kho Hồ sơ Pháp lý, SHTT & Hợp đồng',
+    'gov-moderation': 'Kiểm duyệt & Quản trị Hệ thống'
+  };
+  document.getElementById('current-breadcrumb').innerText = titles[viewId] || viewId;
+  document.getElementById('current-title').innerText = titles[viewId] || 'Chuyển giao Công nghệ';
+}
+
+function openEoiModal(techTitle) {
+  document.getElementById('modal-tech-title').innerText = 'Gửi EOI: ' + techTitle;
+  document.getElementById('eoi-modal').classList.add('active');
+}
+
+function closeEoiModal() {
+  document.getElementById('eoi-modal').classList.remove('active');
+}
+
+function submitEoiForm() {
+  alert('✅ Đã gửi Thư bày tỏ quan tâm (EOI) thành công!\n\n• Token Idempotency: eoi_token_7f98ab12\n• Trạng thái: EOI_SUBMITTED\n• Đã phát sự kiện: ExpressionOfInterestSubmitted\n• Viện/Trường sở hữu công nghệ đã nhận được thông báo.');
+  closeEoiModal();
+}
+</script>
+
+</body>
+</html>

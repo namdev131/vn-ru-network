@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VN–RU Portal · Trung tâm Quản trị Phân quyền & IAM (Module 1)</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="rbac.css">
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-wrapper">
+        <div class="brand-logo">🛡️</div>
+        <div>
+          <div class="brand-title">
+            VN–RU PORTAL
+            <span class="badge-tag">MODULE 1: IAM & GOVERNANCE</span>
+          </div>
+          <div class="brand-subtitle">Cổng Quản trị Định danh, Phân giải Ngữ cảnh (Active Context Switch) & Kiểm toán Quyền (RBAC / PEP / PDP)</div>
+        </div>
+      </div>
+
+      <div class="system-status-bar">
+        <div class="status-indicator">
+          <span class="status-dot"></span>
+          <span>PEP Gateway: <strong>ONLINE</strong></span>
+        </div>
+        <div class="status-indicator">
+          <span class="status-dot" style="background:#3b82f6; box-shadow:0 0 8px #3b82f6;"></span>
+          <span>PDP AuthZ: <strong>ACTIVE</strong></span>
+        </div>
+        <div class="status-indicator">
+          <span style="color:#a855f7;">⚡ L1 Redis: <strong>0.8ms (Hit 99.4%)</strong></span>
+        </div>
+        <a href="../UI/index.html" style="color:#ffffff; text-decoration:none; background:rgba(255,255,255,0.15); padding:0.3rem 0.8rem; border-radius:9999px; font-weight:600; transition:all 0.2s;">⬅️ Về Portal Chính</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Nav Tabs -->
+  <nav class="nav-tabs-wrapper">
+    <div class="nav-tabs-container">
+      <button class="nav-tab-btn active" data-tab="tab-simulator">
+        <span>⚡</span> 1. Trình Mô phỏng PEP & PDP
+      </button>
+      <button class="nav-tab-btn" data-tab="tab-schema">
+        <span>🗄️</span> 2. Mô hình Thực thể Dữ liệu (ERD)
+      </button>
+      <button class="nav-tab-btn" data-tab="tab-matrix">
+        <span>🛡️</span> 3. Ma trận Phân quyền 3 Vùng
+      </button>
+      <button class="nav-tab-btn" data-tab="tab-diagram">
+        <span>📐</span> 4. Bản vẽ Kiến trúc Draw.io
+      </button>
+      <button class="nav-tab-btn" data-tab="tab-audit">
+        <span>📜</span> 5. Nhật ký Kiểm toán (Audit Trail)
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="main-container">
+
+    <!-- ============================================================ -->
+    <!-- TAB 1: INTERACTIVE PEP & PDP EXECUTION SIMULATOR              -->
+    <!-- ============================================================ -->
+    <section id="tab-simulator" class="tab-pane active">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span>⚡</span> TRÌNH MÔ PHỎNG LUỒNG THẨM ĐỊNH QUYỀN HẠN THỜI GIAN THỰC (PEP & PDP SIMULATOR)
+          </div>
+          <span style="font-size: 0.85rem; color: var(--slate-500);">Dựa trên Kiến trúc: <code>module1_rbac_flow.drawio (Trang 1)</code></span>
+        </div>
+        <div class="card-body">
+          
+          <div class="simulator-layout">
+            <!-- Left: Request Configuration Form -->
+            <div class="config-panel">
+              
+              <div class="form-group">
+                <label class="form-label">👤 1. Chọn Người dùng / Persona:</label>
+                <select id="persona-select" class="form-select">
+                  <option value="researcher">TS. Nguyễn Văn A (Nhà khoa học · Viện VAST)</option>
+                  <option value="reviewer" selected>GS. Petrov I. V. (Chuyên gia Phản biện · Hội đồng Quỹ)</option>
+                  <option value="org_admin">Bà Lê Thị Mai (Đại diện Tổ chức · Đại học VNU)</option>
+                  <option value="enterprise">Ông Dmitry Sokolov (Doanh nghiệp · RUTECH)</option>
+                  <option value="leadership">Lãnh đạo Quỹ (Điều hành Song phương)</option>
+                  <option value="iam_admin">Quản trị viên IAM (Hệ thống Quỹ)</option>
+                  <option value="visitor">Khách vãng lai (Chưa đăng nhập)</option>
+                </select>
+                <div id="persona-info-display" style="margin-top: 0.5rem; padding: 0.75rem; background: var(--slate-50); border-radius: var(--radius-sm); border: 1px solid var(--border-color); font-size: 0.85rem;">
+                  <strong>GS. Petrov I. V.</strong> (USR-1002)<br>
+                  <span style="color: var(--slate-500); font-size: 0.8rem;">Chuyên gia Phản biện · Hội đồng Quỹ TT&HN · Tenant: <strong>VAST</strong></span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">🏷️ 2. Ngữ cảnh Hoạt động (Active Context Switch):</label>
+                <select id="active-role-select" class="form-select">
+                  <option value="REVIEWER" selected>REVIEWER (Chuyên gia phản biện Hội đồng)</option>
+                  <option value="RESEARCHER">RESEARCHER (Nhà khoa học VAST)</option>
+                </select>
+                <small style="color: var(--slate-500); font-size: 0.75rem; display: block; margin-top: 0.25rem;">
+                  💡 Người dùng có thể chuyển đổi ngữ cảnh làm việc mà không cần đăng nhập lại.
+                </small>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">🎯 3. Thao tác / API Endpoint yêu cầu:</label>
+                <select id="endpoint-select" class="form-select">
+                  <option value="proposal_review_assigned" selected>POST /api/v1/proposals/PR-2026-001/review (Hồ sơ ĐƯỢC phân công)</option>
+                  <option value="proposal_review_unassigned">POST /api/v1/proposals/PR-2026-999/review (Hồ sơ NGOÀI phân công -> Test 403)</option>
+                  <option value="proposal_submit">POST /api/v1/proposals/draft (Nộp đề xuất đề tài mới)</option>
+                  <option value="org_member_verify">PUT /api/v1/org/members/USR-102/verify (Duyệt thành viên đơn vị)</option>
+                  <option value="tech_2plus2">POST /api/v1/tech-transfer/2plus2/propose (Dự án CN 2+2)</option>
+                  <option value="admin_audit_logs">GET /api/v1/admin/audit-logs (Truy vấn nhật ký Audit Quỹ)</option>
+                  <option value="public_news">GET /api/v1/public/news (Tra cứu tin tức công khai - Public)</option>
+                  <option value="admin_user_lock">POST /api/v1/admin/users/USR-99/lock (Khóa tài khoản khẩn cấp)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">🔒 4. Trạng thái Token & Phiên:</label>
+                <select id="token-state-select" class="form-select">
+                  <option value="valid" selected>Token Hợp lệ (Valid JWT + 2FA Active)</option>
+                  <option value="expired">Token Hết hạn (Claim exp Exceeded)</option>
+                  <option value="blacklisted">Token Bị thu hồi / Blacklist trên Redis (Session Revoked)</option>
+                  <option value="no_2fa">Thiếu Xác thực 2FA/MFA</option>
+                </select>
+              </div>
+
+              <button id="btn-execute-eval" class="btn-primary">
+                <span>⚡</span> GỬI REQUEST & ĐÁNH GIÁ PEP/PDP
+              </button>
+
+            </div>
+
+            <!-- Right: Live Stepper & Evaluation Result -->
+            <div id="eval-results-container">
+              
+              <div class="verdict-banner allow">
+                <div class="verdict-info">
+                  <div class="verdict-icon">✅</div>
+                  <div>
+                    <div class="verdict-title">200 OK — QUYỀN HỢP LỆ (REQUEST ALLOWED)</div>
+                    <div class="verdict-desc">Yêu cầu vượt qua thành công toàn bộ rào chắn xác thực, phân giải ngữ cảnh và phân quyền phạm vi.</div>
+                  </div>
+                </div>
+                <div style="text-align: right; font-family: var(--font-mono); font-size: 0.85rem;">
+                  <strong>Trace ID:</strong> trc-88b9a12c<br>
+                  <strong>Audit ID:</strong> AUD-9012
+                </div>
+              </div>
+
+              <div class="pipeline-container" style="margin-top: 1.5rem;">
+                
+                <!-- Tier 1 -->
+                <div class="tier-step-card tier-1">
+                  <div class="tier-header">
+                    <div class="tier-title"><span>💻</span> TẦNG 1: TRẢI NGHIỆM CLIENT & PHÁT KHỞI REQUEST</div>
+                    <span class="tier-badge" style="background:#e0f2fe; color:#0369a1;">CLIENT PACKET</span>
+                  </div>
+                  <div class="code-box">
+POST /api/v1/proposals/PR-2026-001/review HTTP/1.1
+Host: portal.vn-ru.org
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...
+X-Active-Context: {"tenantId": "VAST", "activeRole": "REVIEWER", "userId": "USR-1002"}
+X-Trace-ID: trc-88b9a12c
+                  </div>
+                </div>
+
+                <!-- Tier 2 -->
+                <div class="tier-step-card tier-2">
+                  <div class="tier-header">
+                    <div class="tier-title"><span>🛡️</span> TẦNG 2: POLICY ENFORCEMENT POINT (PEP) — API GATEWAY</div>
+                    <span class="tier-badge" style="background:#dcfce7; color:#15803d;">PASSED (AuthN OK)</span>
+                  </div>
+                  <div style="font-size: 0.85rem; line-height: 1.6; color: var(--slate-700);">
+                    • <strong>JWT Verification:</strong> RS256 Public Key Signature Verify (VALID ✅)<br>
+                    • <strong>Redis Blacklist Check:</strong> Tra cứu Token Revocation List (&lt;0.8ms - Cache Hit)<br>
+                    • <strong>Context Resolution:</strong> Gán ThreadLocal Security Context: <code>{user: "USR-1002", role: "REVIEWER", tenant: "VAST"}</code><br>
+                    • <strong>Route Mapping:</strong> <code>POST /api/v1/proposals/{id}/review</code> ➔ Quyền yêu cầu: <code style="color:var(--primary); font-weight:bold;">GRANT.PROPOSAL.REVIEW</code>
+                  </div>
+                </div>
+
+                <!-- Tier 3 -->
+                <div class="tier-step-card tier-3">
+                  <div class="tier-header">
+                    <div class="tier-title"><span>⚙️</span> TẦNG 3: POLICY DECISION POINT (PDP) — LÕI THẨM ĐỊNH RBAC & ABAC</div>
+                    <span class="tier-badge" style="background:#dcfce7; color:#15803d;">ALLOW (200)</span>
+                  </div>
+                  <div style="font-size: 0.85rem; line-height: 1.6; color: var(--slate-700);">
+                    • <strong>Pha 1 (RBAC Role-Perm Check):</strong> Kiểm tra tập quyền vai trò <code>REVIEWER</code> có chứa <code>GRANT.PROPOSAL.REVIEW</code>? ➔ <strong>TRUE (Khớp quyền) ✅</strong><br>
+                    • <strong>Pha 2 (ABAC Scope & Ownership Filter):</strong> Kiểm tra quy tắc <code>ASSIGNED_ONLY</code> ➔ <strong>PASS ✅</strong> (Hợp lệ: Hồ sơ PR-2026-001 thuộc danh sách phân công của GS. Petrov)<br>
+                    • <strong>L1 Cache Status:</strong> <code>rbac:perm:USR-1002:REVIEWER:VAST</code> (Tra cứu siêu tốc 0.9ms)
+                  </div>
+                </div>
+
+                <!-- Tier 4 -->
+                <div class="tier-step-card tier-4">
+                  <div class="tier-header">
+                    <div class="tier-title"><span>🚀</span> TẦNG 4: THỰC THI NGHIỆP VỤ & GHI NHẬT KÝ KIỂM TOÁN</div>
+                    <span class="tier-badge" style="background:#f0fdf4; color:#16a34a;">DOWNSTREAM & AUDIT</span>
+                  </div>
+                  <div style="font-size: 0.85rem; line-height: 1.6; color: var(--slate-700);">
+                    • <strong>Injected Headers:</strong> <code>X-User-Id: USR-1002</code>, <code>X-Active-Role: REVIEWER</code>, <code>X-Scopes: ASSIGNED_ONLY</code><br>
+                    • <strong>Target Microservice:</strong> Chuyển tiếp tới <code>Grant & Proposal Service (Module 3)</code> lưu điểm và nhận xét chuyên gia an toàn.<br>
+                    • <strong>Async Security Event:</strong> Đã gửi sự kiện <code>AUDIT.AUTHZ_ALLOW</code> tới Kafka/Elasticsearch (ID: <code>AUD-9012</code>).
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================ -->
+    <!-- TAB 2: RBAC DATA SCHEMA & ENTITY GRAPH (ERD)                 -->
+    <!-- ============================================================ -->
+    <section id="tab-schema" class="tab-pane">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span>🗄️</span> MÔ HÌNH THỰC THỂ CƠ SỞ DỮ LIỆU RBAC & PHÂN CẤP NGỮ CẢNH (DATA SCHEMA & CONTEXT)
+          </div>
+          <span style="font-size: 0.85rem; color: var(--slate-500);">Dựa trên Thiết kế: <code>module1_rbac_flow.drawio (Trang 2)</code></span>
+        </div>
+        <div class="card-body">
+          
+          <div class="erd-grid">
+            
+            <!-- Cluster 1 -->
+            <div class="erd-cluster-card" style="border-top: 4px solid #7e57c2;">
+              <div class="erd-cluster-title" style="color: #4a148c; border-color: #ede7f6;">
+                <span>👤</span> 1. ĐỊNH DANH & PHIÊN ĐĂNG NHẬP
+              </div>
+
+              <div class="erd-table">
+                <div class="erd-table-header">
+                  <span>iam_users</span>
+                  <span style="color:var(--slate-400);">Table</span>
+                </div>
+                <div class="erd-field-list">
+                  <span class="pk-tag">PK</span> user_id : VARCHAR(36)<br>
+                  &nbsp;&nbsp;&nbsp;email : VARCHAR(255) [UNIQUE]<br>
+                  &nbsp;&nbsp;&nbsp;full_name : VARCHAR(255)<br>
+                  &nbsp;&nbsp;&nbsp;orcid_id : VARCHAR(64)<br>
+                  &nbsp;&nbsp;&nbsp;user_type : ENUM('INDIVIDUAL', 'AFFILIATED')<br>
+                  &nbsp;&nbsp;&nbsp;status : ENUM('ACTIVE', 'LOCKED')<br>
+                  &nbsp;&nbsp;&nbsp;is_2fa_enabled : BOOLEAN
+                </div>
+              </div>
+
+              <div class="erd-table">
+                <div class="erd-table-header">
+                  <span>iam_user_credentials</span>
+                  <span style="color:var(--slate-400);">Table</span>
+                </div>
+                <div class="erd-field-list">
+                  <span class="pk-tag">PK</span> credential_id : VARCHAR(36)<br>
+                  <span class="fk-tag">FK</span> user_id : VARCHAR(36)<br>
+                  &nbsp;&nbsp;&nbsp;password_hash : VARCHAR(255) [Argon2id]<br>
+                  &nbsp;&nbsp;&nbsp;mfa_secret_encrypted : VARCHAR(255)
+                </div>
+              </div>
+
+              <div class="erd-table">
+                <div class="erd-table-header">
+                  <span>iam_user_sessions</span>
+                  <span style="color:var(--slate-400);">Table</span>
+                </div>
+                <div class="erd-field-list">
+                  <span class="pk-tag">PK</span> session_id : VARCHAR(64)<br>
+                  <span class="fk-tag">FK</span> user_id : VARCHAR(36)<br>
+                  &nbsp;&nbsp;&nbsp;device_fingerprint : VARCHAR(128)<br>
+                  &nbsp;&nbsp;&nbsp;ip_address : VARCHAR(45)<br>
+                  &nbsp;&nbsp;&nbsp;is_revoked : BOOLEAN
+                </div>
+              </div>
+            </div>
+
+            <!-- Cluster 2 -->
+            <div class="erd-cluster-card" style="border-top: 4px solid #0288d1;">
+              <div class="erd-cluster-title" style="color: #01579b; border-color: #e1f5fe;">
+                <span>🏢</span> 2. ĐƠN VỊ & NGỮ CẢNH HOẠT ĐỘNG
+              </div>
+
+              <div class="erd-table">
+                <div class="erd-table-header">
+                  <span>org_tenants</span>
+                  <span style="color:var(--slate-400);">Table</span>
+                </div>
+                <div class="erd-field-list">
+                  <span class="pk-tag">PK</span> tenant_id : VARCHAR(36)<br>
+                  &nbsp;&nbsp;&nbsp;tenant_code : VARCHAR(50) [UNIQUE]<br>
+                  &nbsp;&nbsp;&nbsp;tenant_name : VARCHAR(255)<br>
+                  &nbsp;&nbsp;&nbsp;country_code : ENUM('VN', 'RU')<br>
+                  &nbsp;&nbsp;&nbsp;partner_status : ENUM('MOU_ACTIVE', 'PENDING')
+                </div>
+              </div>
+
+              <div class="erd-table">
+                <div class="erd-table-header">
+                  <span>iam_user_affiliations</span>
+                  <span style="color:var(--slate-400);">Table</span>
+                </div>
+                <div class="erd-field-list">
+                  <span class="pk-tag">PK</span> affiliation_id : VARCHAR(36)<br>
+                  <span class="fk-tag">FK</span> user_id : VARCHAR(36)<br>
+                  <span class="fk-tag">FK</span> tenant_id : VARCHAR(36)<br>
+                  &nbsp;&nbsp;&nbsp;verification_status : ENUM('VERIFIED', 'PENDING')<br>
+                  &nbsp;&nbsp;&nbsp;is_primary_org : BOOLEAN
+                </div>
+              </div>
+
+              <div class="erd-table">
+                <div class="erd-table-header">
+                  <span>iam_active_contexts</span>
+                  <span style="color:var(--slate-400);">Table</span>
+                </div>
+                <div class="erd-field-list">
+                  <span class="pk-tag">PK</span> context_id : VARCHAR(36)<br>
+                  <span class="fk-tag">FK</span> session_id : VARCHAR(64)<br>
+                  <span class="fk-tag">FK</span> user_id : VARCHAR(36)<br>
+                  <span class="fk-tag">FK</span> tenant_id : VARCHAR(36)<br>
+                  <span class="fk-tag">FK</span> active_role_id : VARCHAR(36)<br>
+                  &nbsp;&nbsp;&nbsp;context_token : VARCHAR(512)
+                </div>
+              </div>
+            </div>
+
+            <!-- Cluster 3 -->
+            <div class="erd-cluster-card" style="border-top: 4px solid #ef6c00;">
+              <div class="erd-cluster-title" style="color: #e65100; border-color: #fff3e0;">
+                <span>🔑</span> 3. VAI TRÒ & PHÂN BỔ QUYỀN (RBAC)
+              </div>
+
+              <div class="erd-table">
+                <div class="erd-table-header">
+                  <span>iam_roles</span>
+                  <span style="color:var(--slate-400);">Table</span>
+                </div>
+                <div class="erd-field-list">
+                  <span class="pk-tag">PK</span> role_id : VARCHAR(36)<br>
+                  &nbsp;&nbsp;&nbsp;role_code : VARCHAR(50) [UNIQUE]<br>
+                  &nbsp;&nbsp;&nbsp;role_category : ENUM('PUBLIC', 'WORKSPACE', 'GOV')<br>
+                  &nbsp;&nbsp;&nbsp;is_system_role : BOOLEAN
+                </div>
+              </div>
+
+              <div class="erd-table">
+                <div class="erd-table-header">
+                  <span>iam_user_role_assignments</span>
+                  <span style="color:var(--slate-400);">Table</span>
+                </div>
+                <div class="erd-field-list">
+                  <span class="pk-tag">PK</span> assignment_id : VARCHAR(36)<br>
+                  <span class="fk-tag">FK</span> user_id : VARCHAR(36)<br>
+                  <span class="fk-tag">FK</span> role_id : VARCHAR(36)<br>
+                  <span class="fk-tag">FK</span> tenant_id : VARCHAR(36) [NULLABLE]<br>
+                  &nbsp;&nbsp;&nbsp;assignment_status : ENUM('ACTIVE', 'REVOKED')
+                </div>
+              </div>
+
+              <div class="erd-table">
+                <div class="erd-table-header">
+                  <span>iam_permissions</span>
+                  <span style="color:var(--slate-400);">Table</span>
+                </div>
+                <div class="erd-field-list">
+                  <span class="pk-tag">PK</span> permission_id : VARCHAR(36)<br>
+                  &nbsp;&nbsp;&nbsp;perm_code : VARCHAR(100) [UNIQUE]<br>
+                  &nbsp;&nbsp;&nbsp;<strong style="color:#c2185b;">Pattern: &lt;DOMAIN&gt;.&lt;RESOURCE&gt;.&lt;ACTION&gt;</strong><br>
+                  &nbsp;&nbsp;&nbsp;domain : ENUM('IAM', 'GRANT', 'KNOWLEDGE', ...)<br>
+                  &nbsp;&nbsp;&nbsp;description : VARCHAR(255)
+                </div>
+              </div>
+            </div>
+
+            <!-- Cluster 4 -->
+            <div class="erd-cluster-card" style="border-top: 4px solid #16a34a;">
+              <div class="erd-cluster-title" style="color: #14532d; border-color: #f0fdf4;">
+                <span>🔒</span> 4. PHẠM VI DỮ LIỆU & KIỂM TOÁN
+              </div>
+
+              <div class="erd-table">
+                <div class="erd-table-header">
+                  <span>iam_resource_scopes</span>
+                  <span style="color:var(--slate-400);">Table</span>
+                </div>
+                <div class="erd-field-list">
+                  <span class="pk-tag">PK</span> scope_id : VARCHAR(36)<br>
+                  <span class="fk-tag">FK</span> permission_id : VARCHAR(36)<br>
+                  &nbsp;&nbsp;&nbsp;scope_type : ENUM('GLOBAL', 'TENANT_BOUND', 'OWNER_ONLY', 'ASSIGNED_ONLY')<br>
+                  &nbsp;&nbsp;&nbsp;condition_expression : TEXT [SpEL / CEL]
+                </div>
+              </div>
+
+              <div class="erd-table">
+                <div class="erd-table-header">
+                  <span>grant_review_assignments</span>
+                  <span style="color:var(--slate-400);">Table</span>
+                </div>
+                <div class="erd-field-list">
+                  <span class="pk-tag">PK</span> review_assignment_id : VARCHAR(36)<br>
+                  <span class="fk-tag">FK</span> reviewer_user_id : VARCHAR(36)<br>
+                  &nbsp;&nbsp;&nbsp;proposal_id : VARCHAR(36)<br>
+                  &nbsp;&nbsp;&nbsp;status : ENUM('ASSIGNED', 'SUBMITTED')
+                </div>
+              </div>
+
+              <div class="erd-table">
+                <div class="erd-table-header">
+                  <span>iam_audit_logs</span>
+                  <span style="color:var(--slate-400);">Audit Storage</span>
+                </div>
+                <div class="erd-field-list">
+                  <span class="pk-tag">PK</span> audit_id : BIGSERIAL<br>
+                  &nbsp;&nbsp;&nbsp;event_type : ENUM('AUTHN_SUCCESS', 'AUTHZ_ALLOW', 'AUTHZ_DENIED', ...)<br>
+                  <span class="fk-tag">FK</span> actor_user_id : VARCHAR(36)<br>
+                  &nbsp;&nbsp;&nbsp;target_resource : VARCHAR(255)<br>
+                  &nbsp;&nbsp;&nbsp;decision : ENUM('ALLOW', 'DENY')
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================ -->
+    <!-- TAB 3: 3-ZONE CANONICAL PERMISSION MATRIX                    -->
+    <!-- ============================================================ -->
+    <section id="tab-matrix" class="tab-pane">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span>🛡️</span> MA TRẬN PHÂN QUYỀN RBAC CHI TIẾT TRÊN 3 KHU VỰC CANONICAL TRUY CẬP
+          </div>
+          <span style="font-size: 0.85rem; color: var(--slate-500);">Dựa trên Thiết kế: <code>module1_rbac_flow.drawio (Trang 3)</code></span>
+        </div>
+        <div class="card-body">
+          
+          <div class="matrix-table-wrapper">
+            <table class="matrix-table">
+              <thead>
+                <tr>
+                  <th>Mã Quyền (Permission Code)</th>
+                  <th>Phạm vi (Scope Type)</th>
+                  <th>Mô tả Nghiệp vụ</th>
+                  <th style="text-align:center;">Researcher</th>
+                  <th style="text-align:center;">Reviewer</th>
+                  <th style="text-align:center;">Org Admin</th>
+                  <th style="text-align:center;">Enterprise</th>
+                  <th style="text-align:center;">Leadership</th>
+                  <th style="text-align:center;">IAM Admin</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Zone 1 -->
+                <tr style="background:#f0fdf4; font-weight:bold; color:#15803d;">
+                  <td colspan="9">🌐 KHU VỰC 1: PUBLIC / DISCOVERY (TRUY CẬP CÔNG KHAI)</td>
+                </tr>
+                <tr>
+                  <td><code>PUBLIC.PORTAL.HOME_VIEW</code></td>
+                  <td><span class="perm-pill pill-allow">PUBLIC</span></td>
+                  <td>Xem trang chủ, sự kiện và tin tức mở</td>
+                  <td align="center">✅</td>
+                  <td align="center">✅</td>
+                  <td align="center">✅</td>
+                  <td align="center">✅</td>
+                  <td align="center">✅</td>
+                  <td align="center">✅</td>
+                </tr>
+                <tr>
+                  <td><code>KNOWLEDGE.DOC.SEARCH_PUBLIC</code></td>
+                  <td><span class="perm-pill pill-allow">PUBLIC</span></td>
+                  <td>Tìm kiếm công bố khoa học trong kho tri thức mở</td>
+                  <td align="center">✅</td>
+                  <td align="center">✅</td>
+                  <td align="center">✅</td>
+                  <td align="center">✅</td>
+                  <td align="center">✅</td>
+                  <td align="center">✅</td>
+                </tr>
+
+                <!-- Zone 2 -->
+                <tr style="background:#eef2ff; font-weight:bold; color:#3730a3;">
+                  <td colspan="9">💼 KHU VỰC 2: ROLE-BASED WORKSPACE (KHÔNG GIAN LÀM VIỆC THEO VAI TRÒ)</td>
+                </tr>
+                <tr>
+                  <td><code>GRANT.PROPOSAL.CREATE</code></td>
+                  <td><span class="perm-pill pill-scope">OWNER_ONLY</span></td>
+                  <td>Soạn thảo và nộp đề xuất tài trợ nghiên cứu mới</td>
+                  <td align="center">✅ Full</td>
+                  <td align="center">❌</td>
+                  <td align="center">❌</td>
+                  <td align="center">❌</td>
+                  <td align="center">❌</td>
+                  <td align="center">❌</td>
+                </tr>
+                <tr>
+                  <td><code>GRANT.PROPOSAL.REVIEW</code></td>
+                  <td><span class="perm-pill pill-scope">ASSIGNED_ONLY</span></td>
+                  <td>Chấm điểm và nộp ý kiến phản biện đề xuất được giao</td>
+                  <td align="center">❌</td>
+                  <td align="center">✅ Assigned</td>
+                  <td align="center">❌</td>
+                  <td align="center">❌</td>
+                  <td align="center">❌</td>
+                  <td align="center">❌</td>
+                </tr>
+                <tr>
+                  <td><code>ORG.MEMBER.MANAGE</code></td>
+                  <td><span class="perm-pill pill-scope">TENANT_BOUND</span></td>
+                  <td>Phê duyệt thành viên nghiên cứu trực thuộc đơn vị</td>
+                  <td align="center">❌</td>
+                  <td align="center">❌</td>
+                  <td align="center">✅ Org Bound</td>
+                  <td align="center">❌</td>
+                  <td align="center">❌</td>
+                  <td align="center">❌</td>
+                </tr>
+                <tr>
+                  <td><code>TECH.2PLUS2.SUBMIT</code></td>
+                  <td><span class="perm-pill pill-scope">TENANT_BOUND</span></td>
+                  <td>Nộp hồ sơ chuyển giao công nghệ mô hình 2+2</td>
+                  <td align="center">✅ Co-submit</td>
+                  <td align="center">❌</td>
+                  <td align="center">✅ Org Bound</td>
+                  <td align="center">✅ Enterprise</td>
+                  <td align="center">❌</td>
+                  <td align="center">❌</td>
+                </tr>
+                <tr>
+                  <td><code>REPORT.KPI.VIEW_EXECUTIVE</code></td>
+                  <td><span class="perm-pill pill-scope">AGGREGATE</span></td>
+                  <td>Xem Dashboard chỉ số vĩ mô và tiến độ song phương</td>
+                  <td align="center">❌</td>
+                  <td align="center">❌</td>
+                  <td align="center">❌</td>
+                  <td align="center">❌</td>
+                  <td align="center">✅ Read-Only</td>
+                  <td align="center">❌</td>
+                </tr>
+
+                <!-- Zone 3 -->
+                <tr style="background:#fdf4ff; font-weight:bold; color:#86198f;">
+                  <td colspan="9">⚡ KHU VỰC 3: GOVERNANCE & ADMINISTRATION (QUẢN TRỊ HỆ THỐNG & QUỸ)</td>
+                </tr>
+                <tr>
+                  <td><code>IAM.USER.MANAGE</code></td>
+                  <td><span class="perm-pill pill-scope">GLOBAL</span></td>
+                  <td>Tạo mới, kích hoạt và khóa tài khoản người dùng</td>
+                  <td align="center">❌</td>
+                  <td align="center">❌</td>
+                  <td align="center">❌</td>
+                  <td align="center">❌</td>
+                  <td align="center">❌</td>
+                  <td align="center">✅ Full</td>
+                </tr>
+                <tr>
+                  <td><code>IAM.ROLE.ASSIGN</code></td>
+                  <td><span class="perm-pill pill-scope">GLOBAL</span></td>
+                  <td>Cấp phát vai trò hoặc thu hồi quyền truy cập</td>
+                  <td align="center">❌</td>
+                  <td align="center">❌</td>
+                  <td align="center">❌</td>
+                  <td align="center">❌</td>
+                  <td align="center">❌</td>
+                  <td align="center">✅ Full</td>
+                </tr>
+                <tr>
+                  <td><code>AUDIT.LOG.VIEW</code></td>
+                  <td><span class="perm-pill pill-scope">GLOBAL</span></td>
+                  <td>Truy vấn toàn bộ vết kiểm toán an ninh hệ thống</td>
+                  <td align="center">❌</td>
+                  <td align="center">❌</td>
+                  <td align="center">❌</td>
+                  <td align="center">❌</td>
+                  <td align="center">❌</td>
+                  <td align="center">✅ Full</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================ -->
+    <!-- TAB 4: ARCHITECTURE BLUEPRINT VIEWER                         -->
+    <!-- ============================================================ -->
+    <section id="tab-diagram" class="tab-pane">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span>📐</span> BẢN VẼ THIẾT KẾ KIẾN TRÚC DRAW.IO CHẤT LƯỢNG CAO
+          </div>
+          <div style="display:flex; gap:0.5rem;">
+            <a href="diagrams/module1_rbac_flow.drawio" download class="badge-tag" style="background:var(--primary); color:#ffffff; text-decoration:none; padding:0.4rem 0.8rem;">📥 Tải tệp .drawio</a>
+            <a href="diagrams/module1_rbac_flow.drawio.png" download class="badge-tag" style="background:#16a34a; color:#ffffff; text-decoration:none; padding:0.4rem 0.8rem;">🖼️ Tải Full PNG</a>
+          </div>
+        </div>
+        <div class="card-body">
+          
+          <div class="diagram-viewer-container">
+            <div class="diagram-page-selector">
+              <button class="diagram-page-btn active" data-page="1">Trang 1: Luồng PEP & PDP Flow</button>
+              <button class="diagram-page-btn" data-page="2">Trang 2: Mô hình ERD Data Model</button>
+              <button class="diagram-page-btn" data-page="3">Trang 3: Ma trận Quyền 3 Vùng</button>
+            </div>
+
+            <div style="font-weight: 700; color: var(--slate-800); margin-top: 0.5rem;" id="diagram-caption-title">
+              Trang 1: Luồng Xử lý Phân quyền & Đánh giá Permission (PEP & PDP Flow)
+            </div>
+
+            <div class="diagram-frame">
+              <img id="active-diagram-img" class="diagram-img" src="diagrams/module1_rbac_p1.png" alt="Draw.io Blueprint">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================ -->
+    <!-- TAB 5: REAL-TIME SECURITY AUDIT TRAIL                        -->
+    <!-- ============================================================ -->
+    <section id="tab-audit" class="tab-pane">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span>📜</span> NHẬT KÝ KIỂM TOÁN AN NINH & VẾT ĐỊNH DANH (SECURITY AUDIT TRAIL)
+          </div>
+          <span class="badge-tag" style="background:#f0fdf4; color:#16a34a;">LIVE STREAM ACTIVE</span>
+        </div>
+        <div class="card-body" style="padding: 0;">
+          
+          <div style="overflow-x: auto;">
+            <table class="audit-table">
+              <thead>
+                <tr>
+                  <th>Audit ID</th>
+                  <th>Thời gian</th>
+                  <th>Sự kiện</th>
+                  <th>Chủ thể (Actor)</th>
+                  <th>Active Role</th>
+                  <th>Tài nguyên Yêu cầu</th>
+                  <th>Phạm vi / Lý do Thẩm định</th>
+                  <th>IP Address</th>
+                </tr>
+              </thead>
+              <tbody id="audit-table-body">
+                <!-- Injected via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Script -->
+  <script src="rbac.js"></script>
+</body>
+</html>

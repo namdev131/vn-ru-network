@@ -1,0 +1,171 @@
+<mxfile host="Electron">
+  <diagram id="module2_knowledge_expert" name="Kiến trúc Hệ thống Module 2 - Kho Tri thức &amp; Danh mục Chuyên gia">
+    <mxGraphModel dx="1146" dy="835" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1450" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8f9fa;strokeColor=#4a6b82;strokeWidth=1.5;align=center;verticalAlign=middle;" value="&lt;b style=&quot;font-size: 20px; color: #1a237e;&quot;&gt;KIẾN TRÚC HỆ THỐNG MODULE 2: KHO TRI THỨC &amp;amp; DANH MỤC CHUYÊN GIA&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 13px; color: #546e7a;&quot;&gt;VN–RU Portal · Cổng một cửa Quản lý Công bố Khoa học, Bằng sáng chế, Hồ sơ Chuyên gia &amp;amp; Gợi ý Đối tác Song phương&lt;/span&gt;" vertex="1">
+          <mxGeometry height="70" width="1520" x="40" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="tier1_container" parent="1" style="swimlane;html=1;startSize=30;fillColor=#e1f5fe;strokeColor=#0288d1;fontStyle=1;fontSize=12;fontColor=#01579b;rounded=1;arcSize=4;" value="TẦNG 1: TRẢI NGHIỆM TRUY CẬP (3 CANONICAL ACCESS ZONES)" vertex="1">
+          <mxGeometry height="190" width="1520" x="40" y="120" as="geometry">
+            <mxRectangle height="30" width="420" x="40" y="120" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zone_public" parent="tier1_container" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0288d1;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" value="&lt;b&gt;PUBLIC / DISCOVERY ZONE&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color:#555;&quot;&gt;(Khách vãng lai / Unauthenticated)&lt;/span&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.45;&quot;&gt;• &lt;b&gt;Global / Integrated Search:&lt;/b&gt; Tra cứu toàn cổng&lt;br&gt;• &lt;b&gt;Knowledge Explorer:&lt;/b&gt; Công bố, Sáng chế, Tài liệu NC&lt;br&gt;• &lt;b&gt;Expert Directory:&lt;/b&gt; Danh bạ Chuyên gia công khai&lt;br&gt;• &lt;b&gt;Taxonomy Discovery:&lt;/b&gt; Cây chủ đề khoa học VN–RU&lt;/div&gt;" vertex="1">
+          <mxGeometry height="125" width="440" x="30" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="zone_workspace" parent="tier1_container" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0288d1;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" value="&lt;b&gt;ROLE-BASED WORKSPACE ZONE&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color:#555;&quot;&gt;(Thành viên đã xác thực / Authenticated)&lt;/span&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.45;&quot;&gt;• &lt;b&gt;Researcher/Scientist:&lt;/b&gt; Quản lý hồ sơ cá nhân, CV, công bố&lt;br&gt;• &lt;b&gt;Partner Matchmaking:&lt;/b&gt; Nhận gợi ý đối tác song phương&lt;br&gt;• &lt;b&gt;Organization / Enterprise:&lt;/b&gt; Tìm kiếm chuyên gia phản biện&lt;br&gt;• &lt;b&gt;Publication Authoring:&lt;/b&gt; Đăng tải kết quả NC &amp;amp; Sáng chế&lt;/div&gt;" vertex="1">
+          <mxGeometry height="125" width="500" x="510" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="zone_gov" parent="tier1_container" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0288d1;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" value="&lt;b&gt;GOVERNANCE &amp;amp; ADMIN ZONE&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color:#555;&quot;&gt;(Đội ngũ Vận hành &amp;amp; Quản trị Dữ liệu)&lt;/span&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.45;&quot;&gt;• &lt;b&gt;Content Moderation (OPEN-03):&lt;/b&gt; Phê duyệt xuất bản&lt;br&gt;• &lt;b&gt;Taxonomy Management:&lt;/b&gt; Quản trị danh mục lĩnh vực&lt;br&gt;• &lt;b&gt;Indexing &amp;amp; Sync Control:&lt;/b&gt; Giám sát Job đồng bộ nền&lt;br&gt;• &lt;b&gt;Matchmaking Tuning:&lt;/b&gt; Cấu hình trọng số thuật toán&lt;/div&gt;" vertex="1">
+          <mxGeometry height="125" width="440" x="1050" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="tier2_container" parent="1" style="swimlane;html=1;startSize=30;fillColor=#fff3e0;strokeColor=#ef6c00;fontStyle=1;fontSize=12;fontColor=#e65100;rounded=1;arcSize=4;" value="TẦNG 2: API GATEWAY &amp;amp; XỬ LÝ DỮ LIỆU BẤT ĐỒNG BỘ (INGESTION, SEARCH &amp;amp; MATCHING PIPELINE)" vertex="1">
+          <mxGeometry height="210" width="1520" x="40" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="gw_entry" parent="tier2_container" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#fb8c00;strokeWidth=1.5;fontSize=11;verticalAlign=middle;" value="&lt;b&gt;API Gateway &amp;amp; Search Router&lt;/b&gt;&lt;br&gt;• SSL/TLS &amp;amp; Rate Limiting&lt;br&gt;• Forward Auth Context (Module 1)&lt;br&gt;• Public vs Workspace Routing&lt;br&gt;• Response Cache Headers" vertex="1">
+          <mxGeometry height="135" width="250" x="30" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="pipe_ingest" parent="tier2_container" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#f57c00;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" value="&lt;b&gt;1. Data Ingestion &amp;amp; Normalizer&lt;/b&gt;&lt;br&gt;• Metadata Extraction (DOI, Patent)&lt;br&gt;• Entity Resolution &amp;amp; Deduplication&lt;br&gt;• Affiliation &amp;amp; Author Linking&lt;br&gt;• Multi-language (VN / RU / EN)" vertex="1">
+          <mxGeometry height="135" width="260" x="320" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="pipe_async" parent="tier2_container" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#f57c00;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" value="&lt;b&gt;2. Async Worker &amp;amp; Indexer Queue&lt;/b&gt;&lt;br&gt;• Message Queue (Background Job)&lt;br&gt;• Bulk Indexing (&amp;gt;50k records batch)&lt;br&gt;• Retry &amp;amp; Dead Letter Queue (DLQ)&lt;br&gt;• Zero-lock HTTP Ingestion Flow" vertex="1">
+          <mxGeometry height="135" width="260" x="620" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="pipe_search" parent="tier2_container" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#f57c00;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" value="&lt;b&gt;3. Search &amp;amp; Query Engine&lt;/b&gt;&lt;br&gt;• Multi-facet Filtering (Topic, Org, Year)&lt;br&gt;• Full-text Search &amp;amp; Ranking Score&lt;br&gt;• &lt;b&gt;Cursor-based Pagination&lt;/b&gt;&lt;br&gt;• Access Scope Filtering (Public/Member)" vertex="1">
+          <mxGeometry height="135" width="280" x="920" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="pipe_match" parent="tier2_container" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#f57c00;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" value="&lt;b&gt;4. Matchmaking &amp;amp; AI Signals&lt;/b&gt;&lt;br&gt;• Semantic Similarity Scoring&lt;br&gt;• Research Topic Overlap Matrix&lt;br&gt;• Bilateral VN–RU Matching&lt;br&gt;• Explainable Match Reasons" vertex="1">
+          <mxGeometry height="135" width="250" x="1240" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="tier3_container" parent="1" style="swimlane;html=1;startSize=30;fillColor=#ede7f6;strokeColor=#7e57c2;fontStyle=1;fontSize=12;fontColor=#4a148c;rounded=1;arcSize=4;" value="TẦNG 3: CÁC DỊCH VỤ NGHIỆP VỤ LÕI (CORE DOMAIN SERVICES - BUSINESS LOGIC)" vertex="1">
+          <mxGeometry height="230" width="1520" x="40" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="svc_publication" parent="tier3_container" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7e57c2;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" value="&lt;b&gt;Publication &amp;amp; Asset Service&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10px; color: #555;&quot;&gt;Route: /publications, /patents&lt;/span&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px;&quot;&gt;• Công bố khoa học, Sách, Báo cáo NC&lt;br&gt;• Bằng sáng chế &amp;amp; Giải pháp hữu ích&lt;br&gt;• Versioning &amp;amp; Digital Asset Attachment&lt;br&gt;• Quản lý quyền tác giả &amp;amp; Đồng sở hữu&lt;/div&gt;" vertex="1">
+          <mxGeometry height="160" width="270" x="30" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="svc_expert" parent="tier3_container" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7e57c2;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" value="&lt;b&gt;Expert &amp;amp; Researcher Profile Service&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10px; color: #555;&quot;&gt;Route: /experts, /researchers&lt;/span&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px;&quot;&gt;• Lý lịch khoa học (CV) &amp;amp; Học hàm/học vị&lt;br&gt;• Chuyên môn &amp;amp; Hướng nghiên cứu chính&lt;br&gt;• Liên kết Tổ chức, Viện, Trường ĐH&lt;br&gt;• Identity-to-Expert Profile Binding&lt;/div&gt;" vertex="1">
+          <mxGeometry height="160" width="280" x="330" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="svc_taxonomy" parent="tier3_container" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7e57c2;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" value="&lt;b&gt;Taxonomy &amp;amp; Ontology Service&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10px; color: #555;&quot;&gt;Route: /taxonomies, /topics&lt;/span&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px;&quot;&gt;• Phân loại khoa học chuẩn (OECD, FOS)&lt;br&gt;• Từ điển thuật ngữ song ngữ Việt - Nga&lt;br&gt;• Tagging &amp;amp; Topic Hierarchy Management&lt;br&gt;• Graph Entity Relationship Mapping&lt;/div&gt;" vertex="1">
+          <mxGeometry height="160" width="280" x="640" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="svc_moderation" parent="tier3_container" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7e57c2;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" value="&lt;b&gt;Content Moderation &amp;amp; Governance&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10px; color: #555;&quot;&gt;Route: /admin/moderation (OPEN-03)&lt;/span&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px;&quot;&gt;• Workflow duyệt công khai (Publish Status)&lt;br&gt;• Trạng thái: DRAFT / SUBMITTED / PUBLISHED&lt;br&gt;• Unpublish / Archive / Retraction Flow&lt;br&gt;• Phân quyền kiểm duyệt nội dung&lt;/div&gt;" vertex="1">
+          <mxGeometry height="160" width="260" x="950" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="svc_matching" parent="tier3_container" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7e57c2;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" value="&lt;b&gt;Partner Recommendation Service&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10px; color: #555;&quot;&gt;Route: /matches, /recommendations&lt;/span&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px;&quot;&gt;• Ghép nối Nhà khoa học VN &amp;lt;---&amp;gt; Nga&lt;br&gt;• Phân tích tương đồng theo đề tài &amp;amp; công bố&lt;br&gt;• Đề xuất Reviewer cho Module 3 (Grant)&lt;br&gt;• Gợi ý chuyên gia cho Module 5 (Tech 2+2)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="160" width="250" x="1240" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="tier4_container" parent="1" style="swimlane;html=1;startSize=30;fillColor=#e8f5e9;strokeColor=#43a047;fontStyle=1;fontSize=12;fontColor=#1b5e20;rounded=1;arcSize=4;" value="TẦNG 4: LƯU TRỮ ĐA MÔ HÌNH &amp;amp; BỘ NHỚ ĐỆM HIỆU NĂNG CAO (MULTI-MODEL PERSISTENCE &amp;amp; CACHING)" vertex="1">
+          <mxGeometry height="190" width="1520" x="40" y="840" as="geometry" />
+        </mxCell>
+        <mxCell id="db_relational" parent="tier4_container" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#c8e6c9;strokeColor=#388e3c;strokeWidth=1.5;size=15;fontSize=11;verticalAlign=middle;" value="&lt;b&gt;Primary Relational DB (PostgreSQL)&lt;/b&gt;&lt;br&gt;&lt;i&gt;Source of Truth (ACID Transactions)&lt;/i&gt;&lt;br&gt;• Experts, Profiles, CV, Affiliations&lt;br&gt;• Publications, Patents, Moderation States&lt;br&gt;• Ownership, Versions &amp;amp; Metadata" vertex="1">
+          <mxGeometry height="120" width="320" x="30" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="db_search" parent="tier4_container" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#c8e6c9;strokeColor=#388e3c;strokeWidth=1.5;size=15;fontSize=11;verticalAlign=middle;" value="&lt;b&gt;Search Engine (Elasticsearch / OpenSearch)&lt;/b&gt;&lt;br&gt;&lt;i&gt;Dedicated Search &amp;amp; Indexing Engine&lt;/i&gt;&lt;br&gt;• Full-text Search, Faceted Navigation&lt;br&gt;• Multi-language Analyzers (VN / RU / EN)&lt;br&gt;• Cursor-based Pagination Indexing" vertex="1">
+          <mxGeometry height="120" width="340" x="390" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="db_graph_vector" parent="tier4_container" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#c8e6c9;strokeColor=#388e3c;strokeWidth=1.5;size=15;fontSize=11;verticalAlign=middle;" value="&lt;b&gt;Graph &amp;amp; Vector DB (Neo4j / pgvector)&lt;/b&gt;&lt;br&gt;&lt;i&gt;Relationship &amp;amp; Embedding Engine&lt;/i&gt;&lt;br&gt;• Expert &amp;lt;-&amp;gt; Topic &amp;lt;-&amp;gt; Org &amp;lt;-&amp;gt; Pub Graph&lt;br&gt;• Semantic Embeddings for Matchmaking&lt;br&gt;• Similarity Distance Calculations" vertex="1">
+          <mxGeometry height="120" width="340" x="770" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="db_cache_s3" parent="tier4_container" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#c8e6c9;strokeColor=#388e3c;strokeWidth=1.5;size=15;fontSize=11;verticalAlign=middle;" value="&lt;b&gt;Redis Cache &amp;amp; Object Store (S3 / MinIO)&lt;/b&gt;&lt;br&gt;• &lt;b&gt;Redis:&lt;/b&gt; Hot Public Data Cache (Profile, Pub detail)&lt;br&gt;• Invalidation on Update / Publish&lt;br&gt;• &lt;b&gt;Object Store:&lt;/b&gt; PDF Papers, Patents, Fulltext Docs" vertex="1">
+          <mxGeometry height="120" width="340" x="1150" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="tier5_container" parent="1" style="swimlane;html=1;startSize=30;fillColor=#f5f5f5;strokeColor=#757575;fontStyle=1;fontSize=12;fontColor=#424242;rounded=1;arcSize=4;" value="TẦNG 5: RANH GIỚI TÍCH HỢP LIÊN MODULE &amp;amp; NGUỒN DỮ LIỆU BÊN NGOÀI (INTEGRATION BOUNDARIES)" vertex="1">
+          <mxGeometry height="180" width="1520" x="40" y="1060" as="geometry" />
+        </mxCell>
+        <mxCell id="dom_transfer" parent="tier5_container" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9e9e9e;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" value="&lt;b&gt;Module 4 &amp;amp; 5: Chuyển giao &amp;amp; 2+2&lt;/b&gt;&lt;br&gt;• Khai thác Bằng sáng chế &amp;amp; Công nghệ&lt;br&gt;• Kết nối chuyên gia tư vấn chuyển giao&lt;br&gt;&lt;i style=&quot;color:#d32f2f;&quot;&gt;→ Nguồn tri thức cho mô hình 2+2&lt;/i&gt;" vertex="1">
+          <mxGeometry height="100" width="270" x="30" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="dom_iam" parent="tier5_container" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9e9e9e;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" value="&lt;b&gt;Module 1: IAM &amp;amp; Governance&lt;/b&gt;&lt;br&gt;• Xác thực định danh &amp;amp; Active Context&lt;br&gt;• Phân quyền truy cập hồ sơ&lt;br&gt;&lt;i style=&quot;color:#0288d1;&quot;&gt;→ Liên kết Account với Expert Profile&lt;/i&gt;" vertex="1">
+          <mxGeometry height="100" width="270" x="330" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="dom_kpi" parent="tier5_container" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9e9e9e;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" value="&lt;b&gt;Module 6: Dashboard Giám sát&lt;/b&gt;&lt;br&gt;• Thống kê số lượng công bố, sáng chế&lt;br&gt;• Tỷ lệ kết nối đối tác thành công&lt;br&gt;&lt;i style=&quot;color:#d32f2f;&quot;&gt;→ Chỉ đọc dữ liệu tổng hợp (Read-only)&lt;/i&gt;" vertex="1">
+          <mxGeometry height="100" width="270" x="630" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="dom_grant" parent="tier5_container" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9e9e9e;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" value="&lt;b&gt;Module 3: Tài trợ &amp;amp; Dự án NC&lt;/b&gt;&lt;br&gt;• Nhận gợi ý Chuyên gia phản biện&lt;br&gt;• Tra cứu đối tác nộp hồ sơ chung&lt;br&gt;&lt;i style=&quot;color:#d32f2f;&quot;&gt;→ Liên kết dự án vào hồ sơ chuyên gia&lt;/i&gt;" vertex="1">
+          <mxGeometry height="100" width="270" x="930" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="dom_external" parent="tier5_container" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9e9e9e;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" value="&lt;b&gt;External Academic &amp;amp; Patent Sources&lt;/b&gt;&lt;br&gt;• Scopus, Web of Science, V-Bib API&lt;br&gt;• Cục Sở hữu Trí tuệ (VN) / Rospatent (RU)&lt;br&gt;&lt;i style=&quot;color:#0288d1;&quot;&gt;→ Nguồn đồng bộ siêu dữ liệu chuẩn&lt;/i&gt;" vertex="1">
+          <mxGeometry height="100" width="260" x="1230" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b0bec5;align=left;verticalAlign=top;spacing=8;" value="&lt;b&gt;CHÚ THÍCH (LEGEND)&lt;/b&gt;&lt;hr&gt;&lt;table style=&quot;font-size: 11px;&quot;&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#e1f5fe; width:20px; border:1px solid #0288d1;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;Client &amp;amp; Access Zone&lt;/td&gt;&lt;td style=&quot;background-color:#fff3e0; width:20px; border:1px solid #ef6c00;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;API Gateway &amp;amp; Data Pipeline&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#ede7f6; width:20px; border:1px solid #7e57c2;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;Core Domain Services&lt;/td&gt;&lt;td style=&quot;background-color:#e8f5e9; width:20px; border:1px solid #43a047;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;Multi-Model Storage &amp;amp; Cache&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#f5f5f5; width:20px; border:1px solid #757575;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;Integration &amp;amp; External Sources&lt;/td&gt;&lt;td style=&quot;color:#ef6c00; font-weight:bold;&quot;&gt;---&amp;gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;Async Data / Search Flow&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry height="150" width="580" x="40" y="1260" as="geometry" />
+        </mxCell>
+        <mxCell id="principles_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#90a4ae;align=left;verticalAlign=top;spacing=8;" value="&lt;b&gt;NGUYÊN TẮC THIẾT KẾ CỐT LÕI (ARCHITECTURE PRINCIPLES - MODULE 2)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.45;&quot;&gt;1. &lt;b&gt;Phân tách Database nghiệp vụ &amp;amp; Search/Graph Engine:&lt;/b&gt; RDBMS giữ nguồn chân lý (ACID); Elasticsearch &amp;amp; Graph DB phục vụ tìm kiếm, lọc đa diện &amp;amp; gợi ý đối tác.&lt;br&gt;2. &lt;b&gt;Xử lý đồng bộ bất đồng bộ (Async Ingestion):&lt;/b&gt; Tác vụ đồng bộ công bố/sáng chế chạy qua Message Queue nền, tránh giữ transaction HTTP dài và hỗ trợ batch &amp;gt;50.000 bản ghi.&lt;br&gt;3. &lt;b&gt;Phân trang Con trỏ (Cursor-based Pagination):&lt;/b&gt; Dùng cursor/keyset pagination cho tập dữ liệu lớn thay vì offset để đảm bảo độ trễ thấp và không trượt bản ghi.&lt;br&gt;4. &lt;b&gt;Public Discovery &amp;amp; Kiểm soát hiển thị:&lt;/b&gt; Cho phép truy cập mở không cần login; chỉ dữ liệu đã kiểm duyệt (PUBLISHED) mới xuất hiện trên chỉ mục tìm kiếm.&lt;/div&gt;" vertex="1">
+          <mxGeometry height="150" width="920" x="640" y="1260" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_t1_t2_1" edge="1" parent="1" source="zone_public" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#0288d1;strokeWidth=1.5;labelBackgroundColor=#ffffff;" target="gw_entry" value="Public Search / Discovery">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_t1_t2_2" edge="1" parent="1" source="zone_workspace" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#0288d1;strokeWidth=1.5;labelBackgroundColor=#ffffff;" target="pipe_async" value="Authoring &amp;amp; Matching Request">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_t1_t2_3" edge="1" parent="1" source="zone_gov" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#0288d1;strokeWidth=1.5;labelBackgroundColor=#ffffff;" target="pipe_match" value="Moderation &amp;amp; Index Admin">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_gw_1" edge="1" parent="1" source="gw_entry" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#ef6c00;strokeWidth=1.5;" target="pipe_ingest" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_gw_2" edge="1" parent="1" source="pipe_ingest" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#ef6c00;strokeWidth=1.5;labelBackgroundColor=#ffffff;" target="pipe_async" value="Normalized">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_gw_3" edge="1" parent="1" source="pipe_async" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#ef6c00;strokeWidth=1.5;labelBackgroundColor=#ffffff;" target="pipe_search" value="Index Stream">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_gw_4" edge="1" parent="1" source="pipe_search" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#ef6c00;strokeWidth=1.5;labelBackgroundColor=#ffffff;" target="pipe_match" value="Feature Vectors">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_pipe_pub_svc" edge="1" parent="1" source="pipe_ingest" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.2;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#7e57c2;strokeWidth=1.2;dashed=1;labelBackgroundColor=#ffffff;" target="svc_publication" value="Manage Pubs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_pipe_exp_svc" edge="1" parent="1" source="pipe_ingest" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.7;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#7e57c2;strokeWidth=1.2;dashed=1;labelBackgroundColor=#ffffff;" target="svc_expert" value="Profile &amp;amp; CV">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_pipe_tax_svc" edge="1" parent="1" source="pipe_async" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#7e57c2;strokeWidth=1.2;dashed=1;labelBackgroundColor=#ffffff;" target="svc_taxonomy" value="Taxonomy Query">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_pipe_mod_svc" edge="1" parent="1" source="pipe_search" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#7e57c2;strokeWidth=1.2;dashed=1;labelBackgroundColor=#ffffff;" target="svc_moderation" value="Moderation Check">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_pipe_match_svc" edge="1" parent="1" source="pipe_match" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#7e57c2;strokeWidth=1.2;dashed=1;labelBackgroundColor=#ffffff;" target="svc_matching" value="Recommendation">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_pub_rdb" edge="1" parent="1" source="svc_publication" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.4;entryY=0;entryDx=0;entryDy=0;strokeColor=#43a047;strokeWidth=1.5;labelBackgroundColor=#ffffff;" target="db_relational" value="Entity CRUD (Pub/Patent)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_exp_rdb" edge="1" parent="1" source="svc_expert" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.3;exitY=1;exitDx=0;exitDy=0;entryX=0.8;entryY=0;entryDx=0;entryDy=0;strokeColor=#43a047;strokeWidth=1.5;labelBackgroundColor=#ffffff;" target="db_relational" value="Profile &amp;amp; Affiliation">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_tax_graph" edge="1" parent="1" source="svc_taxonomy" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.3;entryY=0;entryDx=0;entryDy=0;strokeColor=#43a047;strokeWidth=1.5;labelBackgroundColor=#ffffff;" target="db_graph_vector" value="Taxonomy Ontology">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_mod_db" edge="1" parent="1" source="svc_moderation" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.2;exitY=1;exitDx=0;exitDy=0;entryX=0.8;entryY=0;entryDx=0;entryDy=0;strokeColor=#43a047;strokeWidth=1.5;labelBackgroundColor=#ffffff;" target="db_search" value="Update Publish State">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_matching_graph" edge="1" parent="1" source="svc_matching" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.3;exitY=1;exitDx=0;exitDy=0;entryX=0.7;entryY=0;entryDx=0;entryDy=0;strokeColor=#43a047;strokeWidth=1.5;labelBackgroundColor=#ffffff;" target="db_graph_vector" value="Embeddings Graph">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_cache_access" edge="1" parent="1" source="svc_matching" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.7;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#43a047;strokeWidth=1.5;labelBackgroundColor=#ffffff;" target="db_cache_s3" value="Cache Hits &amp;amp; S3 Files">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_t5_transfer" edge="1" parent="1" source="dom_transfer" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=#d32f2f;strokeWidth=1.2;dashed=1;labelBackgroundColor=#ffffff;" target="db_relational" value="Patents &amp;amp; Tech for 2+2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_t5_iam" edge="1" parent="1" source="dom_iam" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.8;entryY=1;entryDx=0;entryDy=0;strokeColor=#0288d1;strokeWidth=1.2;dashed=1;labelBackgroundColor=#ffffff;" target="db_relational" value="Account &amp;amp; Identity Binding">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_t5_kpi" edge="1" parent="1" source="dom_kpi" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=#757575;strokeWidth=1.2;dashed=1;labelBackgroundColor=#ffffff;" target="db_search" value="Aggregated KPI Metrics">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_t5_grant" edge="1" parent="1" source="dom_grant" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=#d32f2f;strokeWidth=1.2;dashed=1;labelBackgroundColor=#ffffff;" target="db_graph_vector" value="Reviewer Profiles &amp;amp; Grants">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_t5_external" edge="1" parent="1" source="dom_external" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=#0288d1;strokeWidth=1.2;dashed=1;labelBackgroundColor=#ffffff;" target="db_cache_s3" value="Metadata Ingestion (Scopus/WoS)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

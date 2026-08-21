@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="drawio" version="26.0.0">
+  <diagram id="module1_iam_governance" name="Kiến trúc Hệ thống Module 1 - IAM &amp; Governance">
+    <mxGraphModel dx="1600" dy="1400" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1450">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Title Block -->
+        <mxCell id="title" value="&lt;b style=&quot;font-size: 20px;&quot;&gt;KIẾN TRÚC HỆ THỐNG MODULE 1: IAM &amp;amp; GOVERNANCE&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 13px; color: #555555;&quot;&gt;VN–RU Portal · Cổng một cửa Quản trị Định danh, Phân quyền Ngữ cảnh &amp;amp; Kiểm toán Bảo mật&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8f9fa;strokeColor=#4a6b82;strokeWidth=1.5;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="30" width="1520" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- TIER 1: CLIENT ACCESS & 3 CANONICAL ZONES -->
+        <mxCell id="tier1_container" value="TẦNG 1: TRẢI NGHIỆM TRUY CẬP (3 CANONICAL ACCESS ZONES)" style="swimlane;startSize=30;fillColor=#e1f5fe;strokeColor=#0288d1;fontStyle=1;fontSize=13;fontColor=#01579b;rounded=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="40" y="120" width="1520" height="190" as="geometry" />
+        </mxCell>
+
+        <!-- Zone 1: Public / Discovery -->
+        <mxCell id="zone_public" value="&lt;b&gt;PUBLIC / DISCOVERY ZONE&lt;/b&gt;&lt;br&gt;(Khách vãng lai / Unauthenticated)&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.4;&quot;&gt;• Trang chủ (Home) &amp;amp; Tin tức / Sự kiện&lt;br&gt;• Global Search &amp;amp; Cơ hội hợp tác&lt;br&gt;• Tra cứu Kho tri thức &amp;amp; Chuyên gia&lt;br&gt;• Đăng ký thành viên (Onboarding flow)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0288d1;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="tier1_container">
+          <mxGeometry x="30" y="45" width="440" height="125" as="geometry" />
+        </mxCell>
+
+        <!-- Zone 2: Role-based Workspace -->
+        <mxCell id="zone_workspace" value="&lt;b&gt;ROLE-BASED WORKSPACE ZONE&lt;/b&gt;&lt;br&gt;(Thành viên đã xác thực / Authenticated)&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.4;&quot;&gt;• &lt;b&gt;Researcher/Scientist:&lt;/b&gt; Hồ sơ, Đề xuất, Dự án&lt;br&gt;• &lt;b&gt;Reviewer:&lt;/b&gt; Hồ sơ phân công (&lt;i&gt;assignmentId&lt;/i&gt;)&lt;br&gt;• &lt;b&gt;Org / Enterprise:&lt;/b&gt; Workspace theo phạm vi đơn vị&lt;br&gt;• &lt;b&gt;Leadership:&lt;/b&gt; Dashboard chỉ số tổng hợp&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0288d1;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="tier1_container">
+          <mxGeometry x="510" y="45" width="500" height="125" as="geometry" />
+        </mxCell>
+
+        <!-- Zone 3: Governance & Administration -->
+        <mxCell id="zone_gov" value="&lt;b&gt;GOVERNANCE &amp;amp; ADMIN ZONE&lt;/b&gt;&lt;br&gt;(Đội ngũ Quản trị Hệ thống / Operators)&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.4;&quot;&gt;• Quản trị Định danh &amp;amp; Phân quyền (IAM Admin)&lt;br&gt;• Quản trị Danh mục, Workflow &amp;amp; Dữ liệu&lt;br&gt;• Giám sát Audit Trail, Security &amp;amp; Compliance&lt;br&gt;• Báo cáo điều hành Quỹ (Module 6 Admin)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0288d1;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="tier1_container">
+          <mxGeometry x="1050" y="45" width="440" height="125" as="geometry" />
+        </mxCell>
+
+        <!-- TIER 2: API GATEWAY & SECURITY ENFORCEMENT -->
+        <mxCell id="tier2_container" value="TẦNG 2: SECURITY GATEWAY &amp;amp; XỬ LÝ YÊU CẦU (PEP - POLICY ENFORCEMENT POINT)" style="swimlane;startSize=30;fillColor=#fff3e0;strokeColor=#ef6c00;fontStyle=1;fontSize=13;fontColor=#e65100;rounded=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="40" y="340" width="1520" height="210" as="geometry" />
+        </mxCell>
+
+        <mxCell id="gw_entry" value="&lt;b&gt;API Gateway &amp;amp; Reverse Proxy&lt;/b&gt;&lt;br&gt;• SSL/TLS Termination&lt;br&gt;• Rate Limiting &amp;amp; DDoS Shield&lt;br&gt;• Route Dispatcher&lt;br&gt;• Request Correlation ID / Trace ID" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#fb8c00;strokeWidth=1.5;fontSize=11;verticalAlign=middle;" vertex="1" parent="tier2_container">
+          <mxGeometry x="30" y="50" width="250" height="135" as="geometry" />
+        </mxCell>
+
+        <mxCell id="gw_authn" value="&lt;b&gt;1. Authentication Filter (AuthN)&lt;/b&gt;&lt;br&gt;• Validate Session Cookie / JWT Bearer&lt;br&gt;• Check Token Blacklist / Revocation&lt;br&gt;• IdP Federation / SSO Integration&lt;br&gt;• 2FA / MFA Enforcement Check" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#f57c00;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" vertex="1" parent="tier2_container">
+          <mxGeometry x="320" y="50" width="260" height="135" as="geometry" />
+        </mxCell>
+
+        <mxCell id="gw_context" value="&lt;b&gt;2. Context Resolver&lt;/b&gt;&lt;br&gt;• Resolve Active Workspace Context&lt;br&gt;• Bind Tenant / Institution Scope&lt;br&gt;• Active Role Context Check&lt;br&gt;• Multi-context switch support" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#f57c00;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" vertex="1" parent="tier2_container">
+          <mxGeometry x="620" y="50" width="260" height="135" as="geometry" />
+        </mxCell>
+
+        <mxCell id="gw_authz" value="&lt;b&gt;3. Authorization Engine (AuthZ)&lt;/b&gt;&lt;br&gt;&lt;i&gt;authorize(identity, perm, resource, ctx)&lt;/i&gt;&lt;br&gt;• Pattern: &lt;b&gt;&amp;lt;DOMAIN&amp;gt;.&amp;lt;RES&amp;gt;.&amp;lt;ACT&amp;gt;&lt;/b&gt;&lt;br&gt;• Resource Scope Validation (e.g. Org/ID)&lt;br&gt;• Fast Path via Redis Cache (&amp;lt;2ms)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#f57c00;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" vertex="1" parent="tier2_container">
+          <mxGeometry x="920" y="50" width="280" height="135" as="geometry" />
+        </mxCell>
+
+        <mxCell id="gw_telemetry" value="&lt;b&gt;4. Security Audit &amp;amp; Telemetry&lt;/b&gt;&lt;br&gt;• OpenTelemetry Tracing&lt;br&gt;  (&lt;i&gt;authn, ctx, authz, route&lt;/i&gt;)&lt;br&gt;• Emit Audit Events (ALLOW/DENY)&lt;br&gt;• Sensitive Actions Logging" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#f57c00;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" vertex="1" parent="tier2_container">
+          <mxGeometry x="1240" y="50" width="250" height="135" as="geometry" />
+        </mxCell>
+
+        <!-- TIER 3: CORE IAM SERVICES (CONTROL PLANE) -->
+        <mxCell id="tier3_container" value="TẦNG 3: CÁC DỊCH VỤ LÕI IAM &amp;amp; GOVERNANCE (CONTROL PLANE)" style="swimlane;startSize=30;fillColor=#ede7f6;strokeColor=#7e57c2;fontStyle=1;fontSize=13;fontColor=#4a148c;rounded=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="40" y="580" width="1520" height="230" as="geometry" />
+        </mxCell>
+
+        <mxCell id="svc_identity" value="&lt;b&gt;Identity &amp;amp; Account Service&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10px; color: #555;&quot;&gt;Route: /account, /identity&lt;/span&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px;&quot;&gt;• User Profile &amp;amp; Account Lifecycle&lt;br&gt;• Affiliation Consent &amp;amp; Status Consuming&lt;br&gt;• Identity Activation &amp;amp; Verification&lt;br&gt;• Credential Management&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7e57c2;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="tier3_container">
+          <mxGeometry x="30" y="45" width="270" height="160" as="geometry" />
+        </mxCell>
+
+        <mxCell id="svc_auth" value="&lt;b&gt;Authentication &amp;amp; Session Service&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10px; color: #555;&quot;&gt;Route: /login, /security/2fa, /logout&lt;/span&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px;&quot;&gt;• Password / SSO / OIDC Authenticator&lt;br&gt;• 2FA Service (TOTP / OTP / Email)&lt;br&gt;• Multi-device Session Management&lt;br&gt;• Token Issuance &amp;amp; Rotation Policy&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7e57c2;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="tier3_container">
+          <mxGeometry x="330" y="45" width="280" height="160" as="geometry" />
+        </mxCell>
+
+        <mxCell id="svc_rbac" value="&lt;b&gt;RBAC &amp;amp; Scope Management&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10px; color: #555;&quot;&gt;Route: /workspace/contexts, /permissions&lt;/span&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px;&quot;&gt;• Role-to-Permission Mapping&lt;br&gt;• Dynamic Resource Scoping (Org, Assignment)&lt;br&gt;• Context Definition &amp;amp; Switch Policy&lt;br&gt;• Invalidate AuthZ Cache on Role Change&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7e57c2;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="tier3_container">
+          <mxGeometry x="640" y="45" width="280" height="160" as="geometry" />
+        </mxCell>
+
+        <mxCell id="svc_gov_admin" value="&lt;b&gt;Access Governance &amp;amp; Admin&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10px; color: #555;&quot;&gt;Route: /admin/access/users, /admin/roles&lt;/span&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px;&quot;&gt;• User Role Assignment &amp;amp; Approval&lt;br&gt;• Optimistic Concurrency (&lt;i&gt;version, updatedAt&lt;/i&gt;)&lt;br&gt;• Partner Org Access Delegation&lt;br&gt;• System Operator Governance&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7e57c2;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="tier3_container">
+          <mxGeometry x="950" y="45" width="260" height="160" as="geometry" />
+        </mxCell>
+
+        <mxCell id="svc_audit" value="&lt;b&gt;Security Audit Trail Service&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10px; color: #555;&quot;&gt;Route: /admin/access/audit&lt;/span&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px;&quot;&gt;• Asynchronous Audit Event Collector&lt;br&gt;• Schema: &lt;i&gt;actorId, action, res, decision, traceId&lt;/i&gt;&lt;br&gt;• Tamper-resistant Security Audit Trail&lt;br&gt;• Compliance &amp;amp; Forensic Search API&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7e57c2;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="tier3_container">
+          <mxGeometry x="1240" y="45" width="250" height="160" as="geometry" />
+        </mxCell>
+
+        <!-- TIER 4: PERSISTENCE & DISTRIBUTED CACHING -->
+        <mxCell id="tier4_container" value="TẦNG 4: LƯU TRỮ VÀ PHÂN TÁN DỮ LIỆU BẢO MẬT (STORAGE &amp;amp; CACHING)" style="swimlane;startSize=30;fillColor=#e8f5e9;strokeColor=#43a047;fontStyle=1;fontSize=13;fontColor=#1b5e20;rounded=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="40" y="840" width="1520" height="190" as="geometry" />
+        </mxCell>
+
+        <!-- Redis Cache -->
+        <mxCell id="db_redis" value="&lt;b&gt;Redis Distributed Cache Cluster&lt;/b&gt;&lt;br&gt;• Active Session Tokens &amp;amp; TTL&lt;br&gt;• AuthZ Permission Cache (Cache hit ~1ms)&lt;br&gt;• Revocation Blacklist / Instant Invalidation&lt;br&gt;• Rate Limit Counters &amp;amp; Lock Registry" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#c8e6c9;strokeColor=#388e3c;strokeWidth=1.5;size=15;fontSize=11;verticalAlign=middle;" vertex="1" parent="tier4_container">
+          <mxGeometry x="100" y="45" width="380" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- IAM Primary Relational DB -->
+        <mxCell id="db_iam" value="&lt;b&gt;IAM Primary Relational Database (PostgreSQL)&lt;/b&gt;&lt;br&gt;• Tables: Users, Credentials, Roles, Permissions, UserContexts&lt;br&gt;• Role-Permission Junction &amp;amp; Scope Rules&lt;br&gt;• Optimistic Locking Control (&lt;i&gt;version, updatedAt&lt;/i&gt;)&lt;br&gt;• &lt;b&gt;Đặc thù:&lt;/b&gt; Tuyệt đối KHÔNG copy thực thể nghiệp vụ" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#c8e6c9;strokeColor=#388e3c;strokeWidth=1.5;size=15;fontSize=11;verticalAlign=middle;" vertex="1" parent="tier4_container">
+          <mxGeometry x="570" y="45" width="460" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- Audit Event Store -->
+        <mxCell id="db_audit" value="&lt;b&gt;Audit &amp;amp; Log Event Store (Immutable / Time-Series)&lt;/b&gt;&lt;br&gt;• Security Events (AUTHN_FAIL, AUTHZ_DENIED)&lt;br&gt;• Sensitive Actions Trail (ROLE_CHANGE, SCOPE_GRANT)&lt;br&gt;• OpenTelemetry Traces &amp;amp; Access Logs&lt;br&gt;• Long-term Retention &amp;amp; Compliance Archive" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#c8e6c9;strokeColor=#388e3c;strokeWidth=1.5;size=15;fontSize=11;verticalAlign=middle;" vertex="1" parent="tier4_container">
+          <mxGeometry x="1100" y="45" width="380" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- TIER 5: DOWNSTREAM BUSINESS SERVICES & BOUNDARY -->
+        <mxCell id="tier5_container" value="TẦNG 5: RANH GIỚI NGHIỆP VỤ LIÊN KẾT (DOWNSTREAM DOMAIN SERVICES - IAM KHÔNG SỞ HỮU TRẠNG THÁI)" style="swimlane;startSize=30;fillColor=#f5f5f5;strokeColor=#757575;fontStyle=1;fontSize=13;fontColor=#424242;rounded=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1060" width="1520" height="180" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dom_org" value="&lt;b&gt;Organization / Partner Service&lt;/b&gt;&lt;br&gt;• Thỏa thuận hợp tác song phương&lt;br&gt;• Tư cách đối tác &amp;amp; Affiliation&lt;br&gt;&lt;i style=&quot;color:#0288d1;&quot;&gt;→ Đẩy eligibility context sang IAM&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9e9e9e;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" vertex="1" parent="tier5_container">
+          <mxGeometry x="30" y="50" width="270" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dom_grant" value="&lt;b&gt;Module 3: Grant &amp;amp; Project Service&lt;/b&gt;&lt;br&gt;• Quản lý đề tài &amp;amp; Tài trợ độc lập&lt;br&gt;• Sở hữu Proposal &amp;amp; Project state&lt;br&gt;&lt;i style=&quot;color:#d32f2f;&quot;&gt;IAM chỉ cung cấp AuthZ token&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9e9e9e;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" vertex="1" parent="tier5_container">
+          <mxGeometry x="330" y="50" width="270" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dom_review" value="&lt;b&gt;Review &amp;amp; Council Service&lt;/b&gt;&lt;br&gt;• Phân công phản biện (assignmentId)&lt;br&gt;• Quản lý phiếu điểm &amp;amp; Hội đồng&lt;br&gt;&lt;i style=&quot;color:#d32f2f;&quot;&gt;IAM check scope assignmentId&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9e9e9e;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" vertex="1" parent="tier5_container">
+          <mxGeometry x="630" y="50" width="270" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dom_knowledge" value="&lt;b&gt;Module 2: Expert &amp;amp; Knowledge&lt;/b&gt;&lt;br&gt;• Hồ sơ chuyên gia &amp;amp; Kết quả NC&lt;br&gt;• Danh mục công bố khoa học&lt;br&gt;&lt;i style=&quot;color:#d32f2f;&quot;&gt;IAM liên kết identity &amp;amp; profile&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9e9e9e;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" vertex="1" parent="tier5_container">
+          <mxGeometry x="930" y="50" width="270" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dom_transfer" value="&lt;b&gt;Module 4 &amp;amp; 5: Transfer / 2+2 Tech&lt;/b&gt;&lt;br&gt;• Chuyển giao công nghệ &amp;amp; 2+2&lt;br&gt;• Đào tạo &amp;amp; Trao đổi học thuật&lt;br&gt;&lt;i style=&quot;color:#d32f2f;&quot;&gt;IAM bảo vệ Enterprise workspace&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9e9e9e;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" vertex="1" parent="tier5_container">
+          <mxGeometry x="1230" y="50" width="260" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- LEGEND & ARCHITECTURE PRINCIPLES -->
+        <mxCell id="legend_box" value="&lt;b&gt;CHÚ THÍCH (LEGEND)&lt;/b&gt;&lt;hr&gt;&lt;table style=&quot;font-size: 11px;&quot;&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#e1f5fe; width:20px; border:1px solid #0288d1;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;Client &amp;amp; Access Zone&lt;/td&gt;&lt;td style=&quot;background-color:#fff3e0; width:20px; border:1px solid #ef6c00;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;Security Gateway (PEP)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#ede7f6; width:20px; border:1px solid #7e57c2;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;IAM Core Control Plane&lt;/td&gt;&lt;td style=&quot;background-color:#e8f5e9; width:20px; border:1px solid #43a047;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;Persistence &amp;amp; Cache&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#f5f5f5; width:20px; border:1px solid #757575;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;Downstream Domain Services&lt;/td&gt;&lt;td style=&quot;color:#d32f2f; font-weight:bold;&quot;&gt;---&amp;gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;Security Context / Policy Flow&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b0bec5;align=left;verticalAlign=top;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1260" width="580" height="150" as="geometry" />
+        </mxCell>
+
+        <mxCell id="principles_box" value="&lt;b&gt;NGUYÊN TẮC THIẾT KẾ CỐT LÕI (ARCHITECTURE PRINCIPLES)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.45;&quot;&gt;1. &lt;b&gt;Không sở hữu trạng thái nghiệp vụ:&lt;/b&gt; IAM không lưu Proposal, Project, Review; chỉ cấp Authenticated Identity + Context + Permission.&lt;br&gt;2. &lt;b&gt;Phân quyền 3 chiều:&lt;/b&gt; Quyền hạn được kiểm tra theo &lt;i&gt;authorize(identity, permission, resource_scope, active_context)&lt;/i&gt;.&lt;br&gt;3. &lt;b&gt;Tối ưu hiệu năng:&lt;/b&gt; Xác thực và phân quyền qua Redis Cache (&amp;lt;2ms), Invalidation tức thì khi thay đổi Role/Context.&lt;br&gt;4. &lt;b&gt;Kiểm toán toàn vẹn:&lt;/b&gt; Mọi thao tác nhạy cảm và quyết định phân quyền đều sinh Security Audit Event bất biến (Traceable).&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#90a4ae;align=left;verticalAlign=top;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="640" y="1260" width="920" height="150" as="geometry" />
+        </mxCell>
+
+        <!-- CONNECTING EDGES -->
+
+        <!-- From Tier 1 to Tier 2 -->
+        <mxCell id="edge_t1_t2_1" value="HTTPS Requests (Discovery / Onboarding)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;strokeColor=#0288d1;strokeWidth=1.5;" edge="1" parent="1" source="zone_public" target="gw_entry">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_t1_t2_2" value="Authenticated Workspace Request + Session" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#0288d1;strokeWidth=1.5;" edge="1" parent="1" source="zone_workspace" target="gw_authn">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_t1_t2_3" value="Admin / Governance Operations + Audit" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#0288d1;strokeWidth=1.5;" edge="1" parent="1" source="zone_gov" target="gw_authz">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Inside Tier 2 Pipeline -->
+        <mxCell id="edge_gw_1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#ef6c00;strokeWidth=1.5;" edge="1" parent="1" source="gw_entry" target="gw_authn">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_gw_2" value="AuthN OK" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#ef6c00;strokeWidth=1.5;" edge="1" parent="1" source="gw_authn" target="gw_context">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_gw_3" value="Context Bound" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#ef6c00;strokeWidth=1.5;" edge="1" parent="1" source="gw_context" target="gw_authz">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_gw_4" value="AuthZ Decision" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#ef6c00;strokeWidth=1.5;" edge="1" parent="1" source="gw_authz" target="gw_telemetry">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Gateway to Tier 3 Services -->
+        <mxCell id="edge_gw_auth_svc" value="Verify Credentials / 2FA" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#7e57c2;strokeWidth=1.2;dashed=1;" edge="1" parent="1" source="gw_authn" target="svc_auth">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_gw_rbac_svc" value="Fetch Roles &amp;amp; Scopes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#7e57c2;strokeWidth=1.2;dashed=1;" edge="1" parent="1" source="gw_authz" target="svc_rbac">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_gw_audit_svc" value="Emit Security Log" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#7e57c2;strokeWidth=1.2;dashed=1;" edge="1" parent="1" source="gw_telemetry" target="svc_audit">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Tier 3 to Tier 4 Storage -->
+        <mxCell id="edge_auth_redis" value="Fast Token &amp;amp; Cache lookup" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.3;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#43a047;strokeWidth=1.5;" edge="1" parent="1" source="svc_auth" target="db_redis">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_rbac_db" value="Persist User/Role/Context &amp;amp; Optimistic Lock" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#43a047;strokeWidth=1.5;" edge="1" parent="1" source="svc_rbac" target="db_iam">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_rbac_inval" value="Role Change Invalidation" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.2;exitY=1;exitDx=0;exitDy=0;entryX=0.8;entryY=0;entryDx=0;entryDy=0;strokeColor=#d32f2f;strokeWidth=1.2;dashed=1;" edge="1" parent="1" source="svc_rbac" target="db_redis">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_audit_store" value="Append Audit Events" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#43a047;strokeWidth=1.5;" edge="1" parent="1" source="svc_audit" target="db_audit">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Tier 2 / Gateway Forwarding to Downstream Services (Authorized Calls) -->
+        <mxCell id="edge_gw_downstream" value="Forward Authenticated &amp;amp; Authorized Request with Security Context Header (X-User-Id, X-Active-Context, X-Permissions)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#e65100;strokeWidth=2;dashed=1;" edge="1" parent="1" source="gw_entry" target="tier5_container">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="195" y="1045" />
+              <mxPoint x="800" y="1045" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Downstream eligibility back to IAM Identity -->
+        <mxCell id="edge_eligibility" value="Partner Agreement / Affiliation Verification Status" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=#0288d1;strokeWidth=1.2;dashed=1;" edge="1" parent="1" source="dom_org" target="svc_identity">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="205" y="1045" />
+              <mxPoint x="205" y="820" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

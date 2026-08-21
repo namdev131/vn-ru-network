@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="drawio" version="26.0.0">
+  <diagram id="rbac_flow_page1" name="1. Luồng Xử lý Phân quyền &amp; Đánh giá Permission (PEP &amp; PDP Flow)">
+    <mxGraphModel dx="1800" dy="1800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1840" pageHeight="1300">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Master Title Block -->
+        <mxCell id="p1_title" value="&lt;b style=&quot;font-size: 20px; color: #0d47a1;&quot;&gt;LUỒNG XỬ LÝ PHÂN QUYỀN &amp;amp; ĐÁNH GIÁ PERMISSION (RBAC &amp;amp; PEP/PDP FLOW)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 13px; color: #455a64;&quot;&gt;VN–RU Portal · Module 1: IAM &amp;amp; Governance · Mô hình Xác thực, Phân giải Ngữ cảnh (Context Switch), Policy Enforcement Point (PEP) &amp;amp; Policy Decision Point (PDP)&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f4f8;strokeColor=#1976d2;strokeWidth=2;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="30" width="1760" height="75" as="geometry" />
+        </mxCell>
+
+        <!-- TIER 1: CLIENT ACCESS and REQUEST INITIATION -->
+        <mxCell id="t1_swimlane" value="TẦNG 1: TRẢI NGHIỆM CLIENT &amp;amp; PHÁT KHỞI YÊU CẦU (CLIENT LAYER &amp;amp; ACTIVE CONTEXT)" style="swimlane;startSize=30;fillColor=#e1f5fe;strokeColor=#0288d1;fontStyle=1;fontSize=13;fontColor=#01579b;rounded=1;arcSize=3;" vertex="1" parent="1">
+          <mxGeometry x="40" y="125" width="1760" height="190" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c_actor" value="&lt;b style=&quot;font-size: 13px; color: #01579b;&quot;&gt;1. Actor / Người dùng&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.4;&quot;&gt;• &lt;b&gt;Researcher&lt;/b&gt; (Nhà khoa học)&lt;br&gt;• &lt;b&gt;Reviewer&lt;/b&gt; (Chuyên gia phản biện)&lt;br&gt;• &lt;b&gt;Org Admin&lt;/b&gt; (Đại diện Viện/Trường)&lt;br&gt;• &lt;b&gt;Enterprise&lt;/b&gt; / &lt;b&gt;Operator&lt;/b&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0288d1;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="t1_swimlane">
+          <mxGeometry x="30" y="42" width="250" height="130" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c_packet" value="&lt;b style=&quot;font-size: 12px; color: #01579b;&quot;&gt;2. HTTP Request Envelope&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 10px; font-family: monospace; line-height: 1.3;&quot;&gt;&lt;b style=&quot;color:#d32f2f;&quot;&gt;POST&lt;/b&gt; /api/v1/proposals/PR-2026/review&lt;br&gt;&lt;b style=&quot;color:#1976d2;&quot;&gt;Authorization:&lt;/b&gt; Bearer &amp;lt;JWT_Token&amp;gt;&lt;br&gt;&lt;b style=&quot;color:#7b1fa2;&quot;&gt;X-Active-Context:&lt;/b&gt; {tenantId:&quot;VAST&quot;,&lt;br&gt;&amp;nbsp;&amp;nbsp;role:&quot;REVIEWER&quot;, scope:&quot;ASSIGNED&quot;}&lt;br&gt;&lt;b style=&quot;color:#388e3c;&quot;&gt;X-Trace-ID:&lt;/b&gt; trc-7f89ab12&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0288d1;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="t1_swimlane">
+          <mxGeometry x="320" y="42" width="340" height="130" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c_ctx_switch" value="&lt;b style=&quot;font-size: 12px; color: #01579b;&quot;&gt;3. Cơ chế Context Switch&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.4;&quot;&gt;• Chuyển đổi linh hoạt giữa các vai trò:&lt;br&gt;&amp;nbsp;&amp;nbsp;🏷️ &lt;i&gt;Nhà khoa học&lt;/i&gt; (Viện Hàn lâm VAST)&lt;br&gt;&amp;nbsp;&amp;nbsp;🏷️ &lt;i&gt;Chuyên gia thẩm định&lt;/i&gt; (Hội đồng Quỹ)&lt;br&gt;• Không cần đăng xuất/đăng nhập lại&lt;br&gt;• Session cập nhật &lt;b&gt;Active Context Token&lt;/b&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0288d1;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="t1_swimlane">
+          <mxGeometry x="700" y="42" width="330" height="130" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c_storage" value="&lt;b style=&quot;font-size: 12px; color: #01579b;&quot;&gt;4. Trình duyệt &amp;amp; Lưu trữ Phiên&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.4;&quot;&gt;• &lt;b&gt;HttpOnly Cookie:&lt;/b&gt; Session ID an toàn&lt;br&gt;• &lt;b&gt;Memory State:&lt;/b&gt; Short-lived Access Token&lt;br&gt;• &lt;b&gt;Local Context:&lt;/b&gt; Workspace active profile&lt;br&gt;• Tự động đính kèm Token vào API Calls&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0288d1;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="t1_swimlane">
+          <mxGeometry x="1070" y="42" width="310" height="130" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c_public_bypass" value="&lt;b style=&quot;font-size: 12px; color: #2e7d32;&quot;&gt;5. Luồng Public / Discovery&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.4;&quot;&gt;• Các route công khai (&lt;i&gt;/home, /news, /search, /experts, /onboarding&lt;/i&gt;)&lt;br&gt;• &lt;b style=&quot;color:#2e7d32;&quot;&gt;Bypass PEP Check:&lt;/b&gt; Truy cập trực tiếp qua Public Cache / Gateway mà không yêu cầu Token xác thực&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#4caf50;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="t1_swimlane">
+          <mxGeometry x="1420" y="42" width="310" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- TIER 2: POLICY ENFORCEMENT POINT (PEP) - API GATEWAY -->
+        <mxCell id="t2_swimlane" value="TẦNG 2: POLICY ENFORCEMENT POINT (PEP) - API GATEWAY &amp;amp; XỬ LÝ ĐẦU VÀO" style="swimlane;startSize=30;fillColor=#fff3e0;strokeColor=#ef6c00;fontStyle=1;fontSize=13;fontColor=#e65100;rounded=1;arcSize=3;" vertex="1" parent="1">
+          <mxGeometry x="40" y="340" width="1760" height="260" as="geometry" />
+        </mxCell>
+
+        <mxCell id="gw_ingress" value="&lt;b style=&quot;font-size: 13px; color: #e65100;&quot;&gt;API Gateway Ingress&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.4;&quot;&gt;• TLS/SSL Termination (HTTPS)&lt;br&gt;• DDoS Protection &amp;amp; Rate Limiter&lt;br&gt;• Route Dispatcher &amp;amp; CORS Filter&lt;br&gt;• Sinh Trace ID cho toàn bộ luồng&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#ef6c00;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="t2_swimlane">
+          <mxGeometry x="30" y="48" width="250" height="185" as="geometry" />
+        </mxCell>
+
+        <mxCell id="gw_authn" value="&lt;b style=&quot;font-size: 13px; color: #e65100;&quot;&gt;Bước 1: Bộ lọc Xác thực (AuthN)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.4;&quot;&gt;• &lt;b&gt;Xác thực Chữ ký JWT:&lt;/b&gt; RS256 Public Key&lt;br&gt;• &lt;b&gt;Kiểm tra Hạn dùng:&lt;/b&gt; exp, nbf, iat claims&lt;br&gt;• &lt;b&gt;Check Blacklist (Redis):&lt;/b&gt; Token bị revoke?&lt;br&gt;• &lt;b&gt;Kiểm tra 2FA Status:&lt;/b&gt; Session MFA hợp lệ?&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#ef6c00;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="t2_swimlane">
+          <mxGeometry x="315" y="48" width="280" height="185" as="geometry" />
+        </mxCell>
+
+        <mxCell id="gw_authn_dec" value="&lt;b style=&quot;font-size: 11px;&quot;&gt;Token&lt;br&gt;Hợp lệ?&lt;/b&gt;" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=1.5;" vertex="1" parent="t2_swimlane">
+          <mxGeometry x="635" y="85" width="110" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="gw_401_err" value="⛔ &lt;b&gt;401 Unauthorized&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px;&quot;&gt;Token hết hạn / Chữ ký sai&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffebee;strokeColor=#c62828;strokeWidth=1.2;fontColor=#b71c1c;fontSize=11;" vertex="1" parent="t2_swimlane">
+          <mxGeometry x="615" y="195" width="150" height="42" as="geometry" />
+        </mxCell>
+
+        <mxCell id="gw_ctx_resolver" value="&lt;b style=&quot;font-size: 13px; color: #e65100;&quot;&gt;Bước 2: Phân giải Ngữ cảnh (Context)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.4;&quot;&gt;• Đọc header &lt;b&gt;X-Active-Context&lt;/b&gt;&lt;br&gt;• Trích xuất: &lt;i&gt;userId&lt;/i&gt;, &lt;i&gt;tenantId&lt;/i&gt;, &lt;i&gt;activeRole&lt;/i&gt;&lt;br&gt;• Xác minh quan hệ: User có quyền hoạt động dưới vai trò &lt;b&gt;REVIEWER&lt;/b&gt; tại tổ chức này?&lt;br&gt;• Khởi tạo Security Context ThreadLocal&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#ef6c00;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="t2_swimlane">
+          <mxGeometry x="785" y="48" width="300" height="185" as="geometry" />
+        </mxCell>
+
+        <mxCell id="gw_route_mapper" value="&lt;b style=&quot;font-size: 13px; color: #e65100;&quot;&gt;Bước 3: Ánh xạ Route sang Permission&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.4;&quot;&gt;• Phân tích HTTP Method + URI Pattern:&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;code&gt;POST /api/v1/proposals/{id}/review&lt;/code&gt;&lt;br&gt;• Quyền yêu cầu: &lt;b style=&quot;color:#c2185b;&quot;&gt;GRANT.PROPOSAL.REVIEW&lt;/b&gt;&lt;br&gt;• Kiểu kiểm tra: &lt;b&gt;Fine-Grained RBAC + Scope&lt;/b&gt;&lt;br&gt;• Đối tượng mục tiêu: &lt;i&gt;proposalId = &quot;PR-2026&quot;&lt;/i&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#ef6c00;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="t2_swimlane">
+          <mxGeometry x="1125" y="48" width="320" height="185" as="geometry" />
+        </mxCell>
+
+        <mxCell id="gw_pep_fwd" value="&lt;b style=&quot;font-size: 13px; color: #e65100;&quot;&gt;PEP Interceptor &amp;amp; Dispatch&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.4;&quot;&gt;• Đóng gói Authorization Query:&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;code&gt;{userId: &quot;USR-10&quot;,&lt;br&gt;&amp;nbsp;&amp;nbsp; activeRole: &quot;REVIEWER&quot;,&lt;br&gt;&amp;nbsp;&amp;nbsp; perm: &quot;GRANT.PROPOSAL.REVIEW&quot;,&lt;br&gt;&amp;nbsp;&amp;nbsp; resource: &quot;PR-2026&quot;}&lt;/code&gt;&lt;br&gt;• Chuyển tiếp tới &lt;b&gt;PDP AuthZ Engine&lt;/b&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#ef6c00;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="t2_swimlane">
+          <mxGeometry x="1485" y="48" width="245" height="185" as="geometry" />
+        </mxCell>
+
+        <!-- TIER 3: POLICY DECISION POINT (PDP) - CORE RBAC & ABAC ENGINE -->
+        <mxCell id="t3_swimlane" value="TẦNG 3: POLICY DECISION POINT (PDP) - LÕI ĐÁNH GIÁ QUYỀN (RBAC &amp;amp; CONTEXTUAL SCOPE ENGINE)" style="swimlane;startSize=30;fillColor=#ede7f6;strokeColor=#7e57c2;fontStyle=1;fontSize=13;fontColor=#4a148c;rounded=1;arcSize=3;" vertex="1" parent="1">
+          <mxGeometry x="40" y="625" width="1760" height="340" as="geometry" />
+        </mxCell>
+
+        <mxCell id="pdp_core" value="&lt;b style=&quot;font-size: 13px; color: #4a148c;&quot;&gt;PDP AuthZ Evaluation Controller&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.4;&quot;&gt;• Điều phối thực thi hàm thẩm định:&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;b style=&quot;color:#4a148c;&quot;&gt;authorize(identity, perm, scope, ctx)&lt;/b&gt;&lt;br&gt;• Chiến lược thẩm định 2 pha:&lt;br&gt;&amp;nbsp;&amp;nbsp;1️⃣ &lt;b&gt;Pha RBAC:&lt;/b&gt; Role có quyền hay không?&lt;br&gt;&amp;nbsp;&amp;nbsp;2️⃣ &lt;b&gt;Pha ABAC:&lt;/b&gt; Phạm vi/Phân công hợp lệ?&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7e57c2;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="t3_swimlane">
+          <mxGeometry x="30" y="50" width="300" height="160" as="geometry" />
+        </mxCell>
+
+        <mxCell id="pdp_redis" value="&lt;b style=&quot;font-size: 12px; color: #c2185b;&quot;&gt;⚡ L1 Fast-Path Cache (Redis &amp;lt;2ms)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 10px; line-height: 1.3;&quot;&gt;• Key: &lt;code&gt;rbac:perm:{userId}:{role}:{tenantId}&lt;/code&gt;&lt;br&gt;• &lt;b&gt;Cache Hit:&lt;/b&gt; Trả về Set&amp;lt;Permissions&amp;gt; ngay&lt;br&gt;• &lt;b&gt;Cache Invalidation:&lt;/b&gt; Tự động xóa khi quyền/vai trò bị thay đổi hoặc phân công hết hạn&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#e91e63;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="t3_swimlane">
+          <mxGeometry x="370" y="48" width="290" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="pdp_pg" value="&lt;b style=&quot;font-size: 12px; color: #1565c0;&quot;&gt;🗄️ L2 Policy Store (PostgreSQL)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 10px; line-height: 1.3;&quot;&gt;• Bảng &lt;i&gt;iam_roles&lt;/i&gt;, &lt;i&gt;iam_permissions&lt;/i&gt;&lt;br&gt;• Bảng &lt;i&gt;iam_role_permissions&lt;/i&gt;&lt;br&gt;• Bảng &lt;i&gt;iam_user_role_assignments&lt;/i&gt;&lt;br&gt;• Bảng &lt;i&gt;grant_review_assignments&lt;/i&gt;&lt;/div&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#e3f2fd;strokeColor=#1976d2;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="t3_swimlane">
+          <mxGeometry x="370" y="185" width="290" height="135" as="geometry" />
+        </mxCell>
+
+        <mxCell id="pdp_step4" value="&lt;b style=&quot;font-size: 13px; color: #4a148c;&quot;&gt;Bước 4: Thẩm định RBAC (Role-to-Perm)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.4;&quot;&gt;• Kiểm tra trong tập quyền của &lt;b&gt;REVIEWER&lt;/b&gt;:&lt;br&gt;&amp;nbsp;&amp;nbsp;🔎 &lt;code&gt;contains(&quot;GRANT.PROPOSAL.REVIEW&quot;)&lt;/code&gt;&lt;br&gt;• Kết quả kiểm tra: &lt;b style=&quot;color:#2e7d32;&quot;&gt;TRUE (Role có quyền)&lt;/b&gt;&lt;br&gt;• Nếu không có quyền → Quyết định DENY ngay&lt;br&gt;• Nếu có quyền → Chuyển sang thẩm định Scope&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7e57c2;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="t3_swimlane">
+          <mxGeometry x="700" y="50" width="310" height="160" as="geometry" />
+        </mxCell>
+
+        <mxCell id="pdp_step5" value="&lt;b style=&quot;font-size: 13px; color: #4a148c;&quot;&gt;Bước 5: Thẩm định Phạm vi &amp;amp; Phân công (Scope)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.4;&quot;&gt;• Kiểm tra quy tắc phân công thực tế:&lt;br&gt;&amp;nbsp;&amp;nbsp;🔐 &lt;i&gt;isAssignedReviewer(userId, proposalId == &quot;PR-2026&quot;)&lt;/i&gt;&lt;br&gt;• Đối chiếu bảng phân công: &lt;b style=&quot;color:#2e7d32;&quot;&gt;MATCH (Được phân công)&lt;/b&gt;&lt;br&gt;• Ngăn chặn tuyệt đối việc Reviewer xem đề xuất ngoài danh sách phân công (Strict Isolation)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7e57c2;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="t3_swimlane">
+          <mxGeometry x="1050" y="50" width="350" height="160" as="geometry" />
+        </mxCell>
+
+        <mxCell id="pdp_authz_dec" value="&lt;b style=&quot;font-size: 11px;&quot;&gt;Quyền &amp;amp;&lt;br&gt;Scope&lt;br&gt;Hợp lệ?&lt;/b&gt;" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=1.5;" vertex="1" parent="t3_swimlane">
+          <mxGeometry x="1445" y="85" width="110" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="pdp_403_deny" value="🚫 &lt;b style=&quot;font-size: 13px;&quot;&gt;403 Forbidden&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 10px; line-height: 1.3;&quot;&gt;• &lt;b&gt;Từ chối truy cập:&lt;/b&gt; Không có quyền hoặc không thuộc phạm vi phân công&lt;br&gt;• &lt;b&gt;Phát sự kiện An ninh:&lt;/b&gt; &lt;code&gt;AUDIT.AUTHZ_DENIED&lt;/code&gt;&lt;br&gt;• Trả mã lỗi 403 về Gateway &amp;amp; Client&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffebee;strokeColor=#c62828;strokeWidth=1.5;fontColor=#b71c1c;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="t3_swimlane">
+          <mxGeometry x="1405" y="205" width="190" height="115" as="geometry" />
+        </mxCell>
+
+        <mxCell id="pdp_allow_token" value="&lt;b style=&quot;color:#1b5e20; font-size:11px;&quot;&gt;✅ DECISION: ALLOW&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px; color:#2e7d32;&quot;&gt;Pass PEP Security Gate&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#2e7d32;strokeWidth=1.2;" vertex="1" parent="t3_swimlane">
+          <mxGeometry x="1600" y="105" width="140" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- TIER 4: DOWNSTREAM SERVICES AND GOVERNANCE AUDIT TRAIL -->
+        <mxCell id="t4_swimlane" value="TẦNG 4: THỰC THI NGHIỆP VỤ &amp;amp; NHẬT KÝ KIỂM TOÁN (DOWNSTREAM SERVICES &amp;amp; GOVERNANCE AUDIT TRAIL)" style="swimlane;startSize=30;fillColor=#f0fdf4;strokeColor=#16a34a;fontStyle=1;fontSize=13;fontColor=#14532d;rounded=1;arcSize=3;" vertex="1" parent="1">
+          <mxGeometry x="40" y="990" width="1760" height="270" as="geometry" />
+        </mxCell>
+
+        <mxCell id="down_hdr" value="&lt;b style=&quot;font-size: 12px; color: #16a34a;&quot;&gt;1. Gắn Trusted Security Headers&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 10px; font-family: monospace; line-height: 1.3;&quot;&gt;&lt;b style=&quot;color:#1565c0;&quot;&gt;X-User-Id:&lt;/b&gt; USR-8821&lt;br&gt;&lt;b style=&quot;color:#7b1fa2;&quot;&gt;X-Tenant-Id:&lt;/b&gt; VAST-01&lt;br&gt;&lt;b style=&quot;color:#e65100;&quot;&gt;X-Active-Role:&lt;/b&gt; REVIEWER&lt;br&gt;&lt;b style=&quot;color:#2e7d32;&quot;&gt;X-Granted-Scopes:&lt;/b&gt; ASSIGNED_ONLY&lt;br&gt;&lt;b style=&quot;color:#00838f;&quot;&gt;X-Audit-Trace-ID:&lt;/b&gt; TRC-9901-A7&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#16a34a;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="t4_swimlane">
+          <mxGeometry x="30" y="48" width="280" height="195" as="geometry" />
+        </mxCell>
+
+        <mxCell id="down_services" value="&lt;b style=&quot;font-size: 13px; color: #16a34a;&quot;&gt;2. Các Microservices Nghiệp vụ (Target Domain Services)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.5;&quot;&gt;• &lt;b style=&quot;color:#0d47a1;&quot;&gt;Grant &amp;amp; Proposal Service (Module 3):&lt;/b&gt; Lưu kết quả đánh giá, tính điểm chuyên gia cho hồ sơ &lt;i&gt;PR-2026&lt;/i&gt;&lt;br&gt;• &lt;b style=&quot;color:#00695c;&quot;&gt;Knowledge &amp;amp; Expert Service (Module 2):&lt;/b&gt; Công bố bài báo, hồ sơ nghiên cứu&lt;br&gt;• &lt;b style=&quot;color:#e65100;&quot;&gt;Organization Service:&lt;/b&gt; Quản lý đơn vị thành viên, viện đối tác song phương&lt;br&gt;• &lt;b style=&quot;color:#6a1b9a;&quot;&gt;Tech Transfer Service (Module 5):&lt;/b&gt; Kết nối hợp tác doanh nghiệp mô hình 2+2&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#16a34a;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="t4_swimlane">
+          <mxGeometry x="340" y="48" width="530" height="195" as="geometry" />
+        </mxCell>
+
+        <mxCell id="down_resp" value="&lt;b style=&quot;font-size: 13px; color: #16a34a;&quot;&gt;3. Phản hồi Kết quả&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.4;&quot;&gt;• HTTP &lt;b style=&quot;color:#2e7d32;&quot;&gt;200 OK / 201 Created&lt;/b&gt;&lt;br&gt;• Payload kết quả an toàn trả về Client Web&lt;br&gt;• UI cập nhật trạng thái hồ sơ phản biện thành công&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#16a34a;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="t4_swimlane">
+          <mxGeometry x="900" y="48" width="240" height="195" as="geometry" />
+        </mxCell>
+
+        <mxCell id="down_mq" value="&lt;b style=&quot;font-size: 13px; color: #16a34a;&quot;&gt;4. Luồng Sự kiện Bất đồng bộ&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.4;&quot;&gt;• &lt;b&gt;Kafka / RabbitMQ Event Stream:&lt;/b&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;📢 &lt;code&gt;AUDIT.AUTHZ_SUCCESS&lt;/code&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;📢 &lt;code&gt;AUDIT.PROPOSAL_REVIEWED&lt;/code&gt;&lt;br&gt;• Gửi bất đồng bộ (Non-blocking), bảo đảm độ trễ API thấp nhất (&amp;lt;15ms)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#16a34a;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="t4_swimlane">
+          <mxGeometry x="1170" y="48" width="270" height="195" as="geometry" />
+        </mxCell>
+
+        <mxCell id="down_audit_db" value="&lt;b style=&quot;font-size: 12px; color: #004d40;&quot;&gt;🛡️ Kho Lưu trữ Kiểm toán Bảo mật (Audit Log DB)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 10px; line-height: 1.3;&quot;&gt;• Bảng &lt;i&gt;iam_audit_logs&lt;/i&gt;, Elasticsearch SIEM&lt;br&gt;• Bằng chứng bất biến (Immutable / WORM)&lt;br&gt;• Phục vụ rà soát tuân thủ, điều tra an ninh &amp;amp; Báo cáo Lãnh đạo Quỹ (Module 6)&lt;/div&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#e0f2f1;strokeColor=#00796b;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="t4_swimlane">
+          <mxGeometry x="1470" y="48" width="260" height="195" as="geometry" />
+        </mxCell>
+
+        <!-- Connections -->
+        <mxCell id="e_c1_c2" value="1. Gửi Thao tác" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeColor=#0288d1;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="c_actor" target="c_packet">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_c3_c2" value="Gắn Active Role &amp;amp; Tenant" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=10;strokeColor=#0288d1;dashed=1;strokeWidth=1.2;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" edge="1" parent="1" source="c_ctx_switch" target="c_packet">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_packet_gw" value="2. HTTPS Request" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeColor=#e65100;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="c_packet" target="gw_ingress">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_gw_authn" value="3. Forward PEP" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeColor=#ef6c00;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="gw_ingress" target="gw_authn">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_authn_dec" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#ef6c00;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="gw_authn" target="gw_authn_dec">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_authn_deny" value="KHÔNG" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=10;fontColor=#b71c1c;strokeColor=#c62828;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="gw_authn_dec" target="gw_401_err">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_authn_pass" value="HỢP LỆ" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=10;fontColor=#2e7d32;strokeColor=#2e7d32;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="gw_authn_dec" target="gw_ctx_resolver">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_ctx_mapper" value="4. Gắn Ngữ cảnh" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeColor=#ef6c00;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="gw_ctx_resolver" target="gw_route_mapper">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_mapper_pep" value="5. Map Quyền" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeColor=#ef6c00;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="gw_route_mapper" target="gw_pep_fwd">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_pep_pdp" value="6. Yêu cầu Thẩm định PDP (AuthZ Query)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;fontColor=#4a148c;strokeColor=#7e57c2;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="gw_pep_fwd" target="pdp_core">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1607" y="615" />
+              <mxPoint x="190" y="615" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e_pdp_redis" value="Tra cứu Cache" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=10;strokeColor=#e91e63;strokeWidth=1.2;exitX=1;exitY=0.25;entryX=0;entryY=0.25;" edge="1" parent="1" source="pdp_core" target="pdp_redis">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_pdp_pg" value="Cache Miss: Query DB" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=10;strokeColor=#1976d2;dashed=1;strokeWidth=1.2;exitX=1;exitY=0.8;entryX=0;entryY=0.5;" edge="1" parent="1" source="pdp_core" target="pdp_pg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_pdp_step4" value="7. Thẩm định RBAC" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeColor=#7e57c2;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="pdp_redis" target="pdp_step4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_step4_step5" value="8. Thẩm định Scope &amp;amp; Phân công" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeColor=#7e57c2;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="pdp_step4" target="pdp_step5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_step5_dec" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7e57c2;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="pdp_step5" target="pdp_authz_dec">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_authz_deny" value="TỪ CHỐI" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=10;fontColor=#b71c1c;strokeColor=#c62828;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="pdp_authz_dec" target="pdp_403_deny">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_authz_allow" value="CHO PHÉP" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=10;fontColor=#2e7d32;strokeColor=#2e7d32;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="pdp_authz_dec" target="pdp_allow_token">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_allow_downstream" value="9. Chuyển tiếp &amp;amp; Gắn Security Header" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;fontColor=#14532d;strokeColor=#16a34a;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="pdp_allow_token" target="down_hdr">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1670" y="975" />
+              <mxPoint x="170" y="975" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e_hdr_svc" value="10. Thực thi Nghiệp vụ" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeColor=#16a34a;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="down_hdr" target="down_services">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_svc_resp" value="11. Trả Kết quả" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeColor=#16a34a;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="down_services" target="down_resp">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_svc_mq" value="12. Async Audit" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=10;strokeColor=#00796b;dashed=1;strokeWidth=1.2;exitX=1;exitY=0.75;entryX=0;entryY=0.5;" edge="1" parent="1" source="down_services" target="down_mq">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_mq_auditdb" value="Lưu Audit Trail" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=10;strokeColor=#00796b;strokeWidth=1.2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="down_mq" target="down_audit_db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="rbac_data_model_page2" name="2. Mô hình Thực thể Dữ liệu RBAC &amp; Phân cấp Ngữ cảnh (Data Model)">
+    <mxGraphModel dx="1800" dy="1800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1840" pageHeight="1280">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Master Title Block -->
+        <mxCell id="p2_title" value="&lt;b style=&quot;font-size: 20px; color: #311b92;&quot;&gt;MÔ HÌNH THỰC THỂ DỮ LIỆU RBAC &amp;amp; PHÂN CẤP NGỮ CẢNH (DATA SCHEMA &amp;amp; CONTEXT)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 13px; color: #455a64;&quot;&gt;Cấu trúc Cơ sở Dữ liệu Quan hệ: User Account ↔ Multi-Tenant Context ↔ Dynamic Role ↔ Fine-grained Permission &amp;amp; ABAC Scope Rules&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#7b1fa2;strokeWidth=2;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="30" width="1760" height="75" as="geometry" />
+        </mxCell>
+
+        <!-- CLUSTER 1: IDENTITY & SESSION -->
+        <mxCell id="cl1_box" value="1. ĐỊNH DANH &amp;amp; PHIÊN (IDENTITY &amp;amp; SESSION)" style="swimlane;startSize=30;fillColor=#ede7f6;strokeColor=#7e57c2;fontStyle=1;fontSize=12;fontColor=#4a148c;rounded=1;arcSize=3;" vertex="1" parent="1">
+          <mxGeometry x="40" y="125" width="410" height="1100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tbl_users" value="&lt;b style=&quot;font-size: 13px; color: #311b92;&quot;&gt;iam_users (Tài khoản Người dùng)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; font-family: monospace; line-height: 1.4;&quot;&gt;&lt;b style=&quot;color:#d32f2f;&quot;&gt;PK&lt;/b&gt; user_id : VARCHAR(36)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;email : VARCHAR(255) [UNIQUE]&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;full_name : VARCHAR(255)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;orcid_id : VARCHAR(64) [NULLABLE]&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;user_type : ENUM('INDIVIDUAL', 'AFFILIATED')&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;status : ENUM('PENDING', 'ACTIVE', 'LOCKED')&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;is_2fa_enabled : BOOLEAN&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;default_tenant_id : VARCHAR(36)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;created_at, updated_at : TIMESTAMP&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7e57c2;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="cl1_box">
+          <mxGeometry x="25" y="48" width="360" height="235" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tbl_creds" value="&lt;b style=&quot;font-size: 13px; color: #311b92;&quot;&gt;iam_user_credentials (Thông tin Xác thực)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; font-family: monospace; line-height: 1.4;&quot;&gt;&lt;b style=&quot;color:#d32f2f;&quot;&gt;PK&lt;/b&gt; credential_id : VARCHAR(36)&lt;br&gt;&lt;b style=&quot;color:#1976d2;&quot;&gt;FK&lt;/b&gt; user_id : VARCHAR(36)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;password_hash : VARCHAR(255) [Argon2id]&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;mfa_secret_encrypted : VARCHAR(255)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;failed_attempts : INT DEFAULT 0&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;locked_until : TIMESTAMP [NULLABLE]&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;last_password_changed : TIMESTAMP&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7e57c2;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="cl1_box">
+          <mxGeometry x="25" y="315" width="360" height="195" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tbl_sessions" value="&lt;b style=&quot;font-size: 13px; color: #311b92;&quot;&gt;iam_user_sessions (Phiên Hoạt động)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; font-family: monospace; line-height: 1.4;&quot;&gt;&lt;b style=&quot;color:#d32f2f;&quot;&gt;PK&lt;/b&gt; session_id : VARCHAR(64)&lt;br&gt;&lt;b style=&quot;color:#1976d2;&quot;&gt;FK&lt;/b&gt; user_id : VARCHAR(36)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;refresh_token_hash : VARCHAR(255)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;device_fingerprint : VARCHAR(128)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;ip_address : VARCHAR(45)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;is_revoked : BOOLEAN DEFAULT FALSE&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;expires_at : TIMESTAMP&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;created_at : TIMESTAMP&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7e57c2;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="cl1_box">
+          <mxGeometry x="25" y="540" width="360" height="225" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tbl_mfa" value="&lt;b style=&quot;font-size: 13px; color: #311b92;&quot;&gt;iam_mfa_devices (Thiết bị 2FA)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; font-family: monospace; line-height: 1.4;&quot;&gt;&lt;b style=&quot;color:#d32f2f;&quot;&gt;PK&lt;/b&gt; mfa_id : VARCHAR(36)&lt;br&gt;&lt;b style=&quot;color:#1976d2;&quot;&gt;FK&lt;/b&gt; user_id : VARCHAR(36)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;mfa_type : ENUM('TOTP_APP', 'EMAIL_OTP')&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;device_label : VARCHAR(100)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;is_verified : BOOLEAN&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;last_used_at : TIMESTAMP&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7e57c2;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="cl1_box">
+          <mxGeometry x="25" y="795" width="360" height="180" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cl1_note" value="🛡️ &lt;b&gt;Nguyên tắc An ninh:&lt;/b&gt; Khóa phiên tức thì trên Redis khi đổi mật khẩu hoặc phát hiện hành vi xâm nhập." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#ab47bc;fontSize=10;fontColor=#4a148c;" vertex="1" parent="cl1_box">
+          <mxGeometry x="25" y="1000" width="360" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- CLUSTER 2: TENANCY & MULTI-CONTEXT -->
+        <mxCell id="cl2_box" value="2. ĐƠN VỊ &amp;amp; NGỮ CẢNH (TENANT &amp;amp; CONTEXT)" style="swimlane;startSize=30;fillColor=#e1f5fe;strokeColor=#0288d1;fontStyle=1;fontSize=12;fontColor=#01579b;rounded=1;arcSize=3;" vertex="1" parent="1">
+          <mxGeometry x="480" y="125" width="400" height="1100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tbl_tenants" value="&lt;b style=&quot;font-size: 13px; color: #01579b;&quot;&gt;org_tenants (Tổ chức / Đơn vị Thành viên)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; font-family: monospace; line-height: 1.4;&quot;&gt;&lt;b style=&quot;color:#d32f2f;&quot;&gt;PK&lt;/b&gt; tenant_id : VARCHAR(36)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;tenant_code : VARCHAR(50) [UNIQUE]&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;tenant_name : VARCHAR(255)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;tenant_type : ENUM('INSTITUTE', 'UNIVERSITY',&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;'ENTERPRISE', 'FUND')&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;country_code : ENUM('VN', 'RU')&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;partner_status : ENUM('MOU_ACTIVE', 'PENDING')&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;is_active : BOOLEAN DEFAULT TRUE&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0288d1;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="cl2_box">
+          <mxGeometry x="25" y="48" width="350" height="235" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tbl_affils" value="&lt;b style=&quot;font-size: 13px; color: #01579b;&quot;&gt;iam_user_affiliations (Quan hệ Trực thuộc)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; font-family: monospace; line-height: 1.4;&quot;&gt;&lt;b style=&quot;color:#d32f2f;&quot;&gt;PK&lt;/b&gt; affiliation_id : VARCHAR(36)&lt;br&gt;&lt;b style=&quot;color:#1976d2;&quot;&gt;FK&lt;/b&gt; user_id : VARCHAR(36)&lt;br&gt;&lt;b style=&quot;color:#1976d2;&quot;&gt;FK&lt;/b&gt; tenant_id : VARCHAR(36)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;position_title : VARCHAR(150)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;verification_status : ENUM('VERIFIED',&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;'CONSENT_PENDING')&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;consent_document_ref : VARCHAR(255)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;is_primary_org : BOOLEAN&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0288d1;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="cl2_box">
+          <mxGeometry x="25" y="315" width="350" height="205" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tbl_contexts" value="&lt;b style=&quot;font-size: 13px; color: #01579b;&quot;&gt;iam_active_contexts (Ngữ cảnh Đang chọn)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; font-family: monospace; line-height: 1.4;&quot;&gt;&lt;b style=&quot;color:#d32f2f;&quot;&gt;PK&lt;/b&gt; context_id : VARCHAR(36)&lt;br&gt;&lt;b style=&quot;color:#1976d2;&quot;&gt;FK&lt;/b&gt; session_id : VARCHAR(64)&lt;br&gt;&lt;b style=&quot;color:#1976d2;&quot;&gt;FK&lt;/b&gt; user_id : VARCHAR(36)&lt;br&gt;&lt;b style=&quot;color:#1976d2;&quot;&gt;FK&lt;/b&gt; tenant_id : VARCHAR(36)&lt;br&gt;&lt;b style=&quot;color:#1976d2;&quot;&gt;FK&lt;/b&gt; active_role_id : VARCHAR(36)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;context_token : VARCHAR(512)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;switched_at : TIMESTAMP&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0288d1;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="cl2_box">
+          <mxGeometry x="25" y="550" width="350" height="215" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tbl_ctx_hist" value="&lt;b style=&quot;font-size: 13px; color: #01579b;&quot;&gt;iam_context_switch_logs&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; font-family: monospace; line-height: 1.4;&quot;&gt;&lt;b style=&quot;color:#d32f2f;&quot;&gt;PK&lt;/b&gt; log_id : BIGSERIAL&lt;br&gt;&lt;b style=&quot;color:#1976d2;&quot;&gt;FK&lt;/b&gt; user_id : VARCHAR(36)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;from_role : VARCHAR(50)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;to_role : VARCHAR(50)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;from_tenant_id : VARCHAR(36)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;to_tenant_id : VARCHAR(36)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;switched_at : TIMESTAMP&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0288d1;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="cl2_box">
+          <mxGeometry x="25" y="795" width="350" height="180" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cl2_note" value="🏢 &lt;b&gt;Multi-Tenant Scope:&lt;/b&gt; Quyền hạn của user được đóng gói chặt chẽ trong từng Tenant ID." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#4fc3f7;fontSize=10;fontColor=#01579b;" vertex="1" parent="cl2_box">
+          <mxGeometry x="25" y="1000" width="350" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- CLUSTER 3: ROLES & PERMISSIONS (CORE RBAC) -->
+        <mxCell id="cl3_box" value="3. VAI TRÒ &amp;amp; QUYỀN HẠN (CORE RBAC)" style="swimlane;startSize=30;fillColor=#fff3e0;strokeColor=#ef6c00;fontStyle=1;fontSize=12;fontColor=#e65100;rounded=1;arcSize=3;" vertex="1" parent="1">
+          <mxGeometry x="910" y="125" width="440" height="1100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tbl_roles" value="&lt;b style=&quot;font-size: 13px; color: #e65100;&quot;&gt;iam_roles (Danh mục Vai trò)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; font-family: monospace; line-height: 1.4;&quot;&gt;&lt;b style=&quot;color:#d32f2f;&quot;&gt;PK&lt;/b&gt; role_id : VARCHAR(36)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;role_code : VARCHAR(50) [UNIQUE]&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;i&gt;('RESEARCHER', 'REVIEWER', 'ORG_ADMIN',&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;'ENTERPRISE', 'LEADERSHIP', 'IAM_ADMIN')&lt;/i&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;role_name : VARCHAR(150)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;role_category : ENUM('PUBLIC', 'WORKSPACE',&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;'GOVERNANCE')&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;is_system_role : BOOLEAN DEFAULT TRUE&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;is_active : BOOLEAN DEFAULT TRUE&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#ef6c00;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="cl3_box">
+          <mxGeometry x="25" y="48" width="390" height="240" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tbl_assignments" value="&lt;b style=&quot;font-size: 13px; color: #e65100;&quot;&gt;iam_user_role_assignments (Gán Quyền)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; font-family: monospace; line-height: 1.4;&quot;&gt;&lt;b style=&quot;color:#d32f2f;&quot;&gt;PK&lt;/b&gt; assignment_id : VARCHAR(36)&lt;br&gt;&lt;b style=&quot;color:#1976d2;&quot;&gt;FK&lt;/b&gt; user_id : VARCHAR(36)&lt;br&gt;&lt;b style=&quot;color:#1976d2;&quot;&gt;FK&lt;/b&gt; role_id : VARCHAR(36)&lt;br&gt;&lt;b style=&quot;color:#1976d2;&quot;&gt;FK&lt;/b&gt; tenant_id : VARCHAR(36) [NULLABLE]&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;valid_from : TIMESTAMP&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;valid_to : TIMESTAMP [NULLABLE]&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;assignment_status : ENUM('ACTIVE', 'REVOKED')&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;assigned_by : VARCHAR(36)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#ef6c00;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="cl3_box">
+          <mxGeometry x="25" y="315" width="390" height="215" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tbl_role_perms" value="&lt;b style=&quot;font-size: 13px; color: #e65100;&quot;&gt;iam_role_permissions (Quan hệ Role ↔ Perm)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; font-family: monospace; line-height: 1.4;&quot;&gt;&lt;b style=&quot;color:#d32f2f;&quot;&gt;PK&lt;/b&gt; (&lt;b style=&quot;color:#1976d2;&quot;&gt;FK&lt;/b&gt; role_id, &lt;b style=&quot;color:#1976d2;&quot;&gt;FK&lt;/b&gt; permission_id)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;granted_at : TIMESTAMP&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;granted_by : VARCHAR(36)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#ef6c00;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="cl3_box">
+          <mxGeometry x="25" y="560" width="390" height="135" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tbl_perms" value="&lt;b style=&quot;font-size: 13px; color: #e65100;&quot;&gt;iam_permissions (Từ điển Quyền hạt mịn)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; font-family: monospace; line-height: 1.4;&quot;&gt;&lt;b style=&quot;color:#d32f2f;&quot;&gt;PK&lt;/b&gt; permission_id : VARCHAR(36)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;perm_code : VARCHAR(100) [UNIQUE]&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b style=&quot;color:#c2185b;&quot;&gt;Pattern: &amp;lt;DOMAIN&amp;gt;.&amp;lt;RESOURCE&amp;gt;.&amp;lt;ACTION&amp;gt;&lt;/b&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;i&gt;('GRANT.PROPOSAL.REVIEW', 'IAM.USER.MANAGE')&lt;/i&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;domain : ENUM('IAM', 'GRANT', 'KNOWLEDGE',&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;'ORG', 'TECH', 'AUDIT')&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;action_type : ENUM('CREATE', 'READ', 'UPDATE',&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;'DELETE', 'APPROVE')&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;description : VARCHAR(255)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#ef6c00;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="cl3_box">
+          <mxGeometry x="25" y="725" width="390" height="250" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cl3_note" value="🔑 &lt;b&gt;Fine-Grained RBAC:&lt;/b&gt; Phân quyền chuẩn hóa dạng DOMAIN.RESOURCE.ACTION giúp kiểm soát chính xác tới từng API endpoint." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#ffb74d;fontSize=10;fontColor=#e65100;" vertex="1" parent="cl3_box">
+          <mxGeometry x="25" y="1000" width="390" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- CLUSTER 4: RESOURCE SCOPES & AUDIT (ABAC & GOVERNANCE) -->
+        <mxCell id="cl4_box" value="4. PHẠM VI &amp;amp; KIỂM TOÁN (ABAC &amp;amp; AUDIT)" style="swimlane;startSize=30;fillColor=#f0fdf4;strokeColor=#16a34a;fontStyle=1;fontSize=12;fontColor=#14532d;rounded=1;arcSize=3;" vertex="1" parent="1">
+          <mxGeometry x="1380" y="125" width="420" height="1100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tbl_scopes" value="&lt;b style=&quot;font-size: 13px; color: #14532d;&quot;&gt;iam_resource_scopes (Quy tắc Phạm vi ABAC)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; font-family: monospace; line-height: 1.4;&quot;&gt;&lt;b style=&quot;color:#d32f2f;&quot;&gt;PK&lt;/b&gt; scope_id : VARCHAR(36)&lt;br&gt;&lt;b style=&quot;color:#1976d2;&quot;&gt;FK&lt;/b&gt; permission_id : VARCHAR(36)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;scope_type : ENUM('GLOBAL', 'TENANT_BOUND',&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;'OWNER_ONLY', 'ASSIGNED_ONLY')&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;condition_expression : TEXT [SpEL / CEL]&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;i&gt;('resource.tenantId == ctx.tenantId')&lt;/i&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;priority : INT DEFAULT 100&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#16a34a;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="cl4_box">
+          <mxGeometry x="25" y="48" width="370" height="235" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tbl_review_assign" value="&lt;b style=&quot;font-size: 13px; color: #14532d;&quot;&gt;grant_review_assignments (Phân công)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; font-family: monospace; line-height: 1.4;&quot;&gt;&lt;b style=&quot;color:#d32f2f;&quot;&gt;PK&lt;/b&gt; review_assignment_id : VARCHAR(36)&lt;br&gt;&lt;b style=&quot;color:#1976d2;&quot;&gt;FK&lt;/b&gt; reviewer_user_id : VARCHAR(36)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;proposal_id : VARCHAR(36)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;round_no : INT DEFAULT 1&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;status : ENUM('ASSIGNED', 'SUBMITTED')&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;assigned_at : TIMESTAMP&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;deadline : TIMESTAMP&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#16a34a;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="cl4_box">
+          <mxGeometry x="25" y="315" width="370" height="215" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tbl_audit" value="&lt;b style=&quot;font-size: 13px; color: #004d40;&quot;&gt;iam_audit_logs (Nhật ký Kiểm toán An ninh)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; font-family: monospace; line-height: 1.4;&quot;&gt;&lt;b style=&quot;color:#d32f2f;&quot;&gt;PK&lt;/b&gt; audit_id : BIGSERIAL&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;event_type : ENUM('AUTHN_SUCCESS', 'AUTHN_FAIL',&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;'AUTHZ_ALLOW', 'AUTHZ_DENIED',&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;'ROLE_CHANGE', 'SESSION_REVOKED')&lt;br&gt;&lt;b style=&quot;color:#1976d2;&quot;&gt;FK&lt;/b&gt; actor_user_id : VARCHAR(36)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;actor_role : VARCHAR(50)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;target_resource : VARCHAR(255)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;decision : ENUM('ALLOW', 'DENY')&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;ip_address, trace_id : VARCHAR(64)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;event_timestamp : TIMESTAMP&lt;/div&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#e0f2f1;strokeColor=#00796b;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="cl4_box">
+          <mxGeometry x="25" y="560" width="370" height="280" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cl4_legend" value="&lt;b&gt;Quy tắc Phân định Phạm vi (Scopes):&lt;/b&gt;&lt;br&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 10px; line-height: 1.4;&quot;&gt;• &lt;b&gt;GLOBAL:&lt;/b&gt; Toàn quyền hệ thống (Chỉ Super Admin)&lt;br&gt;• &lt;b&gt;TENANT_BOUND:&lt;/b&gt; Chỉ trong phạm vi Tổ chức/Đơn vị&lt;br&gt;• &lt;b&gt;OWNER_ONLY:&lt;/b&gt; Chỉ dữ liệu do chính mình tạo ra&lt;br&gt;• &lt;b&gt;ASSIGNED_ONLY:&lt;/b&gt; Chỉ hồ sơ được Hội đồng phân công&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0fdf4;strokeColor=#86efac;fontSize=10;fontColor=#14532d;" vertex="1" parent="cl4_box">
+          <mxGeometry x="25" y="865" width="370" height="110" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cl4_note" value="🔒 &lt;b&gt;Audit Trail Bất biến:&lt;/b&gt; Lưu vết toàn bộ quyết định phân quyền nhằm bảo đảm tính minh bạch và bảo mật." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0fdf4;strokeColor=#4ade80;fontSize=10;fontColor=#14532d;" vertex="1" parent="cl4_box">
+          <mxGeometry x="25" y="1000" width="370" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- ERD Connections -->
+        <mxCell id="erd_u_cred" value="1..1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeColor=#7e57c2;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="tbl_users" target="tbl_creds">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="erd_u_sess" value="1..*" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeColor=#7e57c2;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="tbl_creds" target="tbl_sessions">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="erd_u_affil" value="1..*" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeColor=#0288d1;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="tbl_users" target="tbl_affils">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="erd_t_affil" value="1..*" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeColor=#0288d1;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="tbl_tenants" target="tbl_affils">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="erd_u_assign" value="1..*" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeColor=#ef6c00;strokeWidth=1.5;exitX=1;exitY=0.8;entryX=0;entryY=0.5;" edge="1" parent="1" source="tbl_users" target="tbl_assignments">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="460" y="313" />
+              <mxPoint x="460" y="480" />
+              <mxPoint x="920" y="480" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="erd_r_assign" value="1..*" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeColor=#ef6c00;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="tbl_roles" target="tbl_assignments">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="erd_r_rp" value="1..*" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeColor=#ef6c00;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="tbl_assignments" target="tbl_role_perms">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="erd_p_rp" value="1..*" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeColor=#ef6c00;strokeWidth=1.5;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" edge="1" parent="1" source="tbl_perms" target="tbl_role_perms">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="erd_p_scope" value="1..*" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeColor=#16a34a;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="tbl_perms" target="tbl_scopes">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1360" y="870" />
+              <mxPoint x="1360" y="290" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="erd_u_rev_assign" value="1..*" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeColor=#16a34a;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="tbl_assignments" target="tbl_review_assign">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="erd_sess_ctx" value="1..1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;strokeColor=#0288d1;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="tbl_sessions" target="tbl_contexts">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="erd_ctx_audit" value="Emit Audit Events" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=10;strokeColor=#00796b;dashed=1;strokeWidth=1.2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="tbl_contexts" target="tbl_audit">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="890" y="780" />
+              <mxPoint x="890" y="830" />
+              <mxPoint x="1370" y="830" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="rbac_matrix_page3" name="3. Ma trận Phân quyền RBAC theo 3 Vùng Canonical (Matrix)">
+    <mxGraphModel dx="1800" dy="1800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1840" pageHeight="1360">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Master Title Block -->
+        <mxCell id="p3_title" value="&lt;b style=&quot;font-size: 20px; color: #1e3a8a;&quot;&gt;MA TRẬN PHÂN QUYỀN RBAC CHI TIẾT THEO 3 VÙNG CANONICAL TRUY CẬP&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 13px; color: #475569;&quot;&gt;Bảng Ánh xạ Phân định Quyền hạn (Permissions) cho từng Vai trò (Roles) trên 3 Khu vực: Public / Discovery, Role-based Workspace &amp;amp; Governance Admin&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8fafc;strokeColor=#3b82f6;strokeWidth=2;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="30" width="1760" height="75" as="geometry" />
+        </mxCell>
+
+        <!-- ZONE 1: PUBLIC / DISCOVERY -->
+        <mxCell id="z1_container" value="KHU VỰC 1: PUBLIC / DISCOVERY (TRUY CẬP CÔNG KHAI - KHÔNG YÊU CẦU XÁC THỰC)" style="swimlane;startSize=30;fillColor=#f0fdf4;strokeColor=#16a34a;fontStyle=1;fontSize=13;fontColor=#15803d;rounded=1;arcSize=3;" vertex="1" parent="1">
+          <mxGeometry x="40" y="125" width="1760" height="190" as="geometry" />
+        </mxCell>
+
+        <mxCell id="z1_card_vis" value="&lt;b style=&quot;font-size: 13px; color: #15803d;&quot;&gt;🌐 ANONYMOUS / VISITOR (Khách vãng lai)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.5;&quot;&gt;• &lt;b&gt;Mục tiêu:&lt;/b&gt; Khám phá tin tức, tra cứu chuyên gia &amp;amp; công bố khoa học&lt;br&gt;• ✅ &lt;code&gt;PUBLIC.PORTAL.HOME_VIEW&lt;/code&gt; — Xem trang chủ, tin tức &amp;amp; sự kiện&lt;br&gt;• ✅ &lt;code&gt;KNOWLEDGE.DOC.SEARCH_PUBLIC&lt;/code&gt; — Tra cứu kho tri thức mở&lt;br&gt;• ✅ &lt;code&gt;EXPERT.DIRECTORY.SEARCH&lt;/code&gt; — Tìm kiếm hồ sơ chuyên gia công khai&lt;br&gt;• ✅ &lt;code&gt;GRANT.OPPORTUNITY.READ&lt;/code&gt; — Xem danh mục kêu gọi tài trợ mở&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#16a34a;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="z1_container">
+          <mxGeometry x="30" y="45" width="830" height="130" as="geometry" />
+        </mxCell>
+
+        <mxCell id="z1_card_onb" value="&lt;b style=&quot;font-size: 13px; color: #15803d;&quot;&gt;📝 ONBOARDING APPLICANT (Đăng ký Gia nhập Mạng lưới)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.5;&quot;&gt;• &lt;b&gt;Mục tiêu:&lt;/b&gt; Gửi hồ sơ đăng ký thành viên cá nhân / thỏa thuận đối tác tổ chức&lt;br&gt;• ✅ &lt;code&gt;IAM.ONBOARDING.REGISTER_INDIVIDUAL&lt;/code&gt; — Đăng ký nhà khoa học độc lập&lt;br&gt;• ✅ &lt;code&gt;IAM.ONBOARDING.SUBMIT_AFFILIATION&lt;/code&gt; — Gửi minh chứng đồng ý của cơ quan&lt;br&gt;• ✅ &lt;code&gt;ORG.PARTNER.SUBMIT_MOU_REQUEST&lt;/code&gt; — Gửi hồ sơ thỏa thuận hợp tác với Quỹ&lt;br&gt;• ❌ &lt;i style=&quot;color:#dc2626;&quot;&gt;Không có quyền truy cập bất kỳ Workspace nội bộ nào khi chưa được kích hoạt&lt;/i&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#16a34a;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="z1_container">
+          <mxGeometry x="890" y="45" width="840" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- ZONE 2: ROLE-BASED WORKSPACE -->
+        <mxCell id="z2_container" value="KHU VỰC 2: ROLE-BASED WORKSPACE (KHÔNG GIAN LÀM VIỆC THEO VAI TRÒ &amp;amp; NGỮ CẢNH TỔ CHỨC)" style="swimlane;startSize=30;fillColor=#eef2ff;strokeColor=#6366f1;fontStyle=1;fontSize=13;fontColor=#3730a3;rounded=1;arcSize=3;" vertex="1" parent="1">
+          <mxGeometry x="40" y="335" width="1760" height="490" as="geometry" />
+        </mxCell>
+
+        <mxCell id="r_researcher" value="&lt;b style=&quot;font-size: 13px; color: #4338ca;&quot;&gt;🔬 RESEARCHER / SCIENTIST&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10px; color: #64748b;&quot;&gt;Phạm vi: Cá nhân (OWNER_ONLY)&lt;/span&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.4;&quot;&gt;• ✅ &lt;code&gt;RESEARCHER.PROFILE.MANAGE&lt;/code&gt;&lt;br&gt;• ✅ &lt;code&gt;GRANT.PROPOSAL.DRAFT_SUBMIT&lt;/code&gt;&lt;br&gt;• ✅ &lt;code&gt;GRANT.PROPOSAL.READ_OWN&lt;/code&gt;&lt;br&gt;• ✅ &lt;code&gt;PROJECT.MILESTONE.UPDATE_OWN&lt;/code&gt;&lt;br&gt;• ✅ &lt;code&gt;KNOWLEDGE.DOC.PUBLISH_DRAFT&lt;/code&gt;&lt;br&gt;• ❌ &lt;code style=&quot;color:#dc2626;&quot;&gt;GRANT.PROPOSAL.REVIEW&lt;/code&gt; (Deny)&lt;br&gt;• ❌ &lt;code style=&quot;color:#dc2626;&quot;&gt;ORG.ADMIN.MANAGE&lt;/code&gt; (Deny)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6366f1;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="z2_container">
+          <mxGeometry x="30" y="48" width="320" height="205" as="geometry" />
+        </mxCell>
+
+        <mxCell id="r_reviewer" value="&lt;b style=&quot;font-size: 13px; color: #4338ca;&quot;&gt;⚖️ REVIEWER (Chuyên gia Phản biện)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10px; color: #64748b;&quot;&gt;Phạm vi: Hồ sơ được giao (ASSIGNED_ONLY)&lt;/span&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.4;&quot;&gt;• ✅ &lt;code&gt;GRANT.ASSIGNMENT.VIEW_ASSIGNED&lt;/code&gt;&lt;br&gt;• ✅ &lt;code&gt;GRANT.PROPOSAL.READ_ASSIGNED&lt;/code&gt;&lt;br&gt;• ✅ &lt;code&gt;GRANT.SCORE.INPUT_EVALUATION&lt;/code&gt;&lt;br&gt;• ✅ &lt;code&gt;GRANT.REVIEW.SUBMIT_REPORT&lt;/code&gt;&lt;br&gt;• ❌ &lt;code style=&quot;color:#dc2626;&quot;&gt;GRANT.PROPOSAL.READ_UNASSIGNED&lt;/code&gt;&lt;br&gt;• ❌ &lt;code style=&quot;color:#dc2626;&quot;&gt;GRANT.PROPOSAL.FINAL_APPROVE&lt;/code&gt;&lt;br&gt;• 🔒 &lt;i&gt;Cô lập hồ sơ ngoài phân công&lt;/i&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6366f1;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="z2_container">
+          <mxGeometry x="375" y="48" width="325" height="205" as="geometry" />
+        </mxCell>
+
+        <mxCell id="r_org_rep" value="&lt;b style=&quot;font-size: 13px; color: #4338ca;&quot;&gt;🏛️ ORG_REPRESENTATIVE (Viện / Trường)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10px; color: #64748b;&quot;&gt;Phạm vi: Toàn đơn vị (TENANT_BOUND)&lt;/span&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.4;&quot;&gt;• ✅ &lt;code&gt;ORG.PROFILE.UPDATE_INFO&lt;/code&gt;&lt;br&gt;• ✅ &lt;code&gt;ORG.MEMBER.VERIFY_AFFILIATION&lt;/code&gt;&lt;br&gt;• ✅ &lt;code&gt;GRANT.PROPOSAL.ENDORSE_ORG&lt;/code&gt;&lt;br&gt;• ✅ &lt;code&gt;GRANT.PROJECT.TRACK_ORG_DASHBOARD&lt;/code&gt;&lt;br&gt;• ✅ &lt;code&gt;ORG.MOU.VIEW_STATUS&lt;/code&gt;&lt;br&gt;• ❌ &lt;code style=&quot;color:#dc2626;&quot;&gt;ORG.OTHER_TENANT.VIEW&lt;/code&gt; (Deny)&lt;br&gt;• ❌ &lt;code style=&quot;color:#dc2626;&quot;&gt;GOVERNANCE.ADMIN.ACCESS&lt;/code&gt; (Deny)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6366f1;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="z2_container">
+          <mxGeometry x="725" y="48" width="325" height="205" as="geometry" />
+        </mxCell>
+
+        <mxCell id="r_enterprise" value="&lt;b style=&quot;font-size: 13px; color: #4338ca;&quot;&gt;🏭 ENTERPRISE_USER (Doanh nghiệp CN)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10px; color: #64748b;&quot;&gt;Phạm vi: Doanh nghiệp (TENANT_BOUND)&lt;/span&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.4;&quot;&gt;• ✅ &lt;code&gt;TECH.DEMAND.SUBMIT_RND_NEED&lt;/code&gt;&lt;br&gt;• ✅ &lt;code&gt;TECH.TRANSFER.PROPOSE_2PLUS2&lt;/code&gt;&lt;br&gt;• ✅ &lt;code&gt;TECH.CATALOG.SEARCH_PATENT&lt;/code&gt;&lt;br&gt;• ✅ &lt;code&gt;TECH.COMMERCIAL.TRACK_PROJECT&lt;/code&gt;&lt;br&gt;• ❌ &lt;code style=&quot;color:#dc2626;&quot;&gt;GRANT.PROPOSAL.REVIEW&lt;/code&gt; (Deny)&lt;br&gt;• ❌ &lt;code style=&quot;color:#dc2626;&quot;&gt;KNOWLEDGE.ADMIN.MANAGE&lt;/code&gt; (Deny)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6366f1;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="z2_container">
+          <mxGeometry x="1075" y="48" width="320" height="205" as="geometry" />
+        </mxCell>
+
+        <mxCell id="r_leadership" value="&lt;b style=&quot;font-size: 13px; color: #4338ca;&quot;&gt;🎖️ LEADERSHIP (Lãnh đạo Quỹ / Điều hành)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10px; color: #64748b;&quot;&gt;Phạm vi: Tổng hợp Song phương (AGGREGATE)&lt;/span&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.4;&quot;&gt;• ✅ &lt;code&gt;REPORT.KPI.VIEW_EXECUTIVE_DASHBOARD&lt;/code&gt;&lt;br&gt;• ✅ &lt;code&gt;REPORT.BILATERAL.VIEW_SUMMARY_STATS&lt;/code&gt;&lt;br&gt;• ✅ &lt;code&gt;GRANT.DECISION.VIEW_FUND_SUMMARY&lt;/code&gt;&lt;br&gt;• ✅ &lt;code&gt;TECH.TRANSFER.VIEW_MACRO_METRICS&lt;/code&gt;&lt;br&gt;• 🔒 &lt;i&gt;Chế độ Read-Only tổng hợp số liệu, không can thiệp sâu quản trị kỹ thuật&lt;/i&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6366f1;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="z2_container">
+          <mxGeometry x="1420" y="48" width="310" height="205" as="geometry" />
+        </mxCell>
+
+        <mxCell id="z2_summary" value="&lt;b&gt;Quy tắc Phân định Ranh giới Workspace:&lt;/b&gt; Thành viên tổ chức (Viện/Trường/Doanh nghiệp) &lt;b&gt;KHÔNG&lt;/b&gt; tự động có quyền Governance/Admin. Mỗi người dùng chỉ thấy dữ liệu, đề xuất và dự án trong đúng phạm vi vai trò và ngữ cảnh được cấp." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#a5b4fc;fontSize=11;fontColor=#3730a3;" vertex="1" parent="z2_container">
+          <mxGeometry x="30" y="270" width="1700" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="z2_table" value="&lt;table border=&quot;1&quot; cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; style=&quot;border-collapse:collapse; width:100%; font-size:10.5px;&quot;&gt;&lt;tr style=&quot;background-color:#e0e7ff; font-weight:bold; color:#1e1b4b;&quot;&gt;&lt;td&gt;Permission Code (Mã Quyền)&lt;/td&gt;&lt;td&gt;Mô tả Nghiệp vụ&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;Researcher&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;Reviewer&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;Org Admin&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;Enterprise&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;Leadership&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;GRANT.PROPOSAL.CREATE&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Khởi tạo đề xuất tài trợ mới&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;✅ Full&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;❌&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;❌&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;❌&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;❌&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;GRANT.PROPOSAL.READ&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Xem thông tin đề xuất&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;👁️ Own only&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;👁️ Assigned only&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;👁️ Org only&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;❌&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;👁️ Summary&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;GRANT.PROPOSAL.REVIEW&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Nhập điểm và ý kiến đánh giá&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;❌&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;✅ Assigned&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;❌&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;❌&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;❌&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;ORG.MEMBER.MANAGE&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Duyệt thành viên thuộc Viện/Trường&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;❌&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;❌&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;✅ Org Bound&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;❌&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;❌&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;TECH.2PLUS2.SUBMIT&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Nộp hồ sơ chuyển giao công nghệ 2+2&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;✅ Co-submit&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;❌&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;✅ Org Bound&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;✅ Enterprise&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;❌&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c7d2fe;align=left;verticalAlign=top;spacingTop=6;spacingLeft=6;" vertex="1" parent="z2_container">
+          <mxGeometry x="30" y="325" width="1700" height="150" as="geometry" />
+        </mxCell>
+
+        <!-- ZONE 3: GOVERNANCE & ADMIN -->
+        <mxCell id="z3_container" value="KHU VỰC 3: GOVERNANCE &amp;amp; ADMINISTRATION (ĐỘI NGŨ VẬN HÀNH QUỸ &amp;amp; QUẢN TRỊ HỆ THỐNG)" style="swimlane;startSize=30;fillColor=#fdf4ff;strokeColor=#c026d3;fontStyle=1;fontSize=13;fontColor=#86198f;rounded=1;arcSize=3;" vertex="1" parent="1">
+          <mxGeometry x="40" y="845" width="1760" height="360" as="geometry" />
+        </mxCell>
+
+        <mxCell id="adm_iam" value="&lt;b style=&quot;font-size: 13px; color: #a21caf;&quot;&gt;👤 IAM_ADMIN (Quản trị Định danh &amp;amp; Phân quyền)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.4;&quot;&gt;• ✅ &lt;code&gt;IAM.USER.MANAGE_LIFECYCLE&lt;/code&gt; (Kích hoạt, khóa tài khoản)&lt;br&gt;• ✅ &lt;code&gt;IAM.ROLE.ASSIGN_AND_REVOKE&lt;/code&gt; (Gán vai trò, thu hồi quyền)&lt;br&gt;• ✅ &lt;code&gt;IAM.SESSION.FORCE_LOGOUT&lt;/code&gt; (Ngắt phiên khẩn cấp)&lt;br&gt;• ✅ &lt;code&gt;IAM.MFA.RESET_CREDENTIAL&lt;/code&gt; (Hỗ trợ mở khóa 2FA)&lt;br&gt;• ❌ &lt;i style=&quot;color:#dc2626;&quot;&gt;Không sửa kết quả chấm điểm chuyên gia&lt;/i&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c026d3;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="z3_container">
+          <mxGeometry x="30" y="48" width="410" height="150" as="geometry" />
+        </mxCell>
+
+        <mxCell id="adm_wf" value="&lt;b style=&quot;font-size: 13px; color: #a21caf;&quot;&gt;📋 WORKFLOW_GOVERNANCE_ADMIN (Vận hành Nghiệp vụ)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.4;&quot;&gt;• ✅ &lt;code&gt;CATALOG.MASTER.MANAGE&lt;/code&gt; (Danh mục lĩnh vực, từ khóa)&lt;br&gt;• ✅ &lt;code&gt;GRANT.CALL.PUBLISH_ROUND&lt;/code&gt; (Tạo đợt kêu gọi tài trợ)&lt;br&gt;• ✅ &lt;code&gt;GRANT.REVIEW_BOARD.ALLOCATE&lt;/code&gt; (Phân bổ hồ sơ cho Hội đồng)&lt;br&gt;• ✅ &lt;code&gt;GRANT.DECISION.EXECUTE_FUND_APPROVAL&lt;/code&gt; (Phê duyệt tài trợ Quỹ)&lt;br&gt;• ❌ &lt;i style=&quot;color:#dc2626;&quot;&gt;Không quản trị ngân sách cấp nhà nước (thuộc cơ quan thẩm quyền)&lt;/i&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c026d3;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="z3_container">
+          <mxGeometry x="460" y="48" width="430" height="150" as="geometry" />
+        </mxCell>
+
+        <mxCell id="adm_sec" value="&lt;b style=&quot;font-size: 13px; color: #a21caf;&quot;&gt;🛡️ AUDIT_SECURITY_ADMIN (Kiểm toán &amp;amp; An ninh)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.4;&quot;&gt;• ✅ &lt;code&gt;AUDIT.LOG.VIEW_ALL_TRAILS&lt;/code&gt; (Xem toàn bộ vết kiểm toán)&lt;br&gt;• ✅ &lt;code&gt;AUDIT.EVENT.ANALYZE_ANOMALY&lt;/code&gt; (Phân tích hành vi bất thường)&lt;br&gt;• ✅ &lt;code&gt;AUDIT.EXPORT.COMPLIANCE_REPORT&lt;/code&gt; (Xuất báo cáo tuân thủ)&lt;br&gt;• ✅ &lt;code&gt;SECURITY.ALERT.CONFIGURE_RULE&lt;/code&gt; (Cấu hình ngưỡng cảnh báo)&lt;br&gt;• 🔒 &lt;i&gt;Chế độ kiểm toán độc lập, không chỉnh sửa nhật ký&lt;/i&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c026d3;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="z3_container">
+          <mxGeometry x="910" y="48" width="410" height="150" as="geometry" />
+        </mxCell>
+
+        <mxCell id="adm_super" value="&lt;b style=&quot;font-size: 13px; color: #a21caf;&quot;&gt;⚡ SUPER_ADMIN (Quản trị Tối cao Hệ thống)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.4;&quot;&gt;• ✅ &lt;code&gt;SYSTEM.CONFIG.GLOBAL_PARAM_UPDATE&lt;/code&gt;&lt;br&gt;• ✅ &lt;code&gt;SYSTEM.MAINTENANCE.TOGGLE_MODE&lt;/code&gt;&lt;br&gt;• ✅ &lt;code&gt;BREAKGLASS.ACCESS.EMERGENCY_OVERRIDE&lt;/code&gt;&lt;br&gt;• ⚠️ &lt;i style=&quot;color:#e11d48;&quot;&gt;Quyền hạn tối cao — Bắt buộc xác thực 2FA phần cứng &amp;amp; ghi log kiểm toán bắt buộc mức khẩn cấp&lt;/i&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c026d3;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="z3_container">
+          <mxGeometry x="1340" y="48" width="390" height="150" as="geometry" />
+        </mxCell>
+
+        <mxCell id="z3_table" value="&lt;table border=&quot;1&quot; cellpadding=&quot;4&quot; cellspacing=&quot;0&quot; style=&quot;border-collapse:collapse; width:100%; font-size:10.5px;&quot;&gt;&lt;tr style=&quot;background-color:#fae8ff; font-weight:bold; color:#701a75;&quot;&gt;&lt;td&gt;Governance Permission Code&lt;/td&gt;&lt;td&gt;Mục đích Quản trị&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;IAM Admin&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;Workflow Admin&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;Audit Security&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;Super Admin&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;IAM.USER.MANAGE&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Tạo, kích hoạt, khóa tài khoản người dùng&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;✅ Full&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;❌&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;👁️ Read&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;✅ Full&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;IAM.ROLE.ASSIGN&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Gán vai trò hoặc phân quyền cho người dùng&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;✅ Full&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;❌&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;👁️ Read&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;✅ Full&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;GRANT.BOARD.MANAGE&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Quản trị danh sách Hội đồng và phân công hồ sơ&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;❌&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;✅ Full&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;👁️ Read&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;✅ Full&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;AUDIT.LOG.VIEW&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Truy vấn nhật ký kiểm toán hệ thống&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;👁️ IAM only&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;❌&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;✅ Full Global&lt;/td&gt;&lt;td align=&quot;center&quot;&gt;✅ Full Global&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#f0abfc;align=left;verticalAlign=top;spacingTop=6;spacingLeft=6;" vertex="1" parent="z3_container">
+          <mxGeometry x="30" y="215" width="1700" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- CONVENTION & FOOTER -->
+        <mxCell id="p3_footer" value="&lt;b&gt;QUY ƯỚC CHUẨN HÓA MÃ QUYỀN (PERMISSION CONVENTIONS):&lt;/b&gt;&amp;nbsp;&amp;nbsp;&lt;code style=&quot;background:#e2e8f0; padding:2px 6px; font-weight:bold;&quot;&gt;&amp;lt;DOMAIN&amp;gt;.&amp;lt;RESOURCE&amp;gt;.&amp;lt;ACTION&amp;gt;&lt;/code&gt;&amp;nbsp;&amp;nbsp;·&amp;nbsp;&amp;nbsp;&lt;b&gt;Domains:&lt;/b&gt; IAM | GRANT | KNOWLEDGE | ORG | TECH | REPORT | AUDIT | SYSTEM&amp;nbsp;&amp;nbsp;·&amp;nbsp;&amp;nbsp;&lt;b&gt;Actions:&lt;/b&gt; CREATE | READ | UPDATE | DELETE | REVIEW | APPROVE | MANAGE" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f5f9;strokeColor=#94a3b8;fontSize=11;fontColor=#334155;align=center;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1225" width="1760" height="50" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="drawio" version="26.0.0">
+  <!-- ============================================================ -->
+  <!-- PAGE 1: CORE IAM SCREENS (LOGIN, WORKSPACE, ADMIN, AUDIT)   -->
+  <!-- ============================================================ -->
+  <diagram id="module1_ui_website_page1" name="1. Giao diện Web - Login, Workspace &amp; Admin">
+    <mxGraphModel dx="1800" dy="1800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1950" pageHeight="1850">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Master Title Block -->
+        <mxCell id="ui_master_title" value="&lt;b style=&quot;font-size: 22px; color: #0d47a1;&quot;&gt;THIẾT KẾ GIAO DIỆN TRANG WEB (UI/UX) — MODULE 1: IAM &amp;amp; GOVERNANCE&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 13px; color: #424242;&quot;&gt;VN–RU Portal · Cổng một cửa Quản trị Định danh, Chuyển đổi Ngữ cảnh (Context Switch), Thiết lập Bảo mật &amp;amp; Bảng điều khiển Quản trị Phân quyền / Audit&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f4f8;strokeColor=#1976d2;strokeWidth=2;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="30" width="1860" height="75" as="geometry" />
+        </mxCell>
+
+        <!-- SCREEN 1: LOGIN & 2FA AUTHENTICATION -->
+        <mxCell id="s1_window" value="MÀN HÌNH 1: ĐĂNG NHẬP &amp;amp; XÁC THỰC 2FA (Route: /login &amp;amp; /security/2fa) — Browser Window" style="swimlane;startSize=30;fillColor=#ffffff;strokeColor=#1565c0;fontStyle=1;fontSize=12;fontColor=#0d47a1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="130" width="580" height="790" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s1_bbar" value="🔴 🟡 🟢 &amp;nbsp;&amp;nbsp; 🔒 &lt;b&gt;https://portal.vn-ru.org/login&lt;/b&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; [ 🇻🇳 VIE | 🇷🇺 RUS ]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eceff1;strokeColor=#b0bec5;fontSize=11;align=left;spacingLeft=12;" vertex="1" parent="s1_window">
+          <mxGeometry x="0" y="30" width="580" height="28" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s1_card" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#cfd8dc;strokeWidth=1.5;" vertex="1" parent="s1_window">
+          <mxGeometry x="35" y="75" width="510" height="395" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s1_brand" value="&lt;b style=&quot;font-size: 15px; color: #0d47a1;&quot;&gt;VN–RU PORTAL&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 11px; color: #546e7a;&quot;&gt;Cổng thông tin Hợp tác Khoa học &amp;amp; Công nghệ Việt Nam – Liên bang Nga&lt;/span&gt;&lt;hr&gt;&lt;b style=&quot;font-size: 13px;&quot;&gt;ĐĂNG NHẬP HỆ THỐNG&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=top;whiteSpace=wrap;" vertex="1" parent="s1_card">
+          <mxGeometry x="15" y="15" width="480" height="65" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s1_lbl_u" value="&lt;b&gt;Email / Tên tài khoản / Mã ORCID:&lt;/b&gt;" style="text;html=1;align=left;fontSize=11;" vertex="1" parent="s1_card">
+          <mxGeometry x="35" y="85" width="440" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="s1_inp_u" value="&amp;nbsp;👤 &amp;nbsp;nguyen.vana@vast.vn" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#90caf9;align=left;fontSize=12;" vertex="1" parent="s1_card">
+          <mxGeometry x="35" y="105" width="440" height="35" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s1_lbl_p" value="&lt;b&gt;Mật khẩu:&lt;/b&gt;" style="text;html=1;align=left;fontSize=11;" vertex="1" parent="s1_card">
+          <mxGeometry x="35" y="150" width="300" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="s1_lnk_fp" value="&lt;a href=&quot;#&quot; style=&quot;color:#1976d2; font-size:11px;&quot;&gt;Quên mật khẩu?&lt;/a&gt;" style="text;html=1;align=right;fontSize=11;" vertex="1" parent="s1_card">
+          <mxGeometry x="355" y="150" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="s1_inp_p" value="&amp;nbsp;🔒 &amp;nbsp;••••••••••••••••" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#90caf9;align=left;fontSize=12;" vertex="1" parent="s1_card">
+          <mxGeometry x="35" y="170" width="440" height="35" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s1_chk" value="☑ Ghi nhớ phiên đăng nhập trên thiết bị này (30 ngày)" style="text;html=1;align=left;fontSize=11;color:#37474f;" vertex="1" parent="s1_card">
+          <mxGeometry x="35" y="215" width="440" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s1_btn_login" value="&lt;b style=&quot;font-size: 13px; color: #ffffff;&quot;&gt;ĐĂNG NHẬP VÀO PORTAL&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1976d2;strokeColor=#1565c0;strokeWidth=1.5;" vertex="1" parent="s1_card">
+          <mxGeometry x="35" y="245" width="440" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s1_div" value="&lt;span style=&quot;background-color:#fafafa; padding: 0 10px; color:#78909c; font-size:11px;&quot;&gt;HOẶC ĐĂNG NHẬP BẰNG LIÊN HỢP ĐỊNH DANH (SSO / IdP)&lt;/span&gt;" style="line;strokeColor=#cfd8dc;align=center;verticalAlign=middle;" vertex="1" parent="s1_card">
+          <mxGeometry x="35" y="300" width="440" height="15" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s1_sso1" value="🇻🇳 VNeID / Dịch vụ công" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b0bec5;fontSize=11;fontStyle=1;" vertex="1" parent="s1_card">
+          <mxGeometry x="35" y="330" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="s1_sso2" value="🏛️ VAST IdP (Việt Nam)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b0bec5;fontSize=11;fontStyle=1;" vertex="1" parent="s1_card">
+          <mxGeometry x="185" y="330" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="s1_sso3" value="🇷🇺 RAS SSO (Nga)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b0bec5;fontSize=11;fontStyle=1;" vertex="1" parent="s1_card">
+          <mxGeometry x="335" y="330" width="140" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- 2FA Modal Dialog -->
+        <mxCell id="s1_modal" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d32f2f;strokeWidth=2;shadow=1;" vertex="1" parent="s1_window">
+          <mxGeometry x="50" y="490" width="480" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="s1_m_title" value="&lt;b style=&quot;color: #d32f2f; font-size: 14px;&quot;&gt;🛡️ YÊU CẦU XÁC THỰC 2 BƯỚC (MFA / 2FA)&lt;/b&gt;&lt;hr&gt;&lt;span style=&quot;font-size: 11px; color: #455a64;&quot;&gt;Hệ thống nhận thấy tài khoản có quyền &lt;b&gt;Reviewer / Quản trị&lt;/b&gt;.&lt;br&gt;Vui lòng mở ứng dụng &lt;b&gt;Authenticator (Google / Microsoft)&lt;/b&gt; và nhập mã 6 số:&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=top;whiteSpace=wrap;" vertex="1" parent="s1_modal">
+          <mxGeometry x="15" y="15" width="450" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="otp1" value="&lt;b style=&quot;font-size:18px;&quot;&gt;4&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1e88e5;strokeWidth=1.5;" vertex="1" parent="s1_modal"><mxGeometry x="65" y="95" width="45" height="50" as="geometry" /></mxCell>
+        <mxCell id="otp2" value="&lt;b style=&quot;font-size:18px;&quot;&gt;8&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1e88e5;strokeWidth=1.5;" vertex="1" parent="s1_modal"><mxGeometry x="125" y="95" width="45" height="50" as="geometry" /></mxCell>
+        <mxCell id="otp3" value="&lt;b style=&quot;font-size:18px;&quot;&gt;2&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1e88e5;strokeWidth=1.5;" vertex="1" parent="s1_modal"><mxGeometry x="185" y="95" width="45" height="50" as="geometry" /></mxCell>
+        <mxCell id="otp4" value="&lt;b style=&quot;font-size:18px;&quot;&gt;0&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1e88e5;strokeWidth=1.5;" vertex="1" parent="s1_modal"><mxGeometry x="250" y="95" width="45" height="50" as="geometry" /></mxCell>
+        <mxCell id="otp5" value="&lt;b style=&quot;font-size:18px;&quot;&gt;9&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1e88e5;strokeWidth=1.5;" vertex="1" parent="s1_modal"><mxGeometry x="310" y="95" width="45" height="50" as="geometry" /></mxCell>
+        <mxCell id="otp6" value="&lt;b style=&quot;font-size:18px;&quot;&gt;1&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1e88e5;strokeWidth=1.5;" vertex="1" parent="s1_modal"><mxGeometry x="370" y="95" width="45" height="50" as="geometry" /></mxCell>
+
+        <mxCell id="s1_m_timer" value="⏳ Mã TOTP tự làm mới sau: &lt;b style=&quot;color:#d32f2f;&quot;&gt;24s&lt;/b&gt; &amp;nbsp;|&amp;nbsp; &lt;a href=&quot;#&quot; style=&quot;color:#1976d2;&quot;&gt;Dùng mã dự phòng SMS&lt;/a&gt;" style="text;html=1;align=center;fontSize=11;" vertex="1" parent="s1_modal"><mxGeometry x="20" y="160" width="440" height="20" as="geometry" /></mxCell>
+        <mxCell id="s1_m_btn" value="&lt;b style=&quot;color:#ffffff; font-size:13px;&quot;&gt;XÁC THỰC &amp;amp; TIẾP TỤC VÀO WORKSPACE&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2e7d32;strokeColor=#1b5e20;strokeWidth=1.5;" vertex="1" parent="s1_modal"><mxGeometry x="65" y="195" width="350" height="40" as="geometry" /></mxCell>
+        <mxCell id="s1_m_cancel" value="&lt;a href=&quot;#&quot; style=&quot;color:#78909c; font-size:11px;&quot;&gt;Hủy bỏ và quay lại Đăng nhập&lt;/a&gt;" style="text;html=1;align=center;fontSize=11;" vertex="1" parent="s1_modal"><mxGeometry x="150" y="245" width="180" height="20" as="geometry" /></mxCell>
+
+        <!-- SCREEN 2 & 3: WORKSPACE & CONTEXT SWITCHER -->
+        <mxCell id="s2_window" value="MÀN HÌNH 2 &amp;amp; 3: CONTEXT SWITCHER &amp;amp; CÀI ĐẶT BẢO MẬT CÁ NHÂN (Route: /workspace, /security) — Browser Window" style="swimlane;startSize=30;fillColor=#ffffff;strokeColor=#00695c;fontStyle=1;fontSize=12;fontColor=#004d40;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="660" y="130" width="1240" height="790" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s2_bbar" value="🔴 🟡 🟢 &amp;nbsp;&amp;nbsp; 🔒 &lt;b&gt;https://portal.vn-ru.org/security&lt;/b&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; [ 🇻🇳 VIE | 🇷🇺 RUS ]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eceff1;strokeColor=#b0bec5;fontSize=11;align=left;spacingLeft=12;" vertex="1" parent="s2_window">
+          <mxGeometry x="0" y="30" width="1240" height="28" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s2_navbar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#004d40;strokeColor=none;" vertex="1" parent="s2_window">
+          <mxGeometry x="0" y="58" width="1240" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="s2_logo" value="&lt;b style=&quot;color:#ffffff; font-size:15px;&quot;&gt;🌐 VN–RU PORTAL&lt;/b&gt;" style="text;html=1;verticalAlign=middle;" vertex="1" parent="s2_navbar">
+          <mxGeometry x="20" y="11" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="s2_nav_links" value="&lt;span style=&quot;color:#b2dfdb; font-size:12px;&quot;&gt;🌐 Trang chủ &amp;nbsp;&amp;nbsp;|&amp;nbsp;&amp;nbsp; &lt;b style=&quot;color:#ffffff; text-decoration:underline;&quot;&gt;💼 Không gian làm việc&lt;/b&gt; &amp;nbsp;&amp;nbsp;|&amp;nbsp;&amp;nbsp; &lt;b style=&quot;color:#fff59d;&quot;&gt;🛡️ Phân quyền &amp;amp; RBAC&lt;/b&gt; &amp;nbsp;&amp;nbsp;|&amp;nbsp;&amp;nbsp; 🏛️ Quản trị Hệ thống&lt;/span&gt;" style="text;html=1;verticalAlign=middle;" vertex="1" parent="s2_navbar">
+          <mxGeometry x="190" y="11" width="580" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s2_user_pill" value="&lt;b style=&quot;color:#ffffff;&quot;&gt;👤 TS. Nguyễn Văn A&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color:#80cbc4; font-size:10px;&quot;&gt;Ngữ cảnh: &lt;b style=&quot;color:#fff59d;&quot;&gt;Nhà khoa học (VAST)&lt;/b&gt; ▾&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#00695c;strokeColor=#00897b;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="s2_navbar">
+          <mxGeometry x="980" y="6" width="240" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s2_ctx_dropdown" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#00796b;strokeWidth=2;shadow=1;" vertex="1" parent="s2_window">
+          <mxGeometry x="780" y="115" width="440" height="235" as="geometry" />
+        </mxCell>
+        <mxCell id="s2_ctx_title" value="&lt;b style=&quot;font-size:12px; color:#004d40;&quot;&gt;🔄 CHUYỂN ĐỔI NGỮ CẢNH LÀM VIỆC (CONTEXT SWITCHER)&lt;/b&gt;&lt;hr&gt;&lt;span style=&quot;font-size:10px; color:#546e7a;&quot;&gt;Chọn ngữ cảnh để hệ thống tự động gán quyền &amp;amp; phạm vi dữ liệu:&lt;/span&gt;" style="text;html=1;verticalAlign=top;align=left;" vertex="1" parent="s2_ctx_dropdown">
+          <mxGeometry x="12" y="10" width="415" height="45" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ctx_item1" value="&lt;b style=&quot;color:#00796b;&quot;&gt;✅ [1] Nhà nghiên cứu / Tác giả đề xuất (Active)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px; color:#455a64;&quot;&gt;• Đơn vị: &lt;b&gt;Viện Công nghệ Sinh học (VAST)&lt;/b&gt;&lt;br&gt;• Quyền: &lt;i&gt;GRANT.PROPOSAL.WRITE, PROJECT.OWN.READ&lt;/i&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e0f2f1;strokeColor=#80cbc4;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="s2_ctx_dropdown"><mxGeometry x="12" y="60" width="415" height="50" as="geometry" /></mxCell>
+        <mxCell id="ctx_item2" value="&lt;b style=&quot;color:#1565c0;&quot;&gt;🔄 [2] Chuyên gia Phản biện (Reviewer)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px; color:#455a64;&quot;&gt;• Đơn vị: &lt;b&gt;Hội đồng Độc lập Quỹ Truyền thống &amp;amp; Hữu nghị&lt;/b&gt;&lt;br&gt;• Phạm vi: &lt;i&gt;REVIEW.ASSIGNMENT (Chỉ 02 hồ sơ: #R100, #R104)&lt;/i&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#cfd8dc;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="s2_ctx_dropdown"><mxGeometry x="12" y="118" width="415" height="50" as="geometry" /></mxCell>
+        <mxCell id="ctx_item3" value="&lt;b style=&quot;color:#ef6c00;&quot;&gt;🔄 [3] Đại diện Tổ chức Đối tác (Partner Rep)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px; color:#455a64;&quot;&gt;• Đơn vị: &lt;b&gt;Phòng Quản lý Khoa học - VAST Liaison&lt;/b&gt;&lt;br&gt;• Quyền: &lt;i&gt;ORG.AFFILIATION.VERIFY, ORG.PROJECTS.VIEW&lt;/i&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#cfd8dc;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="s2_ctx_dropdown"><mxGeometry x="12" y="175" width="415" height="50" as="geometry" /></mxCell>
+
+        <!-- Security Settings Left Sidebar -->
+        <mxCell id="s2_sidebar" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#cfd8dc;" vertex="1" parent="s2_window"><mxGeometry x="20" y="125" width="240" height="645" as="geometry" /></mxCell>
+        <mxCell id="s2_sb_title" value="&lt;b style=&quot;font-size:12px; color:#37474f;&quot;&gt;CÀI ĐẶT TÀI KHOẢN&lt;/b&gt;" style="text;html=1;align=left;" vertex="1" parent="s2_sidebar"><mxGeometry x="15" y="15" width="200" height="20" as="geometry" /></mxCell>
+        <mxCell id="s2_sb_m1" value="👤 Thông tin cá nhân &amp;amp; CV" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd8dc;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="s2_sidebar"><mxGeometry x="15" y="45" width="210" height="35" as="geometry" /></mxCell>
+        <mxCell id="s2_sb_m2" value="&lt;b style=&quot;color:#00796b;&quot;&gt;🛡️ Bảo mật &amp;amp; Xác thực 2FA&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e0f2f1;strokeColor=#00796b;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="s2_sidebar"><mxGeometry x="15" y="90" width="210" height="35" as="geometry" /></mxCell>
+        <mxCell id="s2_sb_m3" value="📱 Quản lý Phiên đăng nhập" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd8dc;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="s2_sidebar"><mxGeometry x="15" y="135" width="210" height="35" as="geometry" /></mxCell>
+        <mxCell id="s2_sb_m4" value="🏢 Tổ chức &amp;amp; Thỏa thuận Quỹ" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd8dc;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="s2_sidebar"><mxGeometry x="15" y="180" width="210" height="35" as="geometry" /></mxCell>
+
+        <!-- Security Main Content -->
+        <mxCell id="s2_main" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cfd8dc;" vertex="1" parent="s2_window"><mxGeometry x="280" y="125" width="480" height="645" as="geometry" /></mxCell>
+        <mxCell id="s2_main_title" value="&lt;b style=&quot;font-size:15px; color:#004d40;&quot;&gt;CÀI ĐẶT BẢO MẬT &amp;amp; PHIÊN LÀM VIỆC (SECURITY / SESSIONS)&lt;/b&gt;&lt;hr&gt;" style="text;html=1;align=left;" vertex="1" parent="s2_main"><mxGeometry x="20" y="15" width="440" height="35" as="geometry" /></mxCell>
+
+        <mxCell id="s2_box_2fa" value="&lt;b style=&quot;font-size:12px;&quot;&gt;1. Xác thực 2 bước (Two-Factor Authentication):&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;color:#2e7d32; font-weight:bold;&quot;&gt;● Trạng thái: ĐÃ KÍCH HOẠT (TOTP Authenticator)&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px; color:#546e7a;&quot;&gt;Bắt buộc với vai trò Phản biện và Quản trị viên để bảo vệ dữ liệu hồ sơ.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f8e9;strokeColor=#aed581;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="s2_main"><mxGeometry x="20" y="60" width="440" height="65" as="geometry" /></mxCell>
+        <mxCell id="s2_btn_cfg2fa" value="Cấu hình lại" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7cb342;fontSize=10;fontStyle=1;" vertex="1" parent="s2_main"><mxGeometry x="360" y="75" width="90" height="28" as="geometry" /></mxCell>
+
+        <mxCell id="s2_lbl_sess" value="&lt;b style=&quot;font-size:12px;&quot;&gt;2. Danh sách Phiên đang hoạt động (Multi-device Sessions):&lt;/b&gt;" style="text;html=1;align=left;" vertex="1" parent="s2_main"><mxGeometry x="20" y="140" width="440" height="20" as="geometry" /></mxCell>
+        <mxCell id="sess1" value="&lt;b style=&quot;color:#00796b;&quot;&gt;🖥️ Windows 11 · Chrome 128 (Phiên hiện tại)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px; color:#546e7a;&quot;&gt;IP: 113.190.42.18 (Hà Nội, VN) &amp;nbsp;|&amp;nbsp; Hoạt động: Vừa xong&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9px; color:#2e7d32; font-weight:bold;&quot;&gt;[ ĐANG KẾT NỐI ]&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e0f2f1;strokeColor=#80cbc4;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="s2_main"><mxGeometry x="20" y="165" width="440" height="60" as="geometry" /></mxCell>
+        <mxCell id="sess2" value="&lt;b&gt;📱 iPhone 15 Pro · Safari Mobile 17&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:10px; color:#546e7a;&quot;&gt;IP: 85.140.2.90 (Moscow, RU) &amp;nbsp;|&amp;nbsp; Hoạt động: 3 giờ trước&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#cfd8dc;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="s2_main"><mxGeometry x="20" y="235" width="440" height="55" as="geometry" /></mxCell>
+        <mxCell id="sess2_btn" value="Đăng xuất" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffebee;strokeColor=#ef9a9a;fontSize=10;fontColor=#c62828;fontStyle=1;" vertex="1" parent="s2_main"><mxGeometry x="365" y="247" width="85" height="26" as="geometry" /></mxCell>
+        <mxCell id="s2_btn_revoke_all" value="&lt;b style=&quot;color:#ffffff; font-size:12px;&quot;&gt;⚠️ THU HỒI TẤT CẢ PHIÊN KHÁC (REVOKE ALL OTHER SESSIONS)&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c62828;strokeColor=#b71c1c;strokeWidth=1.5;" vertex="1" parent="s2_main"><mxGeometry x="20" y="310" width="440" height="40" as="geometry" /></mxCell>
+
+        <!-- SCREEN 4: ACCESS GOVERNANCE ADMIN -->
+        <mxCell id="s4_window" value="MÀN HÌNH 4: TRUNG TÂM QUẢN TRỊ TRUY CẬP &amp;amp; PHÂN QUYỀN (Route: /admin/access/users) — Governance Admin Window" style="swimlane;startSize=30;fillColor=#ffffff;strokeColor=#4a148c;fontStyle=1;fontSize=12;fontColor=#4a148c;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="950" width="940" height="820" as="geometry" />
+        </mxCell>
+        <mxCell id="s4_bbar" value="🔴 🟡 🟢 &amp;nbsp;&amp;nbsp; 🔒 &lt;b&gt;https://portal.vn-ru.org/admin/access/users&lt;/b&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; [ Quản trị viên Quỹ TT&amp;amp;HN ]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ede7f6;strokeColor=#d1c4e9;fontSize=11;align=left;spacingLeft=12;" vertex="1" parent="s4_window"><mxGeometry x="0" y="30" width="940" height="28" as="geometry" /></mxCell>
+
+        <!-- SCREEN 5: SECURITY AUDIT TRAIL -->
+        <mxCell id="s5_window" value="MÀN HÌNH 5: NHẬT KÝ KIỂM TOÁN BẢO MẬT &amp;amp; TRUY VẾT (Route: /admin/access/audit) — Security Audit Window" style="swimlane;startSize=30;fillColor=#ffffff;strokeColor=#b71c1c;fontStyle=1;fontSize=12;fontColor=#b71c1c;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="950" width="890" height="820" as="geometry" />
+        </mxCell>
+        <mxCell id="s5_bbar" value="🔴 🟡 🟢 &amp;nbsp;&amp;nbsp; 🔒 &lt;b&gt;https://portal.vn-ru.org/admin/access/audit&lt;/b&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; [ Security Operator ]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffebee;strokeColor=#ffcdd2;fontSize=11;align=left;spacingLeft=12;" vertex="1" parent="s5_window"><mxGeometry x="0" y="30" width="890" height="28" as="geometry" /></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <!-- ============================================================ -->
+  <!-- PAGE 2: ROLE & PERMISSION MATRIX (RBAC) CONSOLE             -->
+  <!-- ============================================================ -->
+  <diagram id="module1_ui_website_page2" name="2. Giao diện Cấu hình Truy cập &amp; Quyền (Permission Capsules)">
+    <mxGraphModel dx="1800" dy="1800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1950" pageHeight="1850">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Master Title Block -->
+        <mxCell id="rbac_master_title" value="&lt;b style=&quot;font-size: 22px; color: #0f172a;&quot;&gt;THIẾT KẾ GIAO DIỆN QUẢN TRỊ TRUY CẬP &amp;amp; CẤU HÌNH QUYỀN (ACCESS CONFIGURATION / RBAC)&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 13px; color: #424242;&quot;&gt;VN–RU Portal · Cấu trúc quản trị phân quyền trực quan theo Module Capsule &amp;amp; Kiểm thử Policy đánh giá an ninh thời gian thực&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8fafc;strokeColor=#0f172a;strokeWidth=2;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="30" width="1860" height="75" as="geometry" />
+        </mxCell>
+
+        <!-- SCREEN 6A: MASTER ROLE ACCESS CONFIGURATION WINDOW -->
+        <mxCell id="s6a_window" value="MÀN HÌNH QUẢN TRỊ: CẤU HÌNH TRUY CẬP VAI TRÒ (Route: /admin/roles/config) — Access Configuration Window" style="swimlane;startSize=30;fillColor=#ffffff;strokeColor=#0f172a;fontStyle=1;fontSize=12;fontColor=#0f172a;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="130" width="1240" height="840" as="geometry" />
+        </mxCell>
+
+        <!-- Browser Top Bar -->
+        <mxCell id="s6a_bbar" value="🔴 🟡 🟢 &amp;nbsp;&amp;nbsp; 🔒 &lt;b&gt;https://portal.vn-ru.org/rbac/permissions&lt;/b&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; [ IAM Policy Operator ]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f1f5f9;strokeColor=#cbd5e1;fontSize=11;align=left;spacingLeft=12;" vertex="1" parent="s6a_window">
+          <mxGeometry x="0" y="30" width="1240" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- Main Portal Header Navigation Bar -->
+        <mxCell id="s6a_navbar" value="&lt;table width=&quot;100%&quot;&gt;&lt;tr&gt;&lt;td width=&quot;20%&quot;&gt;&lt;b style=&quot;color:#ffffff; font-size:12px;&quot;&gt;🌐 VN–RU PORTAL&lt;/b&gt;&lt;/td&gt;&lt;td width=&quot;60%&quot; style=&quot;color:#94a3b8; font-size:11px;&quot;&gt;🌐 Trang chủ &amp;nbsp;&amp;nbsp;|&amp;nbsp;&amp;nbsp; 💼 Không gian làm việc &amp;nbsp;&amp;nbsp;|&amp;nbsp;&amp;nbsp; &lt;b style=&quot;color:#c084fc; text-decoration:underline;&quot;&gt;🛡️ Phân quyền &amp;amp; RBAC (Active Tab)&lt;/b&gt; &amp;nbsp;&amp;nbsp;|&amp;nbsp;&amp;nbsp; 🏛️ Quản trị Hệ thống&lt;/td&gt;&lt;td width=&quot;20%&quot; align=&quot;right&quot;&gt;&lt;span style=&quot;color:#e2e8f0; font-size:11px;&quot;&gt;👤 Admin Quỹ ▾&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0f172a;strokeColor=none;fontSize=11;align=left;spacingLeft=15;" vertex="1" parent="s6a_window">
+          <mxGeometry x="0" y="58" width="1240" height="34" as="geometry" />
+        </mxCell>
+
+        <!-- TOP CARD: HEADER (EXACT AS USER IMAGE) -->
+        <mxCell id="c_top_card" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0f172a;strokeWidth=3;shadow=1;" vertex="1" parent="s6a_window">
+          <mxGeometry x="30" y="102" width="1180" height="145" as="geometry" />
+        </mxCell>
+
+        <!-- Left Info in Top Card -->
+        <mxCell id="c_top_title" value="&lt;b style=&quot;font-size: 26px; color: #0f172a; font-family: serif;&quot;&gt;Cấu hình truy cập: Lễ tân khách sạn&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=middle;" vertex="1" parent="c_top_card">
+          <mxGeometry x="30" y="18" width="600" height="35" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c_badge" value="&lt;b style=&quot;color: #6366f1; font-size: 11px;&quot;&gt;HOTEL_FRONTDESK&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ede9fe;strokeColor=none;arcSize=50;" vertex="1" parent="c_top_card">
+          <mxGeometry x="30" y="58" width="150" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c_sub_code" value="&lt;span style=&quot;color: #64748b; font-size: 13px;&quot;&gt;HOTEL_FRONTDESK&lt;/span&gt;" style="text;html=1;align=left;" vertex="1" parent="c_top_card">
+          <mxGeometry x="30" y="88" width="300" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c_date" value="&lt;span style=&quot;color: #94a3b8; font-size: 12px;&quot;&gt;Ngày tạo: 27 thg 5, 2026&lt;/span&gt;" style="text;html=1;align=left;" vertex="1" parent="c_top_card">
+          <mxGeometry x="30" y="112" width="200" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- Right Stat Box (Exact as user image) -->
+        <mxCell id="c_stat_box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8fafc;strokeColor=#e2e8f0;strokeWidth=1;" vertex="1" parent="c_top_card">
+          <mxGeometry x="960" y="20" width="180" height="110" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c_stat_num" value="&lt;b style=&quot;font-size: 38px; color: #0f172a; font-family: sans-serif;&quot;&gt;13&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;" vertex="1" parent="c_stat_box">
+          <mxGeometry x="0" y="12" width="180" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c_stat_lbl" value="&lt;b style=&quot;font-size: 10px; color: #64748b; letter-spacing: 0.5px;&quot;&gt;QUYỀN NGHIỆP&lt;br&gt;VỤ&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=top;" vertex="1" parent="c_stat_box">
+          <mxGeometry x="0" y="62" width="180" height="35" as="geometry" />
+        </mxCell>
+
+
+        <!-- BOTTOM CONTAINER: PERMISSION CAPSULES (EXACT AS IMAGE) -->
+        <mxCell id="c_bot_container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e2e8f0;strokeWidth=1;shadow=1;" vertex="1" parent="s6a_window">
+          <mxGeometry x="30" y="245" width="1180" height="570" as="geometry" />
+        </mxCell>
+
+        <!-- Row 1 Capsules -->
+        <mxCell id="cap1_1" value="🏢 &lt;b&gt;Khách sạn&lt;/b&gt; &amp;nbsp;&lt;span style=&quot;color:#94a3b8;&quot;&gt;0/79&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0f172a;strokeColor=#0f172a;fontColor=#ffffff;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="25" y="20" width="160" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="cap1_2" value="👥 Người dùng &amp;nbsp;&lt;span style=&quot;color:#94a3b8;&quot;&gt;0/9&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e2e8f0;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="200" y="20" width="150" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="cap1_3" value="🛡️ Vai trò &amp;nbsp;&lt;span style=&quot;color:#94a3b8;&quot;&gt;0/23&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e2e8f0;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="365" y="20" width="140" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="cap1_4" value="📋 Admin &amp;nbsp;&lt;span style=&quot;color:#94a3b8;&quot;&gt;0/12&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e2e8f0;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="520" y="20" width="140" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="cap1_5" value="📑 Codes &amp;nbsp;&lt;span style=&quot;color:#94a3b8;&quot;&gt;0/4&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e2e8f0;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="675" y="20" width="130" height="38" as="geometry" />
+        </mxCell>
+
+        <!-- Row 2 Capsules -->
+        <mxCell id="cap2_1" value="ℹ️ GuestOS &amp;nbsp;&lt;span style=&quot;color:#94a3b8;&quot;&gt;0/1&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e2e8f0;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="25" y="70" width="150" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="cap2_2" value="ℹ️ &lt;b&gt;Thanh toán&lt;/b&gt; &amp;nbsp;&lt;b style=&quot;color:#0284c7;&quot;&gt;2/2&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cbd5e1;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="190" y="70" width="160" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="cap2_3" value="📊 &lt;b&gt;Dashboard khách sạn&lt;/b&gt; &amp;nbsp;&lt;b style=&quot;color:#0284c7;&quot;&gt;1/1&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cbd5e1;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="365" y="70" width="230" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="cap2_4" value="🏛️ Hotel Local Partners &amp;nbsp;&lt;span style=&quot;color:#94a3b8;&quot;&gt;0/2&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e2e8f0;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="610" y="70" width="220" height="38" as="geometry" />
+        </mxCell>
+
+        <!-- Row 3 Capsules -->
+        <mxCell id="cap3_1" value="🏢 Hotel Marketplace &amp;nbsp;&lt;span style=&quot;color:#94a3b8;&quot;&gt;0/2&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e2e8f0;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="25" y="120" width="200" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="cap3_2" value="💬 &lt;b&gt;Hotel Messages&lt;/b&gt; &amp;nbsp;&lt;b style=&quot;color:#0284c7;&quot;&gt;2/2&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cbd5e1;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="240" y="120" width="190" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="cap3_3" value="📤 &lt;b&gt;Yêu cầu khách&lt;/b&gt; &amp;nbsp;&lt;b style=&quot;color:#0284c7;&quot;&gt;2/2&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cbd5e1;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="445" y="120" width="180" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="cap3_4" value="ℹ️ &lt;b&gt;Đặt phòng &amp;amp; khách đến&lt;/b&gt; &amp;nbsp;&lt;b style=&quot;color:#0284c7;&quot;&gt;2/6&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cbd5e1;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="640" y="120" width="240" height="38" as="geometry" />
+        </mxCell>
+
+        <!-- Row 4 Capsules -->
+        <mxCell id="cap4_1" value="🔒 Hotel Revenue Protection &amp;nbsp;&lt;span style=&quot;color:#94a3b8;&quot;&gt;0/1&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e2e8f0;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="25" y="170" width="250" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="cap4_2" value="🔲 QR phòng &amp;nbsp;&lt;span style=&quot;color:#94a3b8;&quot;&gt;0/1&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e2e8f0;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="290" y="170" width="150" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="cap4_3" value="📁 &lt;b&gt;Phòng&lt;/b&gt; &amp;nbsp;&lt;b style=&quot;color:#0284c7;&quot;&gt;2/2&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cbd5e1;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="455" y="170" width="140" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="cap4_4" value="⚙️ Dịch vụ &amp;nbsp;&lt;span style=&quot;color:#94a3b8;&quot;&gt;0/2&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e2e8f0;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="610" y="170" width="140" height="38" as="geometry" />
+        </mxCell>
+
+        <!-- Row 5 Capsules -->
+        <mxCell id="cap5_1" value="👥 Nhân viên khách sạn &amp;nbsp;&lt;span style=&quot;color:#94a3b8;&quot;&gt;0/2&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e2e8f0;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="25" y="220" width="220" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="cap5_2" value="📁 &lt;b&gt;Lưu trú&lt;/b&gt; &amp;nbsp;&lt;b style=&quot;color:#0284c7;&quot;&gt;2/2&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cbd5e1;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="260" y="220" width="140" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="cap5_3" value="📑 Integrations &amp;nbsp;&lt;span style=&quot;color:#94a3b8;&quot;&gt;0/2&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e2e8f0;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="415" y="220" width="160" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="cap5_4" value="📑 Payments &amp;nbsp;&lt;span style=&quot;color:#94a3b8;&quot;&gt;0/1&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e2e8f0;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="590" y="220" width="150" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="cap5_5" value="🛡️ Quyền &amp;nbsp;&lt;span style=&quot;color:#94a3b8;&quot;&gt;0/2&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e2e8f0;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="755" y="220" width="130" height="38" as="geometry" />
+        </mxCell>
+
+        <!-- Row 6 Capsules -->
+        <mxCell id="cap6_1" value="📑 Platform Billing &amp;nbsp;&lt;span style=&quot;color:#94a3b8;&quot;&gt;0/13&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e2e8f0;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="25" y="270" width="190" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="cap6_2" value="ℹ️ Khách sạn nền tảng &amp;nbsp;&lt;span style=&quot;color:#94a3b8;&quot;&gt;0/2&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e2e8f0;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="230" y="270" width="200" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="cap6_3" value="📑 Platform Marketplace &amp;nbsp;&lt;span style=&quot;color:#94a3b8;&quot;&gt;0/2&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e2e8f0;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="445" y="270" width="210" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="cap6_4" value="ℹ️ Phân quyền &amp;nbsp;&lt;span style=&quot;color:#94a3b8;&quot;&gt;0/1&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e2e8f0;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="670" y="270" width="160" height="38" as="geometry" />
+        </mxCell>
+
+        <!-- Row 7 Capsules -->
+        <mxCell id="cap7_1" value="🛡️ Vai trò &amp;nbsp;&lt;span style=&quot;color:#94a3b8;&quot;&gt;0/2&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e2e8f0;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="25" y="320" width="130" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="cap7_2" value="👥 Người dùng nền tảng &amp;nbsp;&lt;span style=&quot;color:#94a3b8;&quot;&gt;0/2&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e2e8f0;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="170" y="320" width="210" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="cap7_3" value="📑 Service Marketplace &amp;nbsp;&lt;span style=&quot;color:#94a3b8;&quot;&gt;0/2&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e2e8f0;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="395" y="320" width="200" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="cap7_4" value="📑 Service Portal &amp;nbsp;&lt;span style=&quot;color:#94a3b8;&quot;&gt;0/17&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e2e8f0;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="610" y="320" width="180" height="38" as="geometry" />
+        </mxCell>
+
+        <!-- Row 8 Capsules -->
+        <mxCell id="cap8_1" value="ℹ️ Hệ thống &amp;nbsp;&lt;span style=&quot;color:#94a3b8;&quot;&gt;0/1&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e2e8f0;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="25" y="370" width="140" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="cap8_2" value="📑 Chủ đơn vị &amp;nbsp;&lt;span style=&quot;color:#94a3b8;&quot;&gt;0/6&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e2e8f0;fontSize=11;arcSize=30;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="180" y="370" width="150" height="38" as="geometry" />
+        </mxCell>
+
+        <!-- Expanded Granular Checklist Box (at the bottom of capsule container) -->
+        <mxCell id="exp_box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8fafc;strokeColor=#818cf8;strokeWidth=1.5;" vertex="1" parent="c_bot_container">
+          <mxGeometry x="25" y="425" width="1130" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="exp_title" value="&lt;b style=&quot;color:#4338ca; font-size:12px;&quot;&gt;📋 CHI TIẾT CÁC QUYỀN ĐƯỢC BẬT (13 QUYỀN NGHIỆP VỤ CỦA VAI TRÒ):&lt;/b&gt;" style="text;html=1;align=left;" vertex="1" parent="exp_box">
+          <mxGeometry x="15" y="10" width="600" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="exp_items" value="&lt;table width=&quot;100%&quot; style=&quot;font-size:11px;&quot;&gt;&lt;tr&gt;&lt;td width=&quot;33%&quot;&gt;☑ &lt;code&gt;PAYMENT.ALLOWANCE.READ&lt;/code&gt; (2/2)&lt;br&gt;☑ &lt;code&gt;PAYMENT.RECEIPT.SUBMIT&lt;/code&gt;&lt;/td&gt;&lt;td width=&quot;33%&quot;&gt;☑ &lt;code&gt;DASHBOARD.STATS.VIEW&lt;/code&gt; (1/1)&lt;br&gt;☑ &lt;code&gt;MESSAGES.COUNCIL.COMMUNICATE&lt;/code&gt; (2/2)&lt;/td&gt;&lt;td width=&quot;34%&quot;&gt;☑ &lt;code&gt;PROPOSAL.ASSIGNMENT.READ&lt;/code&gt; (2/6)&lt;br&gt;☑ &lt;code&gt;REVIEW.SCORE.SUBMIT&lt;/code&gt; (2/2)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="text;html=1;align=left;" vertex="1" parent="exp_box">
+          <mxGeometry x="15" y="35" width="1100" height="75" as="geometry" />
+        </mxCell>
+
+
+        <!-- SCREEN 6B: LIVE POLICY SIMULATOR -->
+        <mxCell id="s6b_window" value="MÀN HÌNH 6B: BỘ MÔ PHỎNG ĐÁNH GIÁ CHÍNH SÁCH (Policy Simulator) — Security Tester Window" style="swimlane;startSize=30;fillColor=#ffffff;strokeColor=#00897b;fontStyle=1;fontSize=12;fontColor=#004d40;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1310" y="130" width="590" height="840" as="geometry" />
+        </mxCell>
+
+        <!-- Browser Bar -->
+        <mxCell id="s6b_bbar" value="🔴 🟡 🟢 &amp;nbsp;&amp;nbsp; ⚡ &lt;b&gt;Policy Simulator: Evaluator v2.4&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e0f2f1;strokeColor=#b2dfdb;fontSize=11;align=left;spacingLeft=12;" vertex="1" parent="s6b_window">
+          <mxGeometry x="0" y="30" width="590" height="28" as="geometry" />
+        </mxCell>
+
+        <mxCell id="sim_card" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8fafc;strokeColor=#b2dfdb;strokeWidth=1.5;" vertex="1" parent="s6b_window">
+          <mxGeometry x="20" y="70" width="550" height="740" as="geometry" />
+        </mxCell>
+
+        <mxCell id="sim_title" value="&lt;b style=&quot;font-size:14px; color:#004d40;&quot;&gt;🧪 TRÌNH KIỂM THỬ PHÂN QUYỀN THỜI GIAN THỰC&lt;/b&gt;&lt;hr&gt;&lt;span style=&quot;font-size:11px; color:#546e7a;&quot;&gt;Mô phỏng truy cập để kiểm tra tính toàn vẹn của Scope và Context&lt;/span&gt;" style="text;html=1;align=left;" vertex="1" parent="sim_card">
+          <mxGeometry x="20" y="15" width="510" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- Input 1: Actor -->
+        <mxCell id="sim_lbl1" value="&lt;b&gt;1. Chọn Người dùng (Actor Identity):&lt;/b&gt;" style="text;html=1;align=left;fontSize=11;" vertex="1" parent="sim_card"><mxGeometry x="20" y="65" width="510" height="20" as="geometry" /></mxCell>
+        <mxCell id="sim_inp1" value="TS. Nguyễn Văn A (u_nguyenva) ▾" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#90caf9;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="sim_card"><mxGeometry x="20" y="85" width="510" height="32" as="geometry" /></mxCell>
+
+        <!-- Input 2: Context -->
+        <mxCell id="sim_lbl2" value="&lt;b&gt;2. Ngữ cảnh làm việc gửi kèm (Active Context):&lt;/b&gt;" style="text;html=1;align=left;fontSize=11;" vertex="1" parent="sim_card"><mxGeometry x="20" y="125" width="510" height="20" as="geometry" /></mxCell>
+        <mxCell id="sim_inp2" value="HOTEL_FRONTDESK / REVIEWER (Hội đồng Quỹ) ▾" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#ffb74d;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="sim_card"><mxGeometry x="20" y="145" width="510" height="32" as="geometry" /></mxCell>
+
+        <!-- Input 3: Action -->
+        <mxCell id="sim_lbl3" value="&lt;b&gt;3. Thao tác yêu cầu (Action):&lt;/b&gt;" style="text;html=1;align=left;fontSize=11;" vertex="1" parent="sim_card"><mxGeometry x="20" y="185" width="510" height="20" as="geometry" /></mxCell>
+        <mxCell id="sim_inp3" value="GRANT.PROPOSAL.READ (Đọc hồ sơ đề tài) ▾" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b0bec5;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="sim_card"><mxGeometry x="20" y="205" width="510" height="32" as="geometry" /></mxCell>
+
+        <!-- Input 4: Resource Target -->
+        <mxCell id="sim_lbl4" value="&lt;b&gt;4. Mã đối tượng mục tiêu (Target Resource ID):&lt;/b&gt;" style="text;html=1;align=left;fontSize=11;" vertex="1" parent="sim_card"><mxGeometry x="20" y="245" width="510" height="20" as="geometry" /></mxCell>
+        <mxCell id="sim_inp4" value="P099 (Đề tài Vi sinh Y học ngoài phân công)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#ef9a9a;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="sim_card"><mxGeometry x="20" y="265" width="510" height="32" as="geometry" /></mxCell>
+
+        <!-- Test Button -->
+        <mxCell id="sim_btn" value="&lt;b style=&quot;color:#ffffff; font-size:12px;&quot;&gt;⚡ KIỂM TRA ĐÁNH GIÁ QUYỀN (EVALUATE POLICY)&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#00796b;strokeColor=#004d40;strokeWidth=1.5;" vertex="1" parent="sim_card"><mxGeometry x="20" y="315" width="510" height="40" as="geometry" /></mxCell>
+
+        <!-- Simulation Result Box -->
+        <mxCell id="sim_res_box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff1f2;strokeColor=#f43f5e;strokeWidth=2;" vertex="1" parent="sim_card">
+          <mxGeometry x="20" y="375" width="510" height="340" as="geometry" />
+        </mxCell>
+
+        <mxCell id="sim_res_title" value="&lt;b style=&quot;color:#be123c; font-size:13px;&quot;&gt;🚫 KẾT QUẢ ĐÁNH GIÁ: DENIED (403 FORBIDDEN)&lt;/b&gt;&lt;hr&gt;" style="text;html=1;align=left;" vertex="1" parent="sim_res_box">
+          <mxGeometry x="15" y="10" width="480" height="25" as="geometry" />
+        </mxCell>
+
+        <mxCell id="sim_res_body" value="&lt;div align=&quot;left&quot; style=&quot;font-size:11px; line-height:1.45;&quot;&gt;&lt;b&gt;Chi tiết đánh giá phân quyền (ABAC Rule Match):&lt;/b&gt;&lt;br&gt;• &lt;b&gt;Xác thực Identity:&lt;/b&gt; &lt;span style=&quot;color:#15803d;&quot;&gt;✅ u_nguyenva (Token hợp lệ)&lt;/span&gt;&lt;br&gt;• &lt;b&gt;Khớp Vai trò:&lt;/b&gt; &lt;span style=&quot;color:#15803d;&quot;&gt;✅ HOTEL_FRONTDESK có 13 quyền nghiệp vụ&lt;/span&gt;&lt;br&gt;• &lt;b&gt;Resource Scope Check:&lt;/b&gt; &lt;span style=&quot;color:#be123c; font-weight:bold;&quot;&gt;❌ THẤT BẠI&lt;/span&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;- Hồ sơ được phân công: &lt;code&gt;['R100', 'R104']&lt;/code&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;- Hồ sơ cố gắng truy cập: &lt;code&gt;'P099'&lt;/code&gt; (Không thuộc Scope)&lt;br&gt;&lt;br&gt;• &lt;b&gt;Tốc độ phản hồi AuthZ:&lt;/b&gt; &lt;b style=&quot;color:#0284c7;&quot;&gt;1.12 ms (Redis Cache Hit)&lt;/b&gt;&lt;br&gt;• &lt;b&gt;Audit Action:&lt;/b&gt; Đã tự động ghi nhận mã sự kiện &lt;code&gt;trace-8f92c9&lt;/code&gt; vào kho &lt;b style=&quot;color:#be123c;&quot;&gt;Security Audit Store&lt;/b&gt;.&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=top;" vertex="1" parent="sim_res_box">
+          <mxGeometry x="15" y="40" width="480" height="280" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

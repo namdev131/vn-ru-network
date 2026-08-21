@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="drawio" version="26.0.0">
+  <diagram id="vn_ru_partner_flow" name="Quy trình Ghép nối &amp; Hợp tác Đối tác Việt - Nga">
+    <mxGraphModel dx="1650" dy="1600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1650" pageHeight="1650">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Title Block -->
+        <mxCell id="title" value="&lt;b style=&quot;font-size: 20px; color: #1a237e;&quot;&gt;QUY TRÌNH GHÉP NỐI &amp;amp; HỢP TÁC ĐỐI TÁC SONG PHƯƠNG VIỆT NAM – NGA&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 13px; color: #546e7a;&quot;&gt;VN–RU Portal · Luồng khép kín từ Onboarding, Gợi ý Đối tác (AI Matchmaking), Nộp hồ sơ cặp đến Liên minh 2+2&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8f9fa;strokeColor=#4a6b82;strokeWidth=1.5;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="30" width="1570" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- PHASE 1: ONBOARDING & PROFILE INITIALIZATION -->
+        <mxCell id="phase1_container" value="GIAI ĐOẠN 1: ONBOARDING &amp;amp; KHỞI TẠO HỒ SƠ ĐỐI TÁC (PHÍA VIỆT NAM &amp;amp; PHÍA NGA)" style="swimlane;html=1;startSize=30;fillColor=#e1f5fe;strokeColor=#0288d1;fontStyle=1;fontSize=12;fontColor=#01579b;rounded=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="40" y="120" width="1570" height="210" as="geometry" />
+        </mxCell>
+
+        <!-- VN Side -->
+        <mxCell id="p1_vn_actors" value="&lt;b style=&quot;color:#b71c1c;&quot;&gt;CHỦ THỂ PHÍA VIỆT NAM (VN)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.45;&quot;&gt;• &lt;b&gt;Nhà khoa học / Chuyên gia VN:&lt;/b&gt; Đăng ký cá nhân &amp;amp; xác nhận Affiliation&lt;br&gt;• &lt;b&gt;Viện / Trường ĐH VN:&lt;/b&gt; Ký Thỏa thuận Hợp tác với Quỹ&lt;br&gt;• &lt;b&gt;Doanh nghiệp VN:&lt;/b&gt; Đăng tải nhu cầu R&amp;amp;D / Ứng dụng&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0288d1;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="phase1_container">
+          <mxGeometry x="30" y="45" width="440" height="145" as="geometry" />
+        </mxCell>
+
+        <!-- Identity & Eligibility Gateway -->
+        <mxCell id="p1_gateway" value="&lt;b&gt;IAM &amp;amp; Partner Verification Gateway&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10px; color: #555;&quot;&gt;(Module 1 IAM &amp;amp; Governance)&lt;/span&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.4;&quot;&gt;• Xác minh tư cách đối tác hợp lệ&lt;br&gt;• Cấp Active Workspace Context&lt;br&gt;• Liên kết Identity &amp;lt;--&amp;gt; Expert Profile&lt;br&gt;• Đồng bộ siêu dữ liệu nghiên cứu&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#ef6c00;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="phase1_container">
+          <mxGeometry x="540" y="45" width="490" height="145" as="geometry" />
+        </mxCell>
+
+        <!-- RU Side -->
+        <mxCell id="p1_ru_actors" value="&lt;b style=&quot;color:#0d47a1;&quot;&gt;CHỦ THỂ PHÍA NGA (RU)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.45;&quot;&gt;• &lt;b&gt;Nhà khoa học / Chuyên gia Nga:&lt;/b&gt; Đăng ký hồ sơ &amp;amp; CV song ngữ&lt;br&gt;• &lt;b&gt;Viện NC / Đại học Nga (RAS, ĐH):&lt;/b&gt; Thỏa thuận đối tác Mạng lưới&lt;br&gt;• &lt;b&gt;Doanh nghiệp Nga:&lt;/b&gt; Đăng tải nhu cầu công nghệ &amp;amp; thị trường&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0288d1;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="phase1_container">
+          <mxGeometry x="1100" y="45" width="440" height="145" as="geometry" />
+        </mxCell>
+
+        <!-- PHASE 2: DISCOVERY & AI MATCHMAKING ENGINE -->
+        <mxCell id="phase2_container" value="GIAI ĐOẠN 2: CƠ CHẾ GỢI Ý &amp;amp; GHÉP NỐI ĐỐI TÁC TỰ ĐỘNG (AI &amp;amp; GRAPH MATCHMAKING ENGINE)" style="swimlane;html=1;startSize=30;fillColor=#fff3e0;strokeColor=#ef6c00;fontStyle=1;fontSize=12;fontColor=#e65100;rounded=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="40" y="360" width="1570" height="230" as="geometry" />
+        </mxCell>
+
+        <!-- Feature Extraction -->
+        <mxCell id="p2_feature" value="&lt;b&gt;1. Trích xuất Tín hiệu Đối tác&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10px; color: #555;&quot;&gt;(Profile / Publications / Patents)&lt;/span&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px;&quot;&gt;• Từ khóa hướng nghiên cứu chính&lt;br&gt;• Danh mục công bố &amp;amp; Bằng sáng chế&lt;br&gt;• Phân loại Taxonomy OECD/FOS&lt;br&gt;• Năng lực cơ sở vật chất / Lab&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#f57c00;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="phase2_container">
+          <mxGeometry x="30" y="45" width="310" height="160" as="geometry" />
+        </mxCell>
+
+        <!-- Similarity & Embeddings Engine -->
+        <mxCell id="p2_engine" value="&lt;b&gt;2. Vector &amp;amp; Graph Similarity Engine&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10px; color: #555;&quot;&gt;(Module 2 Core Matchmaking)&lt;/span&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px;&quot;&gt;• So khớp Semantic Embedding đa ngôn ngữ (VN-RU-EN)&lt;br&gt;• Phân tích Đồ thị quan hệ (Expert - Topic - Org - Project)&lt;br&gt;• Tính điểm tương đồng chuyên môn (Cosine Similarity &amp;gt; 0.75)&lt;br&gt;• Lọc điều kiện song phương: Bắt buộc 1 Bên VN + 1 Bên RU&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#f57c00;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="phase2_container">
+          <mxGeometry x="400" y="45" width="450" height="160" as="geometry" />
+        </mxCell>
+
+        <!-- Recommendation Output -->
+        <mxCell id="p2_output" value="&lt;b&gt;3. Bảng Gợi ý Đối tác Song phương&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size: 10px; color: #555;&quot;&gt;(Personalized Workspace Recommendation)&lt;/span&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px;&quot;&gt;• Danh sách đối tác đề xuất (VN &amp;lt;---&amp;gt; RU)&lt;br&gt;• &lt;b&gt;Explainable Match Reasons:&lt;/b&gt; Hiển thị rõ lý do gợi ý (Trùng đề tài, cùng hướng NC, bổ trợ công nghệ)&lt;br&gt;• Điểm đánh giá mức độ tương thích (%)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#f57c00;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="phase2_container">
+          <mxGeometry x="930" y="45" width="380" height="160" as="geometry" />
+        </mxCell>
+
+        <!-- Public / Manual Search -->
+        <mxCell id="p2_manual" value="&lt;b&gt;Tra cứu Chủ động&lt;/b&gt;&lt;br&gt;• Global Search&lt;br&gt;• Expert Directory&lt;br&gt;• Facet Filters&lt;br&gt;• Cursor Pagination" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#ffa000;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" vertex="1" parent="phase2_container">
+          <mxGeometry x="1360" y="45" width="180" height="160" as="geometry" />
+        </mxCell>
+
+        <!-- PHASE 3: EXPRESSION OF INTEREST & BILATERAL ENGAGEMENT -->
+        <mxCell id="phase3_container" value="GIAI ĐOẠN 3: BÀY TỎ QUAN TÂM &amp;amp; THIẾT LẬP KẾT NỐI (EXPRESSION OF INTEREST - EOI &amp;amp; SECURE DIALOGUE)" style="swimlane;html=1;startSize=30;fillColor=#ede7f6;strokeColor=#7e57c2;fontStyle=1;fontSize=12;fontColor=#4a148c;rounded=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="40" y="620" width="1570" height="200" as="geometry" />
+        </mxCell>
+
+        <!-- Step 1: EOI -->
+        <mxCell id="p3_eoi" value="&lt;b&gt;1. Gửi Lời mời / Bày tỏ Quan tâm (EOI)&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px;&quot;&gt;• Bên khởi xướng gửi EOI kèm tóm tắt mục tiêu&lt;br&gt;• Thông báo an toàn qua Workspace &amp;amp; Email&lt;br&gt;• Trạng thái: &lt;i&gt;EOI_SENT / PENDING_REVIEW&lt;/i&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7e57c2;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="phase3_container">
+          <mxGeometry x="30" y="45" width="340" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- Step 2: Discussion -->
+        <mxCell id="p3_discussion" value="&lt;b&gt;2. Trao đổi &amp;amp; Thống nhất Phạm vi Hợp tác&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px;&quot;&gt;• Kênh thảo luận an toàn trong Role-based Workspace&lt;br&gt;• Trao đổi sơ bộ mục tiêu nghiên cứu &amp;amp; nhu cầu ứng dụng&lt;br&gt;• Trạng thái: &lt;i&gt;IN_DISCUSSION / FEASIBILITY_CHECK&lt;/i&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7e57c2;strokeWidth=1.2;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="phase3_container">
+          <mxGeometry x="420" y="45" width="400" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- Step 3: Decision & Routing -->
+        <mxCell id="p3_decision" value="&lt;b&gt;3. Đồng thuận &amp;amp; Lựa chọn Nhánh Hợp tác&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px;&quot;&gt;• Hai bên xác nhận tham gia hợp tác song phương&lt;br&gt;• Phân loại mục tiêu hợp tác:&lt;br&gt;  &lt;b style=&quot;color:#0288d1;&quot;&gt;[Nhánh A]&lt;/b&gt; Đề tài NC khoa học song phương &amp;amp; Tài trợ&lt;br&gt;  &lt;b style=&quot;color:#ef6c00;&quot;&gt;[Nhánh B]&lt;/b&gt; Chuyển giao công nghệ &amp;amp; Liên minh 2+2&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7e57c2;strokeWidth=1.5;verticalAlign=top;align=center;spacingTop=6;" vertex="1" parent="phase3_container">
+          <mxGeometry x="870" y="45" width="430" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- Step 4: Foundation Facilitation -->
+        <mxCell id="p3_foundation" value="&lt;b&gt;Hỗ trợ Điều phối của Quỹ&lt;/b&gt;&lt;br&gt;• Kết nối ngoại giao/học thuật&lt;br&gt;• Hỗ trợ dịch thuật chuyên môn&lt;br&gt;• Hướng dẫn quy chế Mạng lưới" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#ab47bc;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" vertex="1" parent="phase3_container">
+          <mxGeometry x="1350" y="45" width="190" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- PHASE 4: DUAL COOPERATION TRACKS -->
+        <mxCell id="phase4_container" value="GIAI ĐOẠN 4: HAI NHÁNH TRIỂN KHAI HỢP TÁC CHÍNH (DUAL COOPERATION EXECUTION TRACKS)" style="swimlane;html=1;startSize=30;fillColor=#e8f5e9;strokeColor=#43a047;fontStyle=1;fontSize=12;fontColor=#1b5e20;rounded=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="40" y="850" width="1570" height="420" as="geometry" />
+        </mxCell>
+
+        <!-- TRACK A: JOINT RESEARCH & GRANT (MODULE 3) -->
+        <mxCell id="track_a_box" value="NHÁNH A: HỢP TÁC NGHIÊN CỨU &amp;amp; NỘP HỒ SƠ CẶP (MODULE 3 - JOINT PROPOSAL)" style="swimlane;html=1;startSize=26;fillColor=#ffffff;strokeColor=#0288d1;fontStyle=1;fontSize=11;fontColor=#01579b;rounded=1;" vertex="1" parent="phase4_container">
+          <mxGeometry x="30" y="45" width="730" height="350" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ta_step1" value="&lt;b&gt;A1. Thành lập Nhóm NC Chung VN–RU&lt;/b&gt;&lt;br&gt;• Chỉ định Lead Investigator (VN hoặc RU)&lt;br&gt;• Bổ sung thành viên đối tác đối ứng&lt;br&gt;• Phê duyệt tham gia của Cơ quan chủ quản" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#0288d1;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" vertex="1" parent="track_a_box">
+          <mxGeometry x="20" y="40" width="320" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ta_step2" value="&lt;b&gt;A2. Soạn thảo &amp;amp; Nộp Hồ sơ Cặp (Joint Proposal)&lt;/b&gt;&lt;br&gt;• Đồng biên soạn thuyết minh đề tài VN–RU&lt;br&gt;• Dự toán kinh phí &amp;amp; Thỏa thuận quyền SHTT&lt;br&gt;• Trạng thái: &lt;i&gt;SUBMITTED_PAIRED&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#0288d1;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" vertex="1" parent="track_a_box">
+          <mxGeometry x="380" y="40" width="330" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ta_step3" value="&lt;b&gt;A3. Đánh giá Độc lập &amp;amp; Phản biện Ẩn danh&lt;/b&gt;&lt;br&gt;• Kiểm tra hành chính / Eligibility Screening&lt;br&gt;• Hội đồng chuyên gia 2 nước đánh giá độc lập&lt;br&gt;• Phân công Reviewer theo &lt;i&gt;assignmentId&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0288d1;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" vertex="1" parent="track_a_box">
+          <mxGeometry x="20" y="145" width="690" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ta_step4" value="&lt;b&gt;A4. Quyết định Tài trợ của Quỹ &amp;amp; Giám sát Tiến độ Dự án&lt;/b&gt;&lt;br&gt;• Quỹ phê duyệt tài trợ trong phạm vi nguồn Quỹ quản lý (&lt;i&gt;FUNDING_APPROVED&lt;/i&gt;)&lt;br&gt;• Chuyển đổi thành Dự án theo dõi (Project Workspace: Milestones, Báo cáo định kỳ)&lt;br&gt;• &lt;i style=&quot;color:#c62828;&quot;&gt;*Lưu ý: Nếu dùng ngân sách nhà nước, Quỹ chỉ kết nối; thẩm quyền thuộc cơ quan nhà nước từng nước.&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0288d1;strokeWidth=1.5;fontSize=11;verticalAlign=middle;" vertex="1" parent="track_a_box">
+          <mxGeometry x="20" y="245" width="690" height="85" as="geometry" />
+        </mxCell>
+
+        <!-- TRACK B: TECH TRANSFER & 2+2 CONSORTIUM (MODULE 5) -->
+        <mxCell id="track_b_box" value="NHÁNH B: CHUYỂN GIAO CÔNG NGHỆ &amp;amp; MÔ HÌNH LIÊN MINH 2+2 (MODULE 5 - CONSORTIUM 2+2)" style="swimlane;html=1;startSize=26;fillColor=#ffffff;strokeColor=#ef6c00;fontStyle=1;fontSize=11;fontColor=#e65100;rounded=1;" vertex="1" parent="phase4_container">
+          <mxGeometry x="810" y="45" width="730" height="350" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tb_step1" value="&lt;b&gt;B1. Ghép nối Cấu trúc Liên minh 2+2&lt;/b&gt;&lt;br&gt;• Slot 1: 1 Viện / Trường ĐH Việt Nam&lt;br&gt;• Slot 2: 1 Doanh nghiệp Việt Nam&lt;br&gt;• Slot 3: 1 Viện / Trường ĐH Nga&lt;br&gt;• Slot 4: 1 Doanh nghiệp Nga" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#ef6c00;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" vertex="1" parent="track_b_box">
+          <mxGeometry x="20" y="40" width="320" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tb_step2" value="&lt;b&gt;B2. Kiểm tra Cấu trúc 2+2 (Validation)&lt;/b&gt;&lt;br&gt;&lt;i&gt;VN_Inst &amp;amp; VN_Ent &amp;amp; RU_Inst &amp;amp; RU_Ent&lt;/i&gt;&lt;br&gt;• Trạng thái: &lt;b&gt;STRUCTURALLY_COMPLETE&lt;/b&gt;&lt;br&gt;• Xác nhận cam kết của 4 chủ thể" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#ef6c00;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" vertex="1" parent="track_b_box">
+          <mxGeometry x="380" y="40" width="330" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tb_step3" value="&lt;b&gt;B3. Tư vấn Pháp lý, Sở hữu Trí tuệ (IP) &amp;amp; Ký kết Thỏa thuận&lt;/b&gt;&lt;br&gt;• Thỏa thuận bảo mật thông tin (NDA)&lt;br&gt;• Phân chia quyền sở hữu trí tuệ, cấp phép (Licensing) &amp;amp; R&amp;amp;D thương mại&lt;br&gt;• Hỗ trợ pháp lý chuyển giao công nghệ xuyên biên giới VN–RU" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#ef6c00;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" vertex="1" parent="track_b_box">
+          <mxGeometry x="20" y="145" width="690" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tb_step4" value="&lt;b&gt;B4. Triển khai Chuyển giao, Thử nghiệm &amp;amp; Thương mại hóa&lt;/b&gt;&lt;br&gt;• Triển khai dự án thử nghiệm (Pilot / POC / Prototype)&lt;br&gt;• Doanh nghiệp 2 nước ứng dụng sản xuất &amp;amp; phân phối thị trường&lt;br&gt;• Trạng thái: &lt;b&gt;ACTIVE_TRANSFER / COMMERCIALIZED&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#ef6c00;strokeWidth=1.5;fontSize=11;verticalAlign=middle;" vertex="1" parent="track_b_box">
+          <mxGeometry x="20" y="245" width="690" height="85" as="geometry" />
+        </mxCell>
+
+        <!-- PHASE 5: OUTCOME, FEEDBACK & DASHBOARD -->
+        <mxCell id="phase5_container" value="GIAI ĐOẠN 5: NGHIỆM THU, TÁI TẠO TRI THỨC &amp;amp; BÁO CÁO GIÁM SÁT (KNOWLEDGE LOOP &amp;amp; DASHBOARD)" style="swimlane;html=1;startSize=30;fillColor=#f5f5f5;strokeColor=#757575;fontStyle=1;fontSize=12;fontColor=#424242;rounded=1;arcSize=4;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1300" width="1570" height="150" as="geometry" />
+        </mxCell>
+
+        <!-- Box 1: Knowledge Feedback -->
+        <mxCell id="p5_knowledge_feedback" value="&lt;b&gt;Cập nhật Kho Tri thức (Module 2)&lt;/b&gt;&lt;br&gt;• Công bố bài báo chung VN–RU&lt;br&gt;• Đăng ký Bằng sáng chế mới&lt;br&gt;• Cập nhật thành tích vào CV chuyên gia" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7e57c2;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" vertex="1" parent="phase5_container">
+          <mxGeometry x="30" y="45" width="460" height="85" as="geometry" />
+        </mxCell>
+
+        <!-- Box 2: Academic Spread -->
+        <mxCell id="p5_academic_spread" value="&lt;b&gt;Đào tạo &amp;amp; Trao đổi Học thuật (Module 4)&lt;/b&gt;&lt;br&gt;• Hội thảo khoa học quốc tế VN–RU&lt;br&gt;• Trao đổi chuyên gia, nghiên cứu sinh&lt;br&gt;• Khóa đào tạo chuyển giao tri thức" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0288d1;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" vertex="1" parent="phase5_container">
+          <mxGeometry x="540" y="45" width="490" height="85" as="geometry" />
+        </mxCell>
+
+        <!-- Box 3: Leadership Dashboard -->
+        <mxCell id="p5_dashboard" value="&lt;b&gt;Dashboard Giám sát Điều hành (Module 6)&lt;/b&gt;&lt;br&gt;• Thống kê số lượng dự án hợp tác song phương&lt;br&gt;• Tỷ lệ ghép nối thành công &amp;amp; Giá trị chuyển giao&lt;br&gt;• Báo cáo Ban Điều hành Quỹ Truyền thống &amp;amp; Hữu nghị" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#43a047;strokeWidth=1.2;fontSize=11;verticalAlign=middle;" vertex="1" parent="phase5_container">
+          <mxGeometry x="1080" y="45" width="460" height="85" as="geometry" />
+        </mxCell>
+
+        <!-- LEGEND & PRINCIPLES -->
+        <mxCell id="legend_box" value="&lt;b&gt;CHÚ THÍCH LUỒNG (LEGEND)&lt;/b&gt;&lt;hr&gt;&lt;table style=&quot;font-size: 11px;&quot;&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#e1f5fe; width:20px; border:1px solid #0288d1;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;Chủ thể / Onboarding / Nhánh A (NC Song phương)&lt;/td&gt;&lt;td style=&quot;background-color:#fff3e0; width:20px; border:1px solid #ef6c00;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;Matchmaking Engine / Nhánh B (Liên minh 2+2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;background-color:#ede7f6; width:20px; border:1px solid #7e57c2;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;Giai đoạn Bày tỏ Quan tâm (EOI)&lt;/td&gt;&lt;td style=&quot;background-color:#f5f5f5; width:20px; border:1px solid #757575;&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp;Nghiệm thu, Tri thức &amp;amp; Báo cáo Dashboard&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;color:#0288d1; font-weight:bold;&quot;&gt;---&amp;gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;Luồng dữ liệu / Quyết định hợp tác&lt;/td&gt;&lt;td style=&quot;color:#ef6c00; font-weight:bold;&quot;&gt;---&amp;gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;Luồng chuyển giao công nghệ &amp;amp; thương mại hóa&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b0bec5;align=left;verticalAlign=top;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1480" width="600" height="140" as="geometry" />
+        </mxCell>
+
+        <mxCell id="principles_box" value="&lt;b&gt;NGUYÊN TẮC CỐT LÕI CỦA QUY TRÌNH HỢP TÁC VIỆT - NGA&lt;/b&gt;&lt;hr&gt;&lt;div align=&quot;left&quot; style=&quot;font-size: 11px; line-height: 1.45;&quot;&gt;1. &lt;b&gt;Tính đối ứng bắt buộc:&lt;/b&gt; Mọi cơ chế ghép nối, đề tài tài trợ hoặc liên minh chuyển giao đều phải có sự tham gia của cả 2 phía Việt Nam và Nga.&lt;br&gt;2. &lt;b&gt;Gợi ý dựa trên dữ liệu &amp;amp; AI:&lt;/b&gt; Engine phân tích embedding đa ngôn ngữ và đồ thị tri thức để đưa ra lý do đề xuất minh bạch (Explainable Matching).&lt;br&gt;3. &lt;b&gt;Phân định rõ thẩm quyền tài chính:&lt;/b&gt; Quỹ chỉ phê duyệt nguồn do Quỹ quản lý; đề tài ngân sách nhà nước tuân theo cơ quan có thẩm quyền của từng nước.&lt;br&gt;4. &lt;b&gt;Chuẩn hóa mô hình 2+2:&lt;/b&gt; Bắt buộc đủ 4 thành phần (1 Viện/Trường VN + 1 Doanh nghiệp VN + 1 Viện/Trường Nga + 1 Doanh nghiệp Nga) trước khi kích hoạt chuyển giao.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#90a4ae;align=left;verticalAlign=top;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="660" y="1480" width="950" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- CONNECTING EDGES -->
+
+        <!-- Phase 1 to Gateway -->
+        <mxCell id="edge_p1_vn_gw" value="Onboarding &amp;amp; Agreement" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#0288d1;strokeWidth=1.5;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p1_vn_actors" target="p1_gateway">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_p1_ru_gw" value="Onboarding &amp;amp; Agreement" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#0288d1;strokeWidth=1.5;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p1_ru_actors" target="p1_gateway">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Phase 1 to Phase 2 (Feed data into Matchmaking) -->
+        <mxCell id="edge_p1_p2_feed" value="Feed Verified Profiles, Publications &amp;amp; Demands" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#ef6c00;strokeWidth=1.5;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p1_gateway" target="p2_engine">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Inside Phase 2 Engine Pipeline -->
+        <mxCell id="edge_p2_1" value="Extracted Features" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#ef6c00;strokeWidth=1.5;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p2_feature" target="p2_engine">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_p2_2" value="Ranked Pairs" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#ef6c00;strokeWidth=1.5;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p2_engine" target="p2_output">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Manual search feed -->
+        <mxCell id="edge_p2_3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#ffa000;strokeWidth=1.2;dashed=1;" edge="1" parent="1" source="p2_manual" target="p2_output">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Phase 2 to Phase 3 -->
+        <mxCell id="edge_p2_p3" value="Select Match / Initiate Contact" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#7e57c2;strokeWidth=1.5;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p2_output" target="p3_decision">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Inside Phase 3 Flow -->
+        <mxCell id="edge_p3_1" value="Send EOI" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#7e57c2;strokeWidth=1.5;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p3_eoi" target="p3_discussion">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_p3_2" value="Consensus Reached" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#7e57c2;strokeWidth=1.5;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p3_discussion" target="p3_decision">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_p3_support" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#ab47bc;strokeWidth=1.2;dashed=1;" edge="1" parent="1" source="p3_foundation" target="p3_decision">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Phase 3 Branching to Track A & Track B -->
+        <mxCell id="edge_p3_to_track_a" value="Research &amp;amp; Grant Track" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#0288d1;strokeWidth=1.8;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p3_decision" target="track_a_box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_p3_to_track_b" value="Tech Transfer &amp;amp; 2+2 Track" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#ef6c00;strokeWidth=1.8;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p3_decision" target="track_b_box">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Inside Track A Flow -->
+        <mxCell id="edge_ta_1_2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#0288d1;strokeWidth=1.5;" edge="1" parent="track_a_box" source="ta_step1" target="ta_step2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_ta_2_3" value="Submit Joint Proposal" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#0288d1;strokeWidth=1.5;labelBackgroundColor=#ffffff;" edge="1" parent="track_a_box" source="ta_step2" target="ta_step3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_ta_3_4" value="Independent Review Approved" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#0288d1;strokeWidth=1.5;labelBackgroundColor=#ffffff;" edge="1" parent="track_a_box" source="ta_step3" target="ta_step4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Inside Track B Flow -->
+        <mxCell id="edge_tb_1_2" value="Validate 4 Slots" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#ef6c00;strokeWidth=1.5;labelBackgroundColor=#ffffff;" edge="1" parent="track_b_box" source="tb_step1" target="tb_step2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_tb_2_3" value="Consortium Complete" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#ef6c00;strokeWidth=1.5;labelBackgroundColor=#ffffff;" edge="1" parent="track_b_box" source="tb_step2" target="tb_step3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_tb_3_4" value="IP / Legal Agreement Signed" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#ef6c00;strokeWidth=1.5;labelBackgroundColor=#ffffff;" edge="1" parent="track_b_box" source="tb_step3" target="tb_step4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Phase 4 to Phase 5 Outputs -->
+        <mxCell id="edge_p4_to_knowledge" value="Publish Papers &amp;amp; Patents" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#7e57c2;strokeWidth=1.5;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="track_a_box" target="p5_knowledge_feedback">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_p4_to_transfer" value="Tech Transfer Outcome" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#ef6c00;strokeWidth=1.5;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="track_b_box" target="p5_academic_spread">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_p5_to_dash" value="Sync Bilateral Cooperation KPI Facts" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#43a047;strokeWidth=1.5;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="p5_academic_spread" target="p5_dashboard">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

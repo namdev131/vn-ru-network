@@ -1,1425 +1,395 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VN–RU PORTAL · Quản trị Định danh, Phân quyền & Kiểm toán (Module 1)</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="index.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VN–RU Portal · Quản lý phân quyền</title>
+  <style>
+:root{
+  --bg:#f5f7fb;--surface:#fff;--surface-2:#f8fafc;--text:#152033;--muted:#667085;--line:#e5eaf0;
+  --primary:#2457d6;--primary-50:#eef3ff;--primary-100:#dce6ff;--success:#14804a;--success-bg:#eaf8f0;
+  --danger:#c7362f;--danger-bg:#fff0ef;--warning:#9a6400;--warning-bg:#fff6dc;--purple:#7357c8;
+  --sidebar:#10203b;--sidebar-muted:#9cadc6;--radius:14px;--shadow:0 8px 28px rgba(16,32,59,.07);
+}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);background:var(--bg)}button,input,select{font:inherit}button{cursor:pointer}
+.app-shell{min-height:100vh}.sidebar{position:fixed;inset:0 auto 0 0;width:246px;background:var(--sidebar);color:#fff;display:flex;flex-direction:column;padding:22px 14px;z-index:20}.brand{display:flex;gap:11px;align-items:center;padding:0 10px 22px}.brand-mark{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:#fff;color:var(--sidebar);font-weight:800;letter-spacing:-.5px}.brand strong,.brand span{display:block}.brand strong{font-size:14px}.brand span{font-size:11px;color:var(--sidebar-muted);margin-top:3px}.sidebar-nav{display:flex;flex-direction:column;gap:5px}.nav-item{border:0;background:transparent;color:#c4d0e2;text-align:left;padding:11px 12px;border-radius:10px;display:flex;gap:11px;align-items:center;transition:.18s}.nav-item:hover{background:rgba(255,255,255,.06);color:#fff}.nav-item.active{background:#24456f;color:#fff;font-weight:600}.nav-icon{width:20px;text-align:center;font-size:16px}.sidebar-footer{margin-top:auto;border-top:1px solid rgba(255,255,255,.1);padding:16px 8px 0}.security-status{display:flex;align-items:center;gap:10px}.status-dot{width:9px;height:9px;border-radius:50%;background:#45d483;box-shadow:0 0 0 4px rgba(69,212,131,.11)}.security-status b,.security-status small{display:block}.security-status b{font-size:12px}.security-status small{color:var(--sidebar-muted);margin-top:2px}
+.main-content{margin-left:246px;padding:24px 28px 40px;min-width:0}.topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:22px}.breadcrumb{font-size:12px;color:#8a94a6;margin-bottom:8px}.breadcrumb span{color:#4c5b70}.topbar h1{margin:0;font-size:27px;letter-spacing:-.7px}.topbar p{margin:7px 0 0;color:var(--muted);font-size:13px}.topbar-actions{display:flex;align-items:center;gap:12px}.context-pill{border:1px solid var(--line);background:var(--surface);border-radius:11px;padding:8px 11px}.context-pill span,.context-pill b{display:block}.context-pill span{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.7px}.context-pill b{font-size:11px;margin-top:3px}.avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#dfe7f5;color:#2e4261;font-size:12px;font-weight:800}
+.view-panel{display:none}.view-panel.active{display:block}.panel-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.card-header{padding:18px 20px;border-bottom:1px solid var(--line)}.card-header.compact{padding-bottom:14px}.card-header h2,.pane-toolbar h3{margin:0;font-size:15px}.card-header p,.pane-toolbar p{margin:5px 0 0;color:var(--muted);font-size:12px}.row-between,.pane-toolbar{display:flex;justify-content:space-between;align-items:center;gap:15px}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:14px}.stat-card{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:17px 18px;box-shadow:var(--shadow)}.stat-top{display:flex;justify-content:space-between;align-items:center}.stat-icon{width:35px;height:35px;border-radius:10px;display:grid;place-items:center;background:var(--primary-50);color:var(--primary)}.stat-card b{font-size:24px;display:block;margin-top:10px}.stat-card span{font-size:11px;color:var(--muted)}.two-col{display:grid;grid-template-columns:1.3fr .7fr;gap:14px}.auth-flow{display:flex;align-items:center;justify-content:space-between;padding:26px 20px;gap:9px}.auth-flow>i{font-style:normal;color:#aab4c4}.flow-node{min-width:102px;border:1px solid var(--line);border-radius:11px;padding:12px;text-align:center;background:var(--surface-2)}.flow-node b{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;margin:0 auto 7px;background:var(--primary-100);color:var(--primary);font-size:11px}.flow-node span,.flow-node small{display:block}.flow-node span{font-size:12px;font-weight:700}.flow-node small{font-size:9px;color:var(--muted);margin-top:4px;line-height:1.35}.flow-node.success b{background:var(--success-bg);color:var(--success)}.code-pattern{margin:24px 20px 15px;background:#101a2c;color:#e7efff;border-radius:10px;padding:15px;text-align:center;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}.code-pattern span{color:#8fb2ff}.code-pattern i{font-style:normal;color:#687894}.chip-row{display:flex;flex-wrap:wrap;gap:7px;padding:0 20px 22px}.chip{background:var(--surface-2);border:1px solid var(--line);border-radius:999px;padding:6px 9px;font-size:10px;color:#42526a}
+.workspace-grid{display:grid;grid-template-columns:300px minmax(0,1fr);gap:14px;min-height:680px}.role-list-panel{overflow:hidden}.search-wrap{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;border-radius:9px;padding:0 10px}.role-list-panel>.search-wrap{margin:13px}.search-wrap span{color:#98a2b3}.search-wrap input{width:100%;border:0;outline:0;padding:9px 0;background:transparent;font-size:12px;color:var(--text)}.role-list{padding:0 9px 12px}.role-item{width:100%;border:1px solid transparent;background:transparent;border-radius:10px;padding:11px 10px;display:flex;align-items:center;gap:10px;text-align:left;margin-bottom:3px}.role-item:hover{background:var(--surface-2)}.role-item.active{background:var(--primary-50);border-color:var(--primary-100)}.role-icon{width:34px;height:34px;border-radius:9px;background:#eef2f7;display:grid;place-items:center;flex:0 0 auto}.role-item.active .role-icon{background:#dbe6ff}.role-meta{min-width:0}.role-meta strong,.role-meta span{display:block}.role-meta strong{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.role-meta span{font-size:9px;color:var(--muted);margin-top:3px}.role-detail-panel{overflow:hidden}.role-detail-head{padding:20px;display:flex;justify-content:space-between;gap:16px;align-items:flex-start}.role-title-wrap{display:flex;gap:13px}.role-big-icon{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:var(--primary-50);font-size:20px}.eyebrow{font-size:9px;color:var(--primary);font-weight:800;letter-spacing:.8px;text-transform:uppercase;margin-bottom:5px}.role-detail-head h2{margin:0;font-size:18px}.role-detail-head p{margin:5px 0 0;color:var(--muted);font-size:11px;max-width:620px}.head-badges{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.badge{display:inline-flex;align-items:center;border-radius:999px;padding:5px 8px;background:#eef2f7;color:#516078;font-size:9px;font-weight:700;white-space:nowrap}.status-active{background:var(--success-bg);color:var(--success)}.status-revoked{background:var(--danger-bg);color:var(--danger)}.detail-tabs{display:flex;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:0 20px}.detail-tab{border:0;background:transparent;padding:11px 13px;font-size:11px;color:var(--muted);border-bottom:2px solid transparent}.detail-tab.active{color:var(--primary);border-bottom-color:var(--primary);font-weight:700}.detail-pane{display:none}.detail-pane.active{display:block}.permission-toolbar,.filter-row{display:flex;gap:10px;align-items:center;padding:13px 20px;border-bottom:1px solid var(--line)}.permission-toolbar select,.filter-row select{border:1px solid var(--line);border-radius:9px;background:white;padding:9px 10px;font-size:11px;color:#455268;outline:none}.permission-toolbar select:focus,.filter-row select:focus{border-color:#9bb5f4;box-shadow:0 0 0 3px rgba(36,87,214,.08)}.flex-1{flex:1}.btn{border:1px solid var(--line);border-radius:9px;padding:9px 12px;font-size:11px;font-weight:700;background:#fff;color:#344054}.btn.primary{background:var(--primary);border-color:var(--primary);color:#fff}.btn.ghost{background:#fff}.permission-summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 20px;background:#fbfcfe;border-bottom:1px solid var(--line)}.permission-summary-main{display:flex;align-items:center;gap:9px;min-width:0}.permission-summary-badge{display:grid;place-items:center;min-width:34px;height:26px;padding:0 8px;border-radius:8px;background:var(--primary-50);color:var(--primary);font-size:10px;font-weight:800}.permission-summary strong{font-size:11px}.permission-summary small{display:block;color:var(--muted);font-size:9px;margin-top:2px}.permission-summary-note{font-size:9px;color:var(--muted);white-space:nowrap}.permission-groups{padding:12px 20px 22px;max-height:560px;overflow:auto}.permission-group{border:1px solid var(--line);border-radius:12px;margin-bottom:9px;overflow:hidden;background:#fff;transition:border-color .16s,box-shadow .16s}.permission-group[open]{border-color:#ccd8ef;box-shadow:0 5px 18px rgba(16,32,59,.045)}.permission-group-head{list-style:none;display:grid;grid-template-columns:34px minmax(0,1fr) auto 18px;align-items:center;gap:10px;padding:11px 12px;background:#fff;cursor:pointer;user-select:none}.permission-group-head::-webkit-details-marker{display:none}.permission-group-head:hover{background:#fafcff}.permission-domain-icon{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;background:#f1f4f8;color:#526176;font-size:10px;font-weight:800}.permission-group[open] .permission-domain-icon{background:var(--primary-50);color:var(--primary)}.permission-group-title{min-width:0}.permission-group-title strong{display:block;font-size:11px;letter-spacing:.2px}.permission-group-title small{display:block;margin-top:2px;font-size:9px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.permission-count{font-size:9px;color:#5f6f84;background:#f5f7fa;border:1px solid #e8ecf1;border-radius:999px;padding:5px 8px;white-space:nowrap}.permission-group[open] .permission-count{background:var(--primary-50);border-color:var(--primary-100);color:var(--primary)}.permission-chevron{font-size:12px;color:#8c98aa;transition:transform .16s}.permission-group[open] .permission-chevron{transform:rotate(180deg)}.permission-group-body{border-top:1px solid var(--line)}.permission-group-actions{display:flex;justify-content:flex-end;gap:8px;padding:8px 11px;background:#fafbfd;border-bottom:1px solid #edf0f4}.permission-mini-btn{border:0;background:transparent;color:var(--primary);font-size:9px;font-weight:700;padding:4px 6px;border-radius:6px}.permission-mini-btn:hover{background:var(--primary-50)}.permission-row{display:grid;grid-template-columns:34px minmax(0,1fr) 180px;align-items:center;gap:10px;padding:10px 11px;border-bottom:1px solid #eef1f5;transition:background .14s}.permission-row:last-child{border-bottom:0}.permission-row:hover{background:#fbfcfe}.permission-row.is-enabled{background:#fcfdff}.perm-check{display:flex;justify-content:center}.perm-check input{appearance:none;width:17px;height:17px;border:1.5px solid #b8c3d2;border-radius:5px;position:relative;background:#fff}.perm-check input:checked{background:var(--primary);border-color:var(--primary)}.perm-check input:checked:after{content:"✓";position:absolute;color:white;font-size:11px;left:3px;top:-1px}.perm-code{font-size:11px;font-weight:700;color:#253755;line-height:1.45;overflow-wrap:anywhere}.perm-desc{font-size:10px;color:var(--muted);line-height:1.45}.pane-toolbar{padding:17px 20px}.table-wrap{overflow:auto}.table-wrap table{width:100%;border-collapse:collapse;min-width:760px}th,td{text-align:left;padding:11px 14px;border-bottom:1px solid #edf0f4;font-size:10px;vertical-align:middle}th{background:#fafbfd;color:#667085;font-size:9px;text-transform:uppercase;letter-spacing:.35px;white-space:nowrap}td strong,td small{display:block}td strong{font-size:10px}td small{color:var(--muted);margin-top:2px}.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:20px}.info-box{border:1px solid var(--line);border-radius:10px;padding:13px}.info-box span,.info-box b{display:block}.info-box span{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}.info-box b{font-size:11px;margin-top:5px}.text-danger{color:var(--danger)}.action-link{border:0;background:transparent;color:var(--danger);font-size:10px;font-weight:700;padding:4px}
+
+.modal-backdrop{position:fixed;inset:0;background:rgba(11,19,33,.48);display:none;place-items:center;padding:20px;z-index:50}.modal-backdrop.open{display:grid}.modal{width:min(590px,100%);background:#fff;border-radius:15px;box-shadow:0 28px 80px rgba(0,0,0,.2);overflow:hidden}.modal-header{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-start}.modal-header h2{margin:0;font-size:17px}.icon-btn{border:0;background:#f3f5f8;border-radius:8px;width:30px;height:30px;font-size:19px;color:#58667b}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:18px 20px 8px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}.field span{font-size:10px;font-weight:700;color:#445066}.field input,.field select{border:1px solid var(--line);border-radius:9px;padding:9px 10px;outline:none;background:#fff;font-size:11px}.modal-actions{display:flex;justify-content:flex-end;gap:8px;padding:16px 20px 20px}.toast{position:fixed;right:22px;bottom:22px;background:#10203b;color:#fff;border-radius:10px;padding:11px 14px;font-size:11px;box-shadow:0 10px 35px rgba(0,0,0,.18);transform:translateY(20px);opacity:0;pointer-events:none;transition:.2s;z-index:80}.toast.show{transform:translateY(0);opacity:1}
+@media(max-width:1100px){.sidebar{width:205px}.main-content{margin-left:205px}.workspace-grid{grid-template-columns:260px minmax(0,1fr)}.stats-grid{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}.permission-row{grid-template-columns:30px minmax(0,1fr) 140px}.perm-desc{grid-column:auto}.permission-group-head{grid-template-columns:32px minmax(0,1fr) auto 16px}.auth-flow{overflow:auto;justify-content:flex-start}}
+@media(max-width:780px){.sidebar{position:static;width:100%;height:auto}.sidebar-nav{display:grid;grid-template-columns:repeat(2,1fr)}.sidebar-footer{display:none}.main-content{margin-left:0;padding:18px}.topbar{flex-direction:column}.workspace-grid{grid-template-columns:1fr}.stats-grid{grid-template-columns:1fr}.role-list-panel{max-height:330px}.role-detail-head{flex-direction:column}.head-badges{justify-content:flex-start}.permission-toolbar,.filter-row{flex-wrap:wrap}.permission-toolbar .search-wrap,.filter-row .search-wrap{flex-basis:100%}.permission-summary{align-items:flex-start}.permission-summary-note{display:none}.permission-group-head{grid-template-columns:30px minmax(0,1fr) 16px}.permission-count{display:none}.permission-row{grid-template-columns:30px minmax(0,1fr)}.perm-desc{grid-column:2}.permission-group-actions{justify-content:flex-start}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.info-grid{grid-template-columns:1fr}}
+
+</style>
 </head>
 <body>
-  <!-- TOP NAVIGATION BAR -->
-  <header class="navbar" id="mainNavbar">
-    <div class="nav-container">
-      <div class="nav-brand" id="navBrand" onclick="switchMainTab('public')">
-        <div class="brand-badge">VN–RU</div>
-        <div class="brand-text">
-          <span class="brand-title">PORTAL KHOA HỌC & CÔNG NGHỆ</span>
-          <span class="brand-sub">Quỹ Truyền thống và Hữu nghị · Hợp tác Việt – Nga</span>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">VR</div>
+        <div>
+          <strong>VN–RU Portal</strong>
+          <span>Định danh & Phân quyền</span>
         </div>
       </div>
 
-      <nav class="nav-menu">
-        <button class="nav-item active" id="tabNavPublic" onclick="switchMainTab('public')">
-          🌐 Trang chủ & Khám phá
-        </button>
-        <button class="nav-item" id="tabNavWorkspace" onclick="switchMainTab('workspace')">
-          💼 Không gian làm việc
-          <span class="badge-pill">Thành viên</span>
-        </button>
-        <button class="nav-item" id="tabNavRbac" onclick="switchMainTab('rbac')">
-          🛡️ Phân quyền & RBAC
-          <span class="badge-pill rbac">Permissions</span>
-        </button>
-        <button class="nav-item" id="tabNavAdmin" onclick="switchMainTab('admin')">
-          🏛️ Quản trị Hệ thống
-          <span class="badge-pill admin">Admin Quỹ</span>
-        </button>
-        <a href="../RBAC/rbac.html" class="nav-item" style="text-decoration: none; color: #6366f1; font-weight: 700; border: 1px dashed #6366f1; border-radius: 9999px; padding: 0.35rem 0.85rem; margin-left: 0.5rem;" title="Mở Trình Quản trị & Mô phỏng PEP/PDP Toàn màn hình">
-          ⚡ RBAC Center (Mở riêng) ↗
-        </a>
+      <nav class="sidebar-nav" aria-label="Điều hướng quản trị">
+        <button class="nav-item" data-view="overview"><span class="nav-icon">⌂</span><span>Tổng quan</span></button>
+        <button class="nav-item active" data-view="roles"><span class="nav-icon">◈</span><span>Vai trò & Quyền hạn</span></button>
+        <button class="nav-item" data-view="assignments"><span class="nav-icon">◎</span><span>Gán vai trò</span></button>
+        <button class="nav-item" data-view="audit"><span class="nav-icon">≡</span><span>Nhật ký kiểm toán</span></button>
       </nav>
 
-      <div class="nav-actions">
-        <!-- Language Switcher -->
-        <div class="lang-switch">
-          <button class="lang-btn active">🇻🇳 VIE</button>
-          <button class="lang-btn">🇷🇺 RUS</button>
-        </div>
-
-        <!-- Notification Bell -->
-        <button class="icon-btn" title="Thông báo" onclick="showNotification('Hệ thống IAM: Redis Cache hoạt động tối ưu (< 1.2ms)')">
-          🔔 <span class="notif-dot"></span>
-        </button>
-
-        <!-- User Context Switcher Widget -->
-        <div class="user-context-wrapper" id="userContextWrapper">
-          <button class="user-pill-btn" id="userPillBtn" onclick="toggleContextDropdown()">
-            <div class="user-avatar">NA</div>
-            <div class="user-info">
-              <span class="user-name">TS. Nguyễn Văn A</span>
-              <span class="user-context-tag" id="activeContextLabel">
-                <span class="ctx-indicator"></span>
-                <span id="activeContextText">Nhà nghiên cứu (VAST)</span>
-                <span class="dropdown-arrow">▾</span>
-              </span>
-            </div>
-          </button>
-
-          <!-- Dropdown Context Menu (OPEN-02 Multi-Context Switcher) -->
-          <div class="context-dropdown" id="contextDropdown">
-            <div class="ctx-drop-header">
-              <strong>🔄 CHUYỂN ĐỔI NGỮ CẢNH LÀM VIỆC</strong>
-              <small>Hệ thống tự động nạp phân quyền & phạm vi tương ứng</small>
-            </div>
-            <div class="ctx-list">
-              <div class="ctx-card active" id="ctxCard1" onclick="selectContext('researcher')">
-                <div class="ctx-card-top">
-                  <span class="ctx-badge blue">Ngữ cảnh 1: Đang chọn</span>
-                  <span class="ctx-check">✓</span>
-                </div>
-                <div class="ctx-card-title">Nhà khoa học / Tác giả đề xuất</div>
-                <div class="ctx-card-meta">
-                  <span>🏛️ Viện Công nghệ Sinh học — VAST</span>
-                  <span class="scope-text">Quyền: Nộp đề tài, Quản lý dự án cá nhân</span>
-                </div>
-              </div>
-
-              <div class="ctx-card" id="ctxCard2" onclick="selectContext('reviewer')">
-                <div class="ctx-card-top">
-                  <span class="ctx-badge orange">Ngữ cảnh 2</span>
-                  <span class="ctx-check"></span>
-                </div>
-                <div class="ctx-card-title">Chuyên gia Phản biện (Reviewer)</div>
-                <div class="ctx-card-meta">
-                  <span>⚖️ Hội đồng Độc lập Quỹ TT&HN</span>
-                  <span class="scope-text">Phạm vi: Chỉ 02 hồ sơ phân công (#R100, #R104)</span>
-                </div>
-              </div>
-
-              <div class="ctx-card" id="ctxCard3" onclick="selectContext('partner_rep')">
-                <div class="ctx-card-top">
-                  <span class="ctx-badge purple">Ngữ cảnh 3</span>
-                  <span class="ctx-check"></span>
-                </div>
-                <div class="ctx-card-title">Đại diện Tổ chức Đối tác (Liaison)</div>
-                <div class="ctx-card-meta">
-                  <span>🏢 Ban Hợp tác Quốc tế — VAST</span>
-                  <span class="scope-text">Quyền: Xác thực hội viên, Báo cáo đơn vị</span>
-                </div>
-              </div>
-            </div>
-            <div class="ctx-drop-footer">
-              <button class="ctx-btn-request" onclick="showNotification('Yêu cầu cấp thêm quyền đã được gửi tới Ban Thư ký Quỹ!')">
-                + Yêu cầu cấp thêm Ngữ cảnh / Đơn vị
-              </button>
-            </div>
-          </div>
+      <div class="sidebar-footer">
+        <div class="security-status">
+          <span class="status-dot"></span>
+          <div><b>Kiểm soát truy cập</b><small>Đang hoạt động</small></div>
         </div>
       </div>
-    </div>
-  </header>
+    </aside>
 
-  <!-- MAIN APPLICATION CONTENT -->
-  <main class="app-body">
-
-    <!-- ============================================================= -->
-    <!-- TAB 1: PUBLIC & LOGIN/2FA INTERACTION                          -->
-    <!-- ============================================================= -->
-    <section class="tab-pane active" id="panePublic">
-      <div class="hero-banner">
-        <div class="hero-content">
-          <div class="hero-badge">CỔNG MỘT CỬA · QUỸ TRUYỀN THỐNG VÀ HỮU NGHỊ</div>
-          <h1>Mạng lưới Khoa học & Công nghệ Việt Nam – Liên bang Nga</h1>
-          <p>
-            Không gian kết nối nhà khoa học, thẩm định đề tài tài trợ độc lập, chuyển giao công nghệ
-            và chia sẻ tri thức song phương trên nền tảng quản trị định danh và bảo mật đa tầng.
-          </p>
-          <div class="hero-stats">
-            <div class="stat-box">
-              <span class="stat-num">500+</span>
-              <span class="stat-lbl">Chuyên gia Việt – Nga</span>
-            </div>
-            <div class="stat-box">
-              <span class="stat-num">120+</span>
-              <span class="stat-lbl">Đề tài nghiên cứu song phương</span>
-            </div>
-            <div class="stat-box">
-              <span class="stat-num">&lt; 2ms</span>
-              <span class="stat-lbl">Tốc độ phân quyền Redis</span>
-            </div>
-            <div class="stat-box">
-              <span class="stat-num">100%</span>
-              <span class="stat-lbl">Audit Trail bất biến</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- LOGIN & 2FA MOCKUP CARD -->
-        <div class="login-wrapper">
-          <div class="login-card" id="loginCard">
-            <div class="login-card-header">
-              <h3>ĐĂNG NHẬP HỆ THỐNG</h3>
-              <p>Dùng cho tất cả phân hệ và không gian làm việc</p>
-            </div>
-
-            <form onsubmit="handleLoginSubmit(event)">
-              <div class="form-group">
-                <label>Email / Tên tài khoản / Mã ORCID:</label>
-                <div class="input-with-icon">
-                  <span class="input-icon">👤</span>
-                  <input type="text" id="loginUsername" value="nguyen.vana@vast.vn" placeholder="vd: yourname@vast.vn hoặc ORCID" required>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <div class="label-row">
-                  <label>Mật khẩu:</label>
-                  <a href="javascript:void(0)" class="link-small" onclick="showNotification('Vui lòng liên hệ quản trị viên qua email support@vn-ru.org để reset mật khẩu.')">Quên mật khẩu?</a>
-                </div>
-                <div class="input-with-icon">
-                  <span class="input-icon">🔒</span>
-                  <input type="password" id="loginPassword" value="VN-RU-Secure-Pass-2026!" placeholder="••••••••••••" required>
-                  <button type="button" class="btn-toggle-pwd" onclick="togglePasswordVisibility()">👁️</button>
-                </div>
-              </div>
-
-              <div class="form-check-row">
-                <label class="custom-checkbox">
-                  <input type="checkbox" checked>
-                  <span class="checkmark"></span>
-                  Ghi nhớ phiên đăng nhập (30 ngày)
-                </label>
-              </div>
-
-              <button type="submit" class="btn-primary-block" id="btnLogin">
-                ĐĂNG NHẬP VÀO PORTAL →
-              </button>
-            </form>
-
-            <div class="divider-text">
-              <span>HOẶC ĐĂNG NHẬP BẰNG SSO / IdP LIÊN HỢP</span>
-            </div>
-
-            <div class="sso-grid">
-              <button class="sso-btn" onclick="simulateSso('VNeID Dịch vụ công Quốc gia')">
-                <span class="sso-icon">🇻🇳</span>
-                <span>VNeID / Dịch vụ công</span>
-              </button>
-              <button class="sso-btn" onclick="simulateSso('Viện Hàn lâm VAST SSO')">
-                <span class="sso-icon">🏛️</span>
-                <span>VAST IdP (Việt Nam)</span>
-              </button>
-              <button class="sso-btn" onclick="simulateSso('Viện Hàn lâm Nga RAS SSO')">
-                <span class="sso-icon">🇷🇺</span>
-                <span>RAS SSO (Nga)</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================= -->
-    <!-- TAB 2: ROLE-BASED WORKSPACE & PERSONAL SECURITY SETTINGS       -->
-    <!-- ============================================================= -->
-    <section class="tab-pane" id="paneWorkspace">
-      <div class="workspace-layout">
-        <!-- Sidebar Navigation -->
-        <aside class="ws-sidebar">
-          <div class="user-brief">
-            <div class="brief-avatar">NA</div>
-            <div class="brief-info">
-              <h4>TS. Nguyễn Văn A</h4>
-              <p class="role-tag" id="wsRoleTag">Nhà nghiên cứu</p>
-              <p class="org-tag">Viện Công nghệ Sinh học (VAST)</p>
-            </div>
-          </div>
-
-          <nav class="ws-menu">
-            <div class="ws-menu-group">DANH MỤC LÀM VIỆC</div>
-            <button class="ws-item" onclick="showWsSection('overview')">
-              📊 Tổng quan không gian
-            </button>
-            <button class="ws-item" onclick="showWsSection('proposals')">
-              📝 Hồ sơ đề tài của tôi <span class="counter">3</span>
-            </button>
-            <button class="ws-item" onclick="showWsSection('reviews')">
-              ⚖️ Phản biện phân công <span class="counter alert" id="wsReviewCount">2</span>
-            </button>
-            <button class="ws-item" onclick="showWsSection('projects')">
-              🚀 Dự án hợp tác song phương
-            </button>
-
-            <div class="ws-menu-group">BẢO MẬT & TÀI KHOẢN (MODULE 1)</div>
-            <button class="ws-item active" onclick="showWsSection('security')">
-              🛡️ Cài đặt Bảo mật & 2FA
-            </button>
-            <button class="ws-item" onclick="showWsSection('sessions')">
-              📱 Quản lý Phiên thiết bị
-            </button>
-            <button class="ws-item" onclick="showWsSection('affiliation')">
-              🏢 Thỏa thuận & Đơn vị chủ quản
-            </button>
-          </nav>
-
-          <div class="sidebar-footer-box">
-            <small>Trạng thái bảo mật:</small>
-            <div class="sec-score"><span class="score-pill high">An toàn cao (2FA Đã bật)</span></div>
-          </div>
-        </aside>
-
-        <!-- Main Workspace Body -->
-        <main class="ws-content">
-          <!-- Active Context Banner -->
-          <div class="context-banner" id="activeContextBanner">
-            <div class="ctx-banner-icon">💡</div>
-            <div class="ctx-banner-text">
-              <strong id="bannerContextTitle">Đang ở Ngữ cảnh: Nhà nghiên cứu / Tác giả đề tài (VAST)</strong>
-              <p id="bannerContextDesc">
-                Bạn có toàn quyền soạn thảo đề tài tài trợ độc lập, bổ sung báo cáo tiến độ và tra cứu chuyên gia.
-                Để chấm phản biện đề tài được phân công, vui lòng dùng <b>Context Switcher</b> ở góc trên bên phải để chuyển sang vai trò <b>Reviewer</b>.
-              </p>
-            </div>
-            <button class="btn-outline-white" onclick="toggleContextDropdown()">Đổi ngữ cảnh ▾</button>
-          </div>
-
-          <!-- Section: Security & Personal Settings -->
-          <div class="content-card">
-            <div class="card-header-bar">
-              <div>
-                <h2>CÀI ĐẶT BẢO MẬT & PHIÊN LÀM VIỆC (ROUTE: /security)</h2>
-                <p>Quản trị xác thực 2 yếu tố, giám sát các thiết bị đang đăng nhập và tư cách hội viên</p>
-              </div>
-              <div class="badge-status-green">● IAM Gateway: Protected</div>
-            </div>
-
-            <div class="settings-grid">
-              <!-- 2FA Box -->
-              <div class="setting-item-box">
-                <div class="setting-item-header">
-                  <div>
-                    <h4>1. Xác thực 2 bước (Two-Factor Authentication - 2FA / TOTP)</h4>
-                    <p>Bắt buộc đối với vai trò Chuyên gia phản biện (Reviewer) và Quản trị viên để bảo vệ dữ liệu hồ sơ.</p>
-                  </div>
-                  <span class="status-pill active" id="pill2fa">ĐÃ KÍCH HOẠT</span>
-                </div>
-                <div class="setting-item-body">
-                  <div class="info-row">
-                    <span>📱 Ứng dụng liên kết:</span>
-                    <strong>Google Authenticator (iPhone 15 Pro)</strong>
-                  </div>
-                  <div class="info-row">
-                    <span>🔑 Mã khôi phục dự phòng:</span>
-                    <strong>8 mã còn khả dụng</strong>
-                  </div>
-                  <div class="action-row">
-                    <button class="btn-secondary" onclick="open2faModal(true)">Cấu hình lại 2FA</button>
-                    <button class="btn-outline" onclick="showNotification('Đã tải danh sách 8 mã dự phòng bảo mật về máy!')">Tải mã dự phòng</button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Multi-Device Sessions Box -->
-              <div class="setting-item-box">
-                <div class="setting-item-header">
-                  <div>
-                    <h4>2. Quản lý Phiên đăng nhập Đa thiết bị (Active Sessions)</h4>
-                    <p>Danh sách các thiết bị đang duy trì phiên làm việc được cấp phát Token bởi IAM Service</p>
-                  </div>
-                  <button class="btn-danger-sm" onclick="revokeOtherSessions()">⚠️ Thu hồi tất cả phiên khác</button>
-                </div>
-
-                <div class="session-list" id="sessionList">
-                  <div class="session-card current">
-                    <div class="session-icon">🖥️</div>
-                    <div class="session-info">
-                      <div class="session-name">Windows 11 · Chrome 128 <span class="current-badge">Phiên hiện tại</span></div>
-                      <div class="session-meta">IP: 113.190.42.18 (Hà Nội, Việt Nam) • Hoạt động: Vừa xong</div>
-                    </div>
-                    <span class="session-status">Đang kết nối</span>
-                  </div>
-
-                  <div class="session-card" id="sessCardMobile">
-                    <div class="session-icon">📱</div>
-                    <div class="session-info">
-                      <div class="session-name">iPhone 15 Pro · Safari Mobile 17</div>
-                      <div class="session-meta">IP: 85.140.2.90 (Moscow, LB Nga) • Hoạt động: 3 giờ trước</div>
-                    </div>
-                    <button class="btn-revoke" onclick="revokeSingleSession('sessCardMobile', 'iPhone 15 Pro')">Đăng xuất</button>
-                  </div>
-
-                  <div class="session-card" id="sessCardMac">
-                    <div class="session-icon">💻</div>
-                    <div class="session-info">
-                      <div class="session-name">MacBook Pro · Firefox 129</div>
-                      <div class="session-meta">IP: 113.190.42.18 (Hà Nội, Việt Nam) • Hoạt động: 2 ngày trước</div>
-                    </div>
-                    <button class="btn-revoke" onclick="revokeSingleSession('sessCardMac', 'MacBook Pro')">Đăng xuất</button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Affiliation & Legal Agreement Box -->
-              <div class="setting-item-box">
-                <div class="setting-item-header">
-                  <div>
-                    <h4>3. Tư cách Hội viên & Tổ chức Đối tác (Affiliation Verification)</h4>
-                    <p>Trạng thái pháp lý và quan hệ với Quỹ Truyền thống và Hữu nghị</p>
-                  </div>
-                  <span class="status-pill active">ĐÃ XÁC THỰC</span>
-                </div>
-                <div class="affiliation-content">
-                  <div class="affil-grid">
-                    <div>
-                      <small>Cơ quan chủ quản:</small>
-                      <p><strong>Viện Công nghệ Sinh học — Viện Hàn lâm KH&CN VN (VAST)</strong></p>
-                    </div>
-                    <div>
-                      <small>Thỏa thuận hợp tác song phương Quỹ:</small>
-                      <p><strong>Hợp đồng đối tác số VN-RU/2026/VAST-01</strong></p>
-                    </div>
-                    <div>
-                      <small>Đại diện cơ quan phê duyệt:</small>
-                      <p><strong>PGS. TS. Trần Văn B (Ban Hợp tác Quốc tế)</strong></p>
-                    </div>
-                    <div>
-                      <small>Cơ chế xác nhận:</small>
-                      <p><span class="badge-pill">Affiliation Consent Verified</span></p>
-                    </div>
-                  </div>
-                  <div class="note-box">
-                    ℹ️ <i>Lưu ý kiến trúc: IAM chỉ tiêu thụ trạng thái xác nhận từ domain Onboarding/Organization để cấp Access Context, không sở hữu hay tự quyết định Thỏa thuận hợp tác.</i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </main>
-      </div>
-    </section>
-
-    <!-- ============================================================= -->
-    <!-- TAB 3: GOVERNANCE & ADMINISTRATION CONSOLE                     -->
-    <!-- ============================================================= -->
-    <section class="tab-pane" id="paneAdmin">
-      <div class="admin-layout">
-        <!-- Admin Sub-Navigation Sidebar -->
-        <aside class="admin-sidebar">
-          <div class="admin-badge-header">
-            <span class="shield-icon">🛡️</span>
-            <div>
-              <h3>IAM GOVERNANCE</h3>
-              <small>Dành cho Quản trị viên Quỹ</small>
-            </div>
-          </div>
-
-          <nav class="admin-menu">
-            <button class="admin-nav-item active" onclick="switchAdminTab('users')">
-              👥 Quản trị Định danh & Gán quyền (/admin/access/users)
-            </button>
-            <button class="admin-nav-item" onclick="switchAdminTab('audit')">
-              📜 Nhật ký Kiểm toán Bảo mật (/admin/access/audit)
-            </button>
-            <button class="admin-nav-item" onclick="switchAdminTab('redis')">
-              ⚡ Quản lý Cache & Redis Invalidation
-            </button>
-            <button class="admin-nav-item" onclick="showNotification('Tính năng Báo cáo KPI Ban Điều hành thuộc Module 6')">
-              📊 Báo cáo Tổng hợp KPI (Module 6)
-            </button>
-          </nav>
-
-          <div class="admin-sync-indicator">
-            <div class="sync-dot"></div>
-            <div>
-              <strong>Optimistic Lock: OK</strong>
-              <small>State Version: v4.28 (No Conflict)</small>
-            </div>
-          </div>
-        </aside>
-
-        <!-- Admin Main Content Pane -->
-        <main class="admin-content">
-          <!-- SUB-VIEW 1: USERS & RBAC GOVERNANCE -->
-          <div class="admin-subpane active" id="subpaneUsers">
-            <div class="admin-header-row">
-              <div>
-                <h2>QUẢN TRỊ TRUY CẬP & GÁN QUYỀN ĐỊNH DANH</h2>
-                <p>Cấp quyền theo mô hình 3 chiều: <code>authorize(identity, permission, resource_scope, active_context)</code></p>
-              </div>
-              <div class="admin-actions">
-                <button class="btn-secondary" onclick="showNotification('Đã xuất ma trận phân quyền Excel thành công!')">📊 Xuất Ma trận Quyền</button>
-                <button class="btn-primary" onclick="openAddUserModal()">+ Thêm người dùng mới</button>
-              </div>
-            </div>
-
-            <!-- Filters -->
-            <div class="filter-toolbar">
-              <div class="search-input-box">
-                <span>🔍</span>
-                <input type="text" placeholder="Tìm theo tên, email, ORCID hoặc ID..." id="userSearchInput" oninput="filterUserTable()">
-              </div>
-              <select class="filter-select" id="roleFilterSelect" onchange="filterUserTable()">
-                <option value="ALL">Tất cả Vai trò (All Roles)</option>
-                <option value="RESEARCHER">RESEARCHER (Nhà khoa học)</option>
-                <option value="REVIEWER">REVIEWER (Phản biện)</option>
-                <option value="ENTERPRISE_REP">ENTERPRISE_REP (Doanh nghiệp)</option>
-                <option value="GOVERNANCE_ADMIN">GOVERNANCE_ADMIN (Quản trị)</option>
-              </select>
-              <select class="filter-select">
-                <option value="ALL">Tất cả Tổ chức (VAST, RAS, Doanh nghiệp...)</option>
-                <option value="VAST">Viện Hàn lâm KH&CN (VAST)</option>
-                <option value="RAS">Viện Hàn lâm LB Nga (RAS)</option>
-                <option value="QUY">Quỹ Truyền thống & Hữu nghị</option>
-              </select>
-              <button class="btn-refresh" onclick="showNotification('Đã đồng bộ dữ liệu người dùng mới nhất!')">🔄</button>
-            </div>
-
-            <!-- Users Table -->
-            <div class="table-card">
-              <table class="data-table" id="usersTable">
-                <thead>
-                  <tr>
-                    <th>Người dùng & Email</th>
-                    <th>Tổ chức chủ quản</th>
-                    <th>Vai trò gán (Roles)</th>
-                    <th>Phạm vi quyền hạn (Domain Scope)</th>
-                    <th>Bảo mật 2FA</th>
-                    <th class="th-actions">Thao tác</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <div class="user-cell">
-                        <div class="avatar-circle">NA</div>
-                        <div>
-                          <strong>TS. Nguyễn Văn A</strong>
-                          <span class="sub-cell">nguyen.vana@vast.vn • ID: <code>u_nguyenva</code></span>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <strong>Viện CNSH — VAST</strong>
-                      <span class="badge-tag green">● Affiliated (OK)</span>
-                    </td>
-                    <td>
-                      <span class="role-pill blue">RESEARCHER</span>
-                      <span class="role-pill orange">REVIEWER</span>
-                    </td>
-                    <td>
-                      <div class="scope-tags">
-                        <span class="scope-badge">GRANT.P001</span>
-                        <span class="scope-badge">REVIEW.R100, R104</span>
-                      </div>
-                    </td>
-                    <td><span class="mfa-status on">🔒 Đã bật TOTP</span></td>
-                    <td class="td-actions">
-                      <button class="btn-action-edit" onclick="openPermissionDrawer('TS. Nguyễn Văn A', 'u_nguyenva', 'RESEARCHER, REVIEWER')">Sửa quyền</button>
-                      <button class="btn-action-lock" onclick="showNotification('Tài khoản đã được đặt vào trạng thái khóa tạm thời.')">Khóa</button>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <div class="user-cell">
-                        <div class="avatar-circle rus">PI</div>
-                        <div>
-                          <strong>GS. Petrov I. V.</strong>
-                          <span class="sub-cell">petrov.iv@ras.ru • ID: <code>u_petrov</code></span>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <strong>Viện Hàn lâm Nga (RAS)</strong>
-                      <span class="badge-tag green">● Affiliated (OK)</span>
-                    </td>
-                    <td>
-                      <span class="role-pill orange">REVIEWER</span>
-                      <span class="role-pill purple">COUNCIL</span>
-                    </td>
-                    <td>
-                      <div class="scope-tags">
-                        <span class="scope-badge">REVIEW.ASSIGNMENT.*</span>
-                        <span class="scope-badge">GRANT.DECISION.VOTE</span>
-                      </div>
-                    </td>
-                    <td><span class="mfa-status on">🔒 Đã bật TOTP</span></td>
-                    <td class="td-actions">
-                      <button class="btn-action-edit" onclick="openPermissionDrawer('GS. Petrov I. V.', 'u_petrov', 'REVIEWER, COUNCIL')">Sửa quyền</button>
-                      <button class="btn-action-lock">Khóa</button>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <div class="user-cell">
-                        <div class="avatar-circle ent">LM</div>
-                        <div>
-                          <strong>Bà Lê Thị Mai</strong>
-                          <span class="sub-cell">mai.le@techco.vn • ID: <code>u_maile</code></span>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <strong>Doanh nghiệp TechCo</strong>
-                      <span class="badge-tag orange">● Đối tác 2+2</span>
-                    </td>
-                    <td>
-                      <span class="role-pill red">ENTERPRISE_REP</span>
-                    </td>
-                    <td>
-                      <div class="scope-tags">
-                        <span class="scope-badge">TECH.TRANSFER.ORG_9</span>
-                        <span class="scope-badge">TECH.OFFER.POST</span>
-                      </div>
-                    </td>
-                    <td><span class="mfa-status off">⚠️ Chưa bật</span></td>
-                    <td class="td-actions">
-                      <button class="btn-action-edit" onclick="openPermissionDrawer('Bà Lê Thị Mai', 'u_maile', 'ENTERPRISE_REP')">Sửa quyền</button>
-                      <button class="btn-action-lock">Khóa</button>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <div class="user-cell">
-                        <div class="avatar-circle adm">TK</div>
-                        <div>
-                          <strong>Ban Thư ký Quỹ</strong>
-                          <span class="sub-cell">sec-admin@vn-ru.org • ID: <code>u_admin01</code></span>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <strong>Quỹ Truyền thống & Hữu nghị</strong>
-                      <span class="badge-tag purple">● Quản trị Hệ thống</span>
-                    </td>
-                    <td>
-                      <span class="role-pill dark">GOVERNANCE_ADMIN</span>
-                    </td>
-                    <td>
-                      <div class="scope-tags">
-                        <span class="scope-badge">IAM.*</span>
-                        <span class="scope-badge">AUDIT.*</span>
-                        <span class="scope-badge">SYSTEM.ALL</span>
-                      </div>
-                    </td>
-                    <td><span class="mfa-status strict">🛡️ Bắt buộc</span></td>
-                    <td class="td-actions">
-                      <button class="btn-action-edit" onclick="showNotification('Tài khoản Quản trị cấp cao yêu cầu phê duyệt 2-person rule!')">Chi tiết</button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <!-- SUB-VIEW: ROLE & PERMISSION (RBAC MATRIX - NEW UI AS IN REFERENCE) -->
-          <div class="admin-subpane" id="subpaneRoles">
-            <!-- Role Selector Top Bar -->
-            <div class="role-selector-bar">
-              <div class="role-selector-label">
-                <span>Chọn vai trò cấu hình:</span>
-              </div>
-              <div class="role-pills-nav">
-                <button class="r-pill-btn active" onclick="switchRoleConfig('REVIEWER')">
-                  🔍 Chuyên gia Phản biện (REVIEWER)
-                </button>
-                <button class="r-pill-btn" onclick="switchRoleConfig('RESEARCHER')">
-                  🔬 Nhà nghiên cứu (RESEARCHER)
-                </button>
-                <button class="r-pill-btn" onclick="switchRoleConfig('ENTERPRISE_REP')">
-                  🏢 Đại diện Doanh nghiệp (ENTERPRISE_REP)
-                </button>
-                <button class="r-pill-btn" onclick="switchRoleConfig('COUNCIL')">
-                  🗳️ Hội đồng Quỹ (COUNCIL)
-                </button>
-                <button class="r-pill-btn" onclick="switchRoleConfig('GOVERNANCE_ADMIN')">
-                  🛡️ Quản trị viên Quỹ (ADMIN)
-                </button>
-                <button class="r-pill-btn custom" onclick="openCreateRoleModal()">
-                  + Thêm vai trò
-                </button>
-              </div>
-            </div>
-
-            <!-- MAIN ROLE ACCESS CONFIGURATION CARD (AS IN IMAGE) -->
-            <div class="access-config-master-card">
-              <!-- Top Header Card with Left Info and Right Stat Badge -->
-              <div class="ac-header-card">
-                <div class="ac-header-left">
-                  <h1 class="ac-title" id="acRoleTitle">Cấu hình truy cập: Chuyên gia Phản biện</h1>
-                  <div class="ac-badge-pill" id="acRoleBadge">ROLE_REVIEWER</div>
-                  <div class="ac-role-code" id="acRoleCode">HOTEL_FRONTDESK / SCIENTIFIC_REVIEWER</div>
-                  <div class="ac-created-date">Ngày tạo: 27 thg 5, 2026</div>
-                </div>
-
-                <div class="ac-header-right-box">
-                  <div class="ac-stat-num" id="acTotalPermsCount">13</div>
-                  <div class="ac-stat-label">QUYỀN NGHIỆP VỤ</div>
-                </div>
-              </div>
-
-              <!-- Bottom Capsules Module Grid (Exact reference layout) -->
-              <div class="ac-capsules-container">
-                <div class="ac-capsules-grid" id="acCapsulesGrid">
-                  <!-- Capsules will be rendered dynamically by JavaScript based on active role -->
-                </div>
-              </div>
-
-              <!-- Granular Permission Sub-Drawer / Expandable Panel -->
-              <div class="ac-granular-panel" id="acGranularPanel" style="display: none;">
-                <div class="granular-header">
-                  <div class="granular-title">
-                    <span id="granularGroupIcon">📋</span>
-                    <strong id="granularGroupName">Chi tiết Quyền trong phân hệ: Đề xuất & Hồ sơ tài trợ</strong>
-                    <span class="badge-scope" id="granularGroupDomain">GRANT DOMAIN</span>
-                  </div>
-                  <button class="btn-close-granular" onclick="closeGranularPanel()">✕ Đóng</button>
-                </div>
-
-                <div class="granular-items-grid" id="granularItemsList">
-                  <!-- Granular checkboxes rendered dynamically -->
-                </div>
-
-                <div class="granular-footer">
-                  <span class="granular-hint">💡 Khi thay đổi quyền, hệ thống tự động phát tín hiệu Invalidate Redis Cache (&lt; 1.5ms).</span>
-                  <button class="btn-save-granular" onclick="saveGranularPermissions()">💾 Lưu Phân quyền Phân hệ</button>
-                </div>
-              </div>
-            </div>
-
-            <!-- LIVE POLICY SIMULATOR / TESTER -->
-            <div class="policy-simulator-container">
-              <div class="sim-header">
-                <h3>🧪 TRÌNH MÔ PHỎNG & KIỂM THỬ PHÂN QUYỀN THỜI GIAN THỰC (LIVE POLICY SIMULATOR)</h3>
-                <p>Kiểm tra trực tiếp hàm đánh giá an ninh: <code>authorize(identity, permission, resource_scope, active_context)</code></p>
-              </div>
-
-              <div class="sim-grid">
-                <!-- Inputs Form -->
-                <div class="sim-inputs">
-                  <div class="sim-form-group">
-                    <label>1. Người dùng kiểm thử (Identity):</label>
-                    <select class="sim-select" id="simUserSelect">
-                      <option value="u_nguyenva">TS. Nguyễn Văn A (u_nguyenva · VAST)</option>
-                      <option value="u_petrov">GS. Petrov I. V. (u_petrov · RAS)</option>
-                      <option value="u_maile">Bà Lê Thị Mai (u_maile · TechCo)</option>
-                      <option value="u_admin01">Ban Thư ký Quỹ (u_admin01 · Quỹ TT&HN)</option>
-                    </select>
-                  </div>
-
-                  <div class="sim-form-group">
-                    <label>2. Ngữ cảnh làm việc (Active Context):</label>
-                    <select class="sim-select" id="simContextSelect">
-                      <option value="REVIEWER">REVIEWER (Hội đồng Quỹ · Scope: R100, R104)</option>
-                      <option value="RESEARCHER">RESEARCHER (Nhà nghiên cứu VAST · Scope: GRANT.P001)</option>
-                      <option value="ENTERPRISE_REP">ENTERPRISE_REP (Đại diện TechCo)</option>
-                      <option value="GOVERNANCE_ADMIN">GOVERNANCE_ADMIN (Quản trị hệ thống)</option>
-                    </select>
-                  </div>
-
-                  <div class="sim-form-group">
-                    <label>3. Thao tác cần kiểm tra (Permission Action):</label>
-                    <select class="sim-select" id="simActionSelect">
-                      <option value="GRANT.PROPOSAL.READ">GRANT.PROPOSAL.READ (Đọc hồ sơ đề tài)</option>
-                      <option value="GRANT.PROPOSAL.SUBMIT">GRANT.PROPOSAL.SUBMIT (Nộp đề xuất đề tài)</option>
-                      <option value="REVIEW.SCORE.WRITE">REVIEW.SCORE.WRITE (Nhập điểm phản biện)</option>
-                      <option value="IAM.USER.MANAGE">IAM.USER.MANAGE (Quản lý User)</option>
-                      <option value="TECH.OFFER.POST">TECH.OFFER.POST (Đăng công nghệ 2+2)</option>
-                    </select>
-                  </div>
-
-                  <div class="sim-form-group">
-                    <label>4. Mã đối tượng mục tiêu (Target Resource ID):</label>
-                    <input type="text" class="sim-input" id="simResourceIdInput" value="P099" placeholder="vd: P099 (Ngoài phạm vi) hoặc R100 (Được phân công)">
-                  </div>
-
-                  <button class="btn-sim-run" onclick="runPolicySimulation()">⚡ Chạy Đánh giá Quyền (Evaluate Policy)</button>
-                </div>
-
-                <!-- Simulation Output -->
-                <div class="sim-output" id="simOutputBox">
-                  <div class="sim-output-header">
-                    <span class="sim-badge denied" id="simResBadge">🚫 DENIED (403 FORBIDDEN)</span>
-                    <span class="sim-latency" id="simResLatency">⚡ 1.12 ms (Redis Cache Hit)</span>
-                  </div>
-
-                  <div class="sim-output-body" id="simResBody">
-                    <div class="sim-item"><strong>Actor ID:</strong> <code>u_nguyenva</code> (Token hợp lệ)</div>
-                    <div class="sim-item"><strong>Active Context:</strong> <span class="badge-tag orange">REVIEWER</span></div>
-                    <div class="sim-item"><strong>Action:</strong> <code>GRANT.PROPOSAL.READ</code></div>
-                    <div class="sim-item"><strong>Target Resource:</strong> <code>P099</code></div>
-                    <div class="sim-item error"><strong>Lý do từ chối:</strong> <code>OUT_OF_SCOPE_ASSIGNMENT_MISMATCH</code> (Hồ sơ P099 không nằm trong danh sách phân công [R100, R104] của chuyên gia).</div>
-                    <div class="sim-item"><strong>Policy Rule:</strong> <code>ABAC_REVIEWER_STRICT_ISOLATION</code></div>
-                    <div class="sim-item audit"><strong>Security Audit Trace ID:</strong> <code>trace-sim-99812</code> (Đã lưu vào Audit Store)</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-            <!-- LIVE POLICY SIMULATOR / TESTER -->
-            <div class="policy-simulator-container">
-              <div class="sim-header">
-                <h3>🧪 TRÌNH MÔ PHỎNG & KIỂM THỬ PHÂN QUYỀN THỜI GIAN THỰC (LIVE POLICY SIMULATOR)</h3>
-                <p>Kiểm tra trực tiếp hàm đánh giá an ninh: <code>authorize(identity, permission, resource_scope, active_context)</code></p>
-              </div>
-
-              <div class="sim-grid">
-                <!-- Inputs Form -->
-                <div class="sim-inputs">
-                  <div class="sim-form-group">
-                    <label>1. Người dùng kiểm thử (Identity):</label>
-                    <select class="sim-select" id="simUserSelect">
-                      <option value="u_nguyenva">TS. Nguyễn Văn A (u_nguyenva · VAST)</option>
-                      <option value="u_petrov">GS. Petrov I. V. (u_petrov · RAS)</option>
-                      <option value="u_maile">Bà Lê Thị Mai (u_maile · TechCo)</option>
-                      <option value="u_admin01">Ban Thư ký Quỹ (u_admin01 · Quỹ TT&HN)</option>
-                    </select>
-                  </div>
-
-                  <div class="sim-form-group">
-                    <label>2. Ngữ cảnh làm việc (Active Context):</label>
-                    <select class="sim-select" id="simContextSelect">
-                      <option value="REVIEWER">REVIEWER (Hội đồng Quỹ · Scope: R100, R104)</option>
-                      <option value="RESEARCHER">RESEARCHER (Nhà nghiên cứu VAST · Scope: GRANT.P001)</option>
-                      <option value="ENTERPRISE_REP">ENTERPRISE_REP (Đại diện TechCo)</option>
-                      <option value="GOVERNANCE_ADMIN">GOVERNANCE_ADMIN (Quản trị hệ thống)</option>
-                    </select>
-                  </div>
-
-                  <div class="sim-form-group">
-                    <label>3. Thao tác cần kiểm tra (Permission Action):</label>
-                    <select class="sim-select" id="simActionSelect">
-                      <option value="GRANT.PROPOSAL.READ">GRANT.PROPOSAL.READ (Đọc hồ sơ đề tài)</option>
-                      <option value="GRANT.PROPOSAL.SUBMIT">GRANT.PROPOSAL.SUBMIT (Nộp đề xuất đề tài)</option>
-                      <option value="REVIEW.SCORE.WRITE">REVIEW.SCORE.WRITE (Nhập điểm phản biện)</option>
-                      <option value="IAM.USER.MANAGE">IAM.USER.MANAGE (Quản lý User)</option>
-                      <option value="TECH.OFFER.POST">TECH.OFFER.POST (Đăng công nghệ 2+2)</option>
-                    </select>
-                  </div>
-
-                  <div class="sim-form-group">
-                    <label>4. Mã đối tượng mục tiêu (Target Resource ID):</label>
-                    <input type="text" class="sim-input" id="simResourceIdInput" value="P099" placeholder="vd: P099 (Ngoài phạm vi) hoặc R100 (Được phân công)">
-                  </div>
-
-                  <button class="btn-sim-run" onclick="runPolicySimulation()">⚡ Chạy Đánh giá Quyền (Evaluate Policy)</button>
-                </div>
-
-                <!-- Simulation Output -->
-                <div class="sim-output" id="simOutputBox">
-                  <div class="sim-output-header">
-                    <span class="sim-badge denied" id="simResBadge">🚫 DENIED (403 FORBIDDEN)</span>
-                    <span class="sim-latency" id="simResLatency">⚡ 1.12 ms (Redis Cache Hit)</span>
-                  </div>
-
-                  <div class="sim-output-body" id="simResBody">
-                    <div class="sim-item"><strong>Actor ID:</strong> <code>u_nguyenva</code> (Token hợp lệ)</div>
-                    <div class="sim-item"><strong>Active Context:</strong> <span class="badge-tag orange">REVIEWER</span></div>
-                    <div class="sim-item"><strong>Action:</strong> <code>GRANT.PROPOSAL.READ</code></div>
-                    <div class="sim-item"><strong>Target Resource:</strong> <code>P099</code></div>
-                    <div class="sim-item error"><strong>Lý do từ chối:</strong> <code>OUT_OF_SCOPE_ASSIGNMENT_MISMATCH</code> (Hồ sơ P099 không nằm trong danh sách phân công [R100, R104] của chuyên gia).</div>
-                    <div class="sim-item"><strong>Policy Rule:</strong> <code>ABAC_REVIEWER_STRICT_ISOLATION</code></div>
-                    <div class="sim-item audit"><strong>Security Audit Trace ID:</strong> <code>trace-sim-99812</code> (Đã lưu vào Audit Store)</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- SUB-VIEW 2: AUDIT TRAIL & COMPLIANCE LOG -->
-          <div class="admin-subpane" id="subpaneAudit">
-            <div class="admin-header-row">
-              <div>
-                <h2>SECURITY AUDIT TRAIL & LOG KIỂM TOÁN TẬP TRUNG</h2>
-                <p>Truy vết thời gian thực mọi sự kiện xác thực, phân quyền và thao tác dữ liệu nhạy cảm</p>
-              </div>
-              <div class="admin-actions">
-                <button class="btn-secondary" onclick="exportAuditReport('excel')">📊 Xuất Excel</button>
-                <button class="btn-primary" onclick="exportAuditReport('pdf')">📥 Xuất Báo cáo Audit (PDF)</button>
-              </div>
-            </div>
-
-            <!-- Audit Filter Toolbar -->
-            <div class="filter-toolbar">
-              <select class="filter-select" id="auditTimeSelect">
-                <option value="24h">Thời gian: 24 giờ qua</option>
-                <option value="7d">7 ngày qua</option>
-                <option value="30d">30 ngày qua</option>
-              </select>
-              <select class="filter-select" id="auditEventSelect" onchange="filterAuditTable()">
-                <option value="ALL">Tất cả Loại Sự kiện</option>
-                <option value="AUTHZ_DENIED">AUTHZ_DENIED (Quyền bị từ chối 403)</option>
-                <option value="ROLE_CHANGE">ROLE_CHANGE (Thay đổi quyền)</option>
-                <option value="LOGIN_SUCCESS">LOGIN_SUCCESS (Đăng nhập)</option>
-                <option value="CONTEXT_SWITCH">CONTEXT_SWITCH (Đổi ngữ cảnh)</option>
-              </select>
-              <div class="search-input-box">
-                <span>🔍</span>
-                <input type="text" placeholder="Tìm theo Actor ID, Trace ID, Resource..." id="auditSearchInput" oninput="filterAuditTable()">
-              </div>
-              <button class="btn-refresh" onclick="showNotification('Đã tải 50 sự kiện audit mới nhất!')">🔄 Làm mới</button>
-            </div>
-
-            <!-- Audit Table -->
-            <div class="table-card">
-              <table class="data-table audit-table" id="auditTable">
-                <thead>
-                  <tr>
-                    <th>Thời gian</th>
-                    <th>Loại sự kiện</th>
-                    <th>Actor ID</th>
-                    <th>Thao tác & Resource Scope</th>
-                    <th>Quyết định</th>
-                    <th>Trace ID (OpenTelemetry)</th>
-                    <th>Chi tiết</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="row-danger">
-                    <td><code>23:23:02</code></td>
-                    <td><span class="event-badge denied">AUTHZ_DENIED (403)</span></td>
-                    <td><code>u_nguyenva</code></td>
-                    <td>
-                      <strong>GRANT.PROPOSAL.READ (P099)</strong>
-                      <div class="audit-sub-text alert">Lý do: Đề tài P099 nằm ngoài phạm vi phân công chấm</div>
-                    </td>
-                    <td><span class="decision-pill denied">DENIED</span></td>
-                    <td><code class="trace-code">trace-8f92c9</code></td>
-                    <td><button class="btn-inspect" onclick="inspectAuditEvent('trace-8f92c9')">Xem JSON</button></td>
-                  </tr>
-
-                  <tr class="row-warning">
-                    <td><code>23:24:40</code></td>
-                    <td><span class="event-badge warning">ROLE_CHANGE</span></td>
-                    <td><code>admin_quy</code></td>
-                    <td>
-                      <strong>IAM.ROLE.ASSIGN &rarr; u_petrov</strong>
-                      <div class="audit-sub-text">Gán role REVIEWER • Redis Cache đã Invalidate tức thì</div>
-                    </td>
-                    <td><span class="decision-pill allow">ALLOW</span></td>
-                    <td><code class="trace-code">trace-8f9301</code></td>
-                    <td><button class="btn-inspect" onclick="inspectAuditEvent('trace-8f9301')">Xem JSON</button></td>
-                  </tr>
-
-                  <tr>
-                    <td><code>23:22:18</code></td>
-                    <td><span class="event-badge info">CONTEXT_SWITCH</span></td>
-                    <td><code>u_nguyenva</code></td>
-                    <td>
-                      <strong>CTX.SWITCH &rarr; REVIEWER</strong>
-                      <div class="audit-sub-text">Scope bound: assignmentId = ['R100', 'R104']</div>
-                    </td>
-                    <td><span class="decision-pill allow">ALLOW</span></td>
-                    <td><code class="trace-code">trace-8f92a4</code></td>
-                    <td><button class="btn-inspect" onclick="inspectAuditEvent('trace-8f92a4')">Xem JSON</button></td>
-                  </tr>
-
-                  <tr>
-                    <td><code>23:22:15</code></td>
-                    <td><span class="event-badge success">LOGIN_SUCCESS</span></td>
-                    <td><code>u_nguyenva</code></td>
-                    <td>
-                      <strong>IAM.AUTH.SESSION_START</strong>
-                      <div class="audit-sub-text">2FA TOTP: Verified (IP: 113.190.42.18)</div>
-                    </td>
-                    <td><span class="decision-pill allow">ALLOW</span></td>
-                    <td><code class="trace-code">trace-8f92a1</code></td>
-                    <td><button class="btn-inspect" onclick="inspectAuditEvent('trace-8f92a1')">Xem JSON</button></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <!-- SUB-VIEW 3: REDIS CACHE & PERFORMANCE MONITOR -->
-          <div class="admin-subpane" id="subpaneRedis">
-            <div class="admin-header-row">
-              <div>
-                <h2>QUẢN LÝ DISTRIBUTED REDIS CACHE (PERFORMANCE LAYER)</h2>
-                <p>Giám sát tốc độ phản hồi phân quyền (&lt;2ms), TTL phiên làm việc và cơ chế Invalidation</p>
-              </div>
-              <button class="btn-danger-sm" onclick="flushRedisCache()">⚡ Xóa toàn bộ Cache phân quyền (Flush AuthZ)</button>
-            </div>
-
-            <div class="redis-metrics-grid">
-              <div class="metric-card">
-                <span class="m-title">Thời gian phản hồi AuthZ trung bình</span>
-                <span class="m-val green">1.18 ms</span>
-                <small class="m-sub">Mục tiêu: &lt; 2.0 ms (Đạt yêu cầu)</small>
-              </div>
-              <div class="metric-card">
-                <span class="m-title">Tỷ lệ Cache Hit</span>
-                <span class="m-val blue">98.4 %</span>
-                <small class="m-sub">Chỉ 1.6% truy vấn rơi vào PostgreSQL DB</small>
-              </div>
-              <div class="metric-card">
-                <span class="m-title">Active Session Tokens</span>
-                <span class="m-val purple">142</span>
-                <small class="m-sub">TTL mặc định: 30 ngày</small>
-              </div>
-              <div class="metric-card">
-                <span class="m-title">Revocation Blacklist</span>
-                <span class="m-val orange">3 keys</span>
-                <small class="m-sub">Thu hồi Token ngay lập tức khi đổi vai trò</small>
-              </div>
-            </div>
-          </div>
-        </main>
-      </div>
-    </section>
-
-    <!-- ============================================================= -->
-    <!-- MAIN PANE 4: DEDICATED USER ROLES & RBAC PERMISSION CONSOLE   -->
-    <!-- ============================================================= -->
-    <section class="main-pane" id="paneRbac">
-      <div class="rbac-standalone-container">
-        <!-- Top Title Row -->
-        <div class="rbac-header-banner">
-          <div>
-            <div class="banner-badge purple">TRUNG TÂM PHÂN QUYỀN VAI TRÒ & PERMISSION (RBAC)</div>
-            <h2>QUẢN TRỊ TRUY CẬP VAI TRÒ & PHÂN QUYỀN NGƯỜI DÙNG</h2>
-            <p>Mô hình phân quyền động <code>&lt;DOMAIN&gt;.&lt;RESOURCE&gt;.&lt;ACTION&gt;</code> · Quản lý trực quan theo Module Capsule &amp; Kiểm soát Scope đa chiều</p>
-          </div>
-          <div class="banner-actions">
-            <button class="btn-secondary" onclick="showNotification('📊 Đã xuất Ma trận Phân quyền & RBAC Matrix ra tệp Excel!')">📊 Xuất Ma trận Excel</button>
-            <button class="btn-primary" onclick="showNotification('⚡ Đã gửi tín hiệu Invalidate toàn bộ Cache quyền trên Redis Cluster!')">⚡ Invalidate Redis Cache</button>
-          </div>
-        </div>
-
-        <!-- Role Selector Top Bar -->
-        <div class="role-selector-bar">
-          <div class="role-selector-label">
-            <span>Chọn vai trò cấu hình:</span>
-          </div>
-          <div class="role-pills-nav">
-            <button class="r-pill-btn active" onclick="switchRoleConfig('REVIEWER')">
-              🔍 Chuyên gia Phản biện (REVIEWER)
-            </button>
-            <button class="r-pill-btn" onclick="switchRoleConfig('RESEARCHER')">
-              🔬 Nhà nghiên cứu (RESEARCHER)
-            </button>
-            <button class="r-pill-btn" onclick="switchRoleConfig('ENTERPRISE_REP')">
-              🏢 Đại diện Doanh nghiệp (ENTERPRISE_REP)
-            </button>
-            <button class="r-pill-btn" onclick="switchRoleConfig('COUNCIL')">
-              🗳️ Hội đồng Quỹ (COUNCIL)
-            </button>
-            <button class="r-pill-btn" onclick="switchRoleConfig('GOVERNANCE_ADMIN')">
-              🛡️ Quản trị viên Quỹ (ADMIN)
-            </button>
-            <button class="r-pill-btn custom" onclick="openCreateRoleModal()">
-              + Thêm vai trò mới
-            </button>
-          </div>
-        </div>
-
-        <!-- MAIN ROLE ACCESS CONFIGURATION CARD (EXACT AS USER REFERENCE IMAGE) -->
-        <div class="access-config-master-card">
-          <!-- Top Header Card with Left Info and Right Stat Badge -->
-          <div class="ac-header-card">
-            <div class="ac-header-left">
-              <h1 class="ac-title" id="acRoleTitle">Cấu hình truy cập: Lễ tân khách sạn / Chuyên gia Phản biện</h1>
-              <div class="ac-badge-pill" id="acRoleBadge">HOTEL_FRONTDESK</div>
-              <div class="ac-role-code" id="acRoleCode">HOTEL_FRONTDESK / SCIENTIFIC_REVIEWER</div>
-              <div class="ac-created-date">Ngày tạo: 27 thg 5, 2026</div>
-            </div>
-
-            <div class="ac-header-right-box">
-              <div class="ac-stat-num" id="acTotalPermsCount">13</div>
-              <div class="ac-stat-label">QUYỀN NGHIỆP VỤ</div>
-            </div>
-          </div>
-
-          <!-- Bottom Capsules Module Grid (Exact reference layout) -->
-          <div class="ac-capsules-container">
-            <div class="ac-capsules-grid" id="acCapsulesGrid">
-              <!-- Rendered dynamically by JavaScript -->
-            </div>
-          </div>
-
-          <!-- Granular Permission Sub-Drawer / Expandable Panel -->
-          <div class="ac-granular-panel" id="acGranularPanel" style="display: none;">
-            <div class="granular-header">
-              <div class="granular-title">
-                <span id="granularGroupIcon">📋</span>
-                <strong id="granularGroupName">Chi tiết Quyền trong phân hệ</strong>
-                <span class="badge-scope" id="granularGroupDomain">PERMISSION SCOPE</span>
-              </div>
-              <button class="btn-close-granular" onclick="closeGranularPanel()">✕ Đóng</button>
-            </div>
-
-            <div class="granular-items-grid" id="granularItemsList">
-              <!-- Granular checkboxes rendered dynamically -->
-            </div>
-
-            <div class="granular-footer">
-              <span class="granular-hint">💡 Khi thay đổi quyền, hệ thống tự động phát tín hiệu Invalidate Redis Cache (&lt; 1.5ms).</span>
-              <button class="btn-save-granular" onclick="saveGranularPermissions()">💾 Lưu Phân quyền Phân hệ</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- SECTION 2: USER ROLE & SCOPE ASSIGNMENT TABLE -->
-        <div class="table-card" style="margin-top: 24px;">
-          <div class="card-header-clean">
-            <div>
-              <h3>👥 GÁN VAI TRÒ &amp; PHẠM VI TRUY CẬP CHO NGƯỜI DÙNG (USER ROLE &amp; SCOPE MATRIX)</h3>
-              <p>Mỗi người dùng được gán nhiều vai trò và bị cô lập phạm vi dữ liệu theo Resource Scope</p>
-            </div>
-            <button class="btn-secondary" onclick="openAddUserModal()">+ Gán quyền người dùng mới</button>
-          </div>
-
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>Người dùng &amp; Email</th>
-                <th>Tổ chức chủ quản</th>
-                <th>Vai trò gán (Roles)</th>
-                <th>Domain Resource Scope</th>
-                <th>Xác thực 2FA</th>
-                <th>Thao tác</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <div class="user-cell">
-                    <div class="avatar-circle">NA</div>
-                    <div>
-                      <strong>TS. Nguyễn Văn A</strong>
-                      <span class="sub-cell">nguyen.vana@vast.vn • ID: <code>u_nguyenva</code></span>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <strong>Viện Công nghệ Sinh học (VAST)</strong>
-                  <span class="badge-tag green">● Đã xác nhận hội viên</span>
-                </td>
-                <td>
-                  <span class="role-pill blue">RESEARCHER</span>
-                  <span class="role-pill orange">REVIEWER</span>
-                </td>
-                <td>
-                  <div class="scope-tags">
-                    <span class="scope-badge">GRANT.P001</span>
-                    <span class="scope-badge">REVIEW.R100, R104</span>
-                  </div>
-                </td>
-                <td><span class="mfa-status on">🔒 Đã bật TOTP</span></td>
-                <td class="td-actions">
-                  <button class="btn-action-edit" onclick="openPermissionDrawer('TS. Nguyễn Văn A', 'u_nguyenva', 'RESEARCHER, REVIEWER')">Sửa quyền</button>
-                  <button class="btn-action-lock" onclick="showNotification('Tài khoản đã được đặt vào trạng thái khóa tạm thời.')">Khóa</button>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <div class="user-cell">
-                    <div class="avatar-circle rus">PI</div>
-                    <div>
-                      <strong>GS. Petrov I. V.</strong>
-                      <span class="sub-cell">petrov.iv@ras.ru • ID: <code>u_petrov</code></span>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <strong>Viện Hàn lâm Nga (RAS)</strong>
-                  <span class="badge-tag green">● Affiliated (OK)</span>
-                </td>
-                <td>
-                  <span class="role-pill orange">REVIEWER</span>
-                  <span class="role-pill purple">COUNCIL</span>
-                </td>
-                <td>
-                  <div class="scope-tags">
-                    <span class="scope-badge">REVIEW.ASSIGNMENT.*</span>
-                    <span class="scope-badge">GRANT.DECISION.VOTE</span>
-                  </div>
-                </td>
-                <td><span class="mfa-status on">🔒 Đã bật TOTP</span></td>
-                <td class="td-actions">
-                  <button class="btn-action-edit" onclick="openPermissionDrawer('GS. Petrov I. V.', 'u_petrov', 'REVIEWER, COUNCIL')">Sửa quyền</button>
-                  <button class="btn-action-lock">Khóa</button>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <div class="user-cell">
-                    <div class="avatar-circle ent">LM</div>
-                    <div>
-                      <strong>Bà Lê Thị Mai</strong>
-                      <span class="sub-cell">mai.le@techco.vn • ID: <code>u_maile</code></span>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <strong>Doanh nghiệp TechCo</strong>
-                  <span class="badge-tag orange">● Đối tác 2+2</span>
-                </td>
-                <td>
-                  <span class="role-pill red">ENTERPRISE_REP</span>
-                </td>
-                <td>
-                  <div class="scope-tags">
-                    <span class="scope-badge">TECH.TRANSFER.ORG_9</span>
-                    <span class="scope-badge">TECH.OFFER.POST</span>
-                  </div>
-                </td>
-                <td><span class="mfa-status off">⚠️ Chưa bật</span></td>
-                <td class="td-actions">
-                  <button class="btn-action-edit" onclick="openPermissionDrawer('Bà Lê Thị Mai', 'u_maile', 'ENTERPRISE_REP')">Sửa quyền</button>
-                  <button class="btn-action-lock">Khóa</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- SECTION 3: LIVE POLICY SIMULATOR -->
-        <div class="policy-simulator-container" style="margin-top: 24px;">
-          <div class="sim-header">
-            <h3>🧪 TRÌNH MÔ PHỎNG &amp; KIỂM THỬ PHÂN QUYỀN THỜI GIAN THỰC (LIVE POLICY SIMULATOR)</h3>
-            <p>Kiểm tra trực tiếp hàm đánh giá an ninh: <code>authorize(identity, permission, resource_scope, active_context)</code></p>
-          </div>
-
-          <div class="sim-grid">
-            <!-- Inputs Form -->
-            <div class="sim-inputs">
-              <div class="sim-form-group">
-                <label>1. Người dùng kiểm thử (Identity):</label>
-                <select class="sim-select" id="simUserSelect">
-                  <option value="u_nguyenva">TS. Nguyễn Văn A (u_nguyenva · VAST)</option>
-                  <option value="u_petrov">GS. Petrov I. V. (u_petrov · RAS)</option>
-                  <option value="u_maile">Bà Lê Thị Mai (u_maile · TechCo)</option>
-                  <option value="u_admin01">Ban Thư ký Quỹ (u_admin01 · Quỹ TT&amp;HN)</option>
-                </select>
-              </div>
-
-              <div class="sim-form-group">
-                <label>2. Ngữ cảnh làm việc (Active Context):</label>
-                <select class="sim-select" id="simContextSelect">
-                  <option value="REVIEWER">REVIEWER / HOTEL_FRONTDESK (Scope: R100, R104)</option>
-                  <option value="RESEARCHER">RESEARCHER (Nhà nghiên cứu VAST · Scope: GRANT.P001)</option>
-                  <option value="ENTERPRISE_REP">ENTERPRISE_REP (Đại diện TechCo)</option>
-                  <option value="GOVERNANCE_ADMIN">GOVERNANCE_ADMIN (Quản trị hệ thống)</option>
-                </select>
-              </div>
-
-              <div class="sim-form-group">
-                <label>3. Thao tác cần kiểm tra (Permission Action):</label>
-                <select class="sim-select" id="simActionSelect">
-                  <option value="GRANT.PROPOSAL.READ">GRANT.PROPOSAL.READ (Đọc hồ sơ đề tài)</option>
-                  <option value="GRANT.PROPOSAL.SUBMIT">GRANT.PROPOSAL.SUBMIT (Nộp đề xuất đề tài)</option>
-                  <option value="REVIEW.SCORE.WRITE">REVIEW.SCORE.WRITE (Nhập điểm phản biện)</option>
-                  <option value="IAM.USER.MANAGE">IAM.USER.MANAGE (Quản lý User)</option>
-                  <option value="TECH.OFFER.POST">TECH.OFFER.POST (Đăng công nghệ 2+2)</option>
-                </select>
-              </div>
-
-              <div class="sim-form-group">
-                <label>4. Mã đối tượng mục tiêu (Target Resource ID):</label>
-                <input type="text" class="sim-input" id="simResourceIdInput" value="P099" placeholder="vd: P099 (Ngoài phạm vi) hoặc R100 (Được phân công)">
-              </div>
-
-              <button class="btn-sim-run" onclick="runPolicySimulation()">⚡ Chạy Đánh giá Quyền (Evaluate Policy)</button>
-            </div>
-
-            <!-- Simulation Output -->
-            <div class="sim-output" id="simOutputBox">
-              <div class="sim-output-header">
-                <span class="sim-badge denied" id="simResBadge">🚫 DENIED (403 FORBIDDEN)</span>
-                <span class="sim-latency" id="simResLatency">⚡ 1.12 ms (Redis Cache Hit)</span>
-              </div>
-
-              <div class="sim-output-body" id="simResBody">
-                <div class="sim-item"><strong>Actor ID:</strong> <code>u_nguyenva</code> (Token hợp lệ)</div>
-                <div class="sim-item"><strong>Active Context:</strong> <span class="badge-tag orange">REVIEWER / HOTEL_FRONTDESK</span></div>
-                <div class="sim-item"><strong>Action:</strong> <code>GRANT.PROPOSAL.READ</code></div>
-                <div class="sim-item"><strong>Target Resource:</strong> <code>P099</code></div>
-                <div class="sim-item error"><strong>Lý do từ chối:</strong> <code>OUT_OF_SCOPE_ASSIGNMENT_MISMATCH</code> (Hồ sơ P099 không nằm trong danh sách phân công [R100, R104] của chuyên gia).</div>
-                <div class="sim-item"><strong>Policy Rule:</strong> <code>ABAC_REVIEWER_STRICT_ISOLATION</code></div>
-                <div class="sim-item audit"><strong>Security Audit Trace ID:</strong> <code>trace-sim-99812</code> (Đã lưu vào Audit Store)</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- ============================================================= -->
-  <!-- MODAL: 2FA TOTP VERIFICATION MODAL                             -->
-  <!-- ============================================================= -->
-  <div class="modal-overlay" id="modal2FA">
-    <div class="modal-card">
-      <div class="modal-header">
-        <span class="m-icon">🛡️</span>
-        <h3>XÁC THỰC BẢO MẬT 2 BƯỚC (2FA / TOTP)</h3>
-        <button class="btn-close-modal" onclick="close2faModal()">✕</button>
-      </div>
-      <div class="modal-body">
-        <p class="modal-intro">
-          Vui lòng mở ứng dụng <strong>Google Authenticator</strong> hoặc <strong>Microsoft Authenticator</strong> trên điện thoại và nhập mã số 6 chữ số:
-        </p>
-
-        <div class="otp-input-group">
-          <input type="text" maxlength="1" class="otp-box" value="4" autofocus oninput="moveOtp(this, 1)">
-          <input type="text" maxlength="1" class="otp-box" value="8" oninput="moveOtp(this, 2)">
-          <input type="text" maxlength="1" class="otp-box" value="2" oninput="moveOtp(this, 3)">
-          <input type="text" maxlength="1" class="otp-box" value="0" oninput="moveOtp(this, 4)">
-          <input type="text" maxlength="1" class="otp-box" value="9" oninput="moveOtp(this, 5)">
-          <input type="text" maxlength="1" class="otp-box" value="1" oninput="moveOtp(this, 6)">
-        </div>
-
-        <div class="timer-countdown">
-          ⏳ Mã tự động làm mới sau: <strong id="otpTimerText">24s</strong>
-        </div>
-
-        <button class="btn-primary-block" onclick="submit2faVerification()">
-          XÁC THỰC & VÀO KHÔNG GIAN LÀM VIỆC →
-        </button>
-
-        <div class="modal-footer-links">
-          <a href="javascript:void(0)" onclick="showNotification('Mã xác thực SMS dự phòng đã được gửi tới số điện thoại ****889!')">Gửi mã qua SMS dự phòng</a>
-          <span>•</span>
-          <a href="javascript:void(0)" onclick="close2faModal()">Hủy bỏ</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============================================================= -->
-  <!-- MODAL: PERMISSION DRAWER / EDITOR (3-DIMENSIONAL SCOPE)        -->
-  <!-- ============================================================= -->
-  <div class="modal-overlay" id="drawerPermission">
-    <div class="drawer-panel">
-      <div class="drawer-header">
+    <main class="main-content">
+      <header class="topbar">
         <div>
-          <h3>🛠️ PHÂN QUYỀN THEO DOMAIN SCOPE</h3>
-          <p id="drawerUserSubtitle">Người dùng: TS. Nguyễn Văn A (u_nguyenva)</p>
+          <div class="breadcrumb">Quản trị hệ thống / Định danh & phân quyền / <span id="breadcrumbCurrent">Vai trò & Quyền hạn</span></div>
+          <h1 id="pageTitle">Quản lý phân quyền</h1>
+          <p id="pageSubtitle">Quản lý vai trò, quyền hạn chi tiết và gán vai trò theo ngữ cảnh tổ chức.</p>
         </div>
-        <button class="btn-close-modal" onclick="closePermissionDrawer()">✕</button>
-      </div>
-
-      <div class="drawer-body">
-        <div class="drawer-notice">
-          <strong>Cấu trúc phân quyền chuẩn:</strong> <code>&lt;DOMAIN&gt;.&lt;RESOURCE&gt;.&lt;ACTION&gt;</code>
-          <p>Mọi thay đổi sẽ tự động gửi tín hiệu <b>Redis Cache Invalidation</b> tức thì để cập nhật quyền trong 2ms.</p>
+        <div class="topbar-actions">
+          <div class="context-pill"><span>Ngữ cảnh</span><b>Quản trị định danh · VAST</b></div>
+          <div class="avatar">NA</div>
         </div>
+      </header>
 
-        <!-- Scope Section 1: GRANT -->
-        <div class="perm-domain-card">
-          <h4>📝 Phân hệ Đề tài & Tài trợ (GRANT / PROJECT DOMAIN)</h4>
-          <div class="perm-checklist">
-            <label class="perm-item">
-              <input type="checkbox" checked>
-              <div>
-                <strong>GRANT.PROPOSAL.READ</strong>
-                <small>Chỉ xem hồ sơ do bản thân sở hữu (<code>ownerId = 'u_nguyenva'</code>)</small>
-              </div>
-            </label>
-            <label class="perm-item">
-              <input type="checkbox" checked>
-              <div>
-                <strong>GRANT.PROPOSAL.SUBMIT</strong>
-                <small>Nộp đề xuất đề tài hợp tác nghiên cứu song phương</small>
-              </div>
-            </label>
-            <label class="perm-item">
-              <input type="checkbox" checked>
-              <div>
-                <strong>PROJECT.MILESTONE.UPDATE</strong>
-                <small>Cập nhật tiến độ dự án nghiên cứu của đơn vị</small>
-              </div>
-            </label>
-            <label class="perm-item disabled">
-              <input type="checkbox" disabled>
-              <div>
-                <strong class="text-danger">GRANT.PROPOSAL.APPROVE</strong>
-                <small class="text-danger">Cấm - Quyền chỉ dành riêng cho Ban Thư ký & Hội đồng Quỹ</small>
-              </div>
-            </label>
-          </div>
+      <section id="view-overview" class="view-panel">
+        <div class="stats-grid" id="overviewStats"></div>
+        <div class="two-col">
+          <section class="panel-card">
+            <div class="card-header"><div><h2>Luồng kiểm tra quyền truy cập</h2><p>Xác thực → ngữ cảnh → vai trò → quyết định.</p></div></div>
+            <div class="auth-flow">
+              <div class="flow-node"><b>1</b><span>Xác thực</span><small>Phiên đăng nhập · Xác thực hai lớp</small></div>
+              <i>→</i>
+              <div class="flow-node"><b>2</b><span>Ngữ cảnh</span><small>Người dùng · Tổ chức · Vai trò</small></div>
+              <i>→</i>
+              <div class="flow-node"><b>3</b><span>Vai trò</span><small>Vai trò → Quyền hạn</small></div>
+              <i>→</i>
+              <div class="flow-node success"><b>4</b><span>Quyết định</span><small>Cho phép / Từ chối</small></div>
+            </div>
+          </section>
+          <section class="panel-card">
+            <div class="card-header"><div><h2>Nhóm quyền hệ thống</h2><p>Tên hiển thị được chuẩn hoá hoàn toàn bằng tiếng Việt.</p></div></div>
+            <div class="code-pattern"><span>NHÓM NGHIỆP VỤ</span><i> · </i><span>TÀI NGUYÊN</span><i> · </i><span>HÀNH ĐỘNG</span></div>
+            <div class="chip-row" id="domainChips"></div>
+          </section>
         </div>
+      </section>
 
-        <!-- Scope Section 2: REVIEW -->
-        <div class="perm-domain-card">
-          <h4>⚖️ Phân hệ Phản biện Hồ sơ (REVIEW DOMAIN - Scoped Assignment)</h4>
-          <div class="perm-checklist">
-            <label class="perm-item">
-              <input type="checkbox" checked>
-              <div>
-                <strong>REVIEW.ASSIGNMENT.READ</strong>
-                <small>Ràng buộc danh mục phân công: <code>assignmentId in ['R100', 'R104']</code></small>
+      <section id="view-roles" class="view-panel active">
+        <div class="workspace-grid">
+          <section class="panel-card role-list-panel">
+            <div class="card-header compact">
+              <div><h2>Danh mục vai trò</h2><p id="roleCountText"></p></div>
+            </div>
+            <div class="search-wrap"><span>⌕</span><input id="roleSearch" type="search" placeholder="Tìm vai trò..." /></div>
+            <div id="roleList" class="role-list"></div>
+          </section>
+
+          <section class="panel-card role-detail-panel">
+            <div class="role-detail-head">
+              <div class="role-title-wrap">
+                <div id="roleIcon" class="role-big-icon">⚖</div>
+                <div><div class="eyebrow" id="roleCategory"></div><h2 id="roleName"></h2><p id="roleDescription"></p></div>
               </div>
-            </label>
-            <label class="perm-item">
-              <input type="checkbox" checked>
-              <div>
-                <strong>REVIEW.SCORE.WRITE</strong>
-                <small>Nhập phiếu chấm điểm và đánh giá chuyên môn</small>
+              <div class="head-badges"><span class="badge status-active">Đang hoạt động</span></div>
+            </div>
+
+            <div class="detail-tabs">
+              <button class="detail-tab active" data-detail-tab="permissions">Quyền hạn</button>
+              <button class="detail-tab" data-detail-tab="members">Người được gán</button>
+              <button class="detail-tab" data-detail-tab="info">Thông tin vai trò</button>
+            </div>
+
+            <div id="detail-permissions" class="detail-pane active">
+              <div class="permission-toolbar">
+                <div class="search-wrap flex-1"><span>⌕</span><input id="permissionSearch" type="search" placeholder="Tìm quyền hạn..." /></div>
+                <select id="domainFilter"><option value="ALL">Tất cả nhóm quyền</option></select>
+                <button id="saveRolePermissions" class="btn primary">Lưu thay đổi</button>
               </div>
-            </label>
-            <label class="perm-item disabled">
-              <input type="checkbox" disabled>
-              <div>
-                <strong class="text-danger">REVIEW.READ_ALL</strong>
-                <small class="text-danger">Bị chặn - Tuyệt đối không được xem đề tài ngoài danh sách phân công</small>
-              </div>
-            </label>
-          </div>
+              <div id="permissionSummary" class="permission-summary"></div>
+              <div id="permissionGroups" class="permission-groups"></div>
+            </div>
+
+            <div id="detail-members" class="detail-pane">
+              <div class="pane-toolbar"><div><h3>Người dùng đang mang vai trò</h3><p>Gán theo từng tenant và thời hạn hiệu lực.</p></div><button class="btn primary" id="openAssignModal">+ Gán vai trò</button></div>
+              <div class="table-wrap"><table><thead><tr><th>Người dùng</th><th>Tổ chức</th><th>Hiệu lực</th><th>Trạng thái</th></tr></thead><tbody id="roleMembersBody"></tbody></table></div>
+            </div>
+
+            <div id="detail-info" class="detail-pane">
+              <div id="roleInfoGrid" class="info-grid"></div>
+            </div>
+          </section>
         </div>
+      </section>
 
-        <!-- Resource Scope Input Box -->
-        <div class="perm-domain-card">
-          <h4>🎯 Gán Resource Scope động (JSON Policy Constraint)</h4>
-          <textarea class="code-editor-area" rows="3">{ "allowedAssignments": ["R100", "R104"], "institutionScope": "VAST_BIO_01" }</textarea>
+      <section id="view-assignments" class="view-panel">
+        <section class="panel-card">
+          <div class="card-header row-between"><div><h2>Gán vai trò theo ngữ cảnh tổ chức</h2><p>Một người dùng có thể có nhiều vai trò theo từng tổ chức và thời hạn hiệu lực.</p></div><button class="btn primary" id="openAssignModal2">+ Gán vai trò</button></div>
+          <div class="filter-row"><div class="search-wrap flex-1"><span>⌕</span><input id="assignmentSearch" type="search" placeholder="Tìm người dùng, email hoặc tổ chức..." /></div><select id="assignmentStatusFilter"><option value="ALL">Tất cả trạng thái</option><option value="ACTIVE">Đang hoạt động</option><option value="REVOKED">Đã thu hồi</option></select></div>
+          <div class="table-wrap"><table><thead><tr><th>Người dùng</th><th>Vai trò</th><th>Tổ chức</th><th>Hiệu lực</th><th>Trạng thái</th><th></th></tr></thead><tbody id="assignmentsBody"></tbody></table></div>
+        </section>
+      </section>
+      </section>
+
+      <section id="view-audit" class="view-panel">
+        <section class="panel-card">
+          <div class="card-header"><div><h2>Nhật ký kiểm toán phân quyền</h2><p>Nhật ký bất biến cho quyết định cho phép / từ chối, thay đổi vai trò và phiên truy cập.</p></div></div>
+          <div class="filter-row"><div class="search-wrap flex-1"><span>⌕</span><input id="auditSearch" type="search" placeholder="Tìm trace ID, người dùng, tài nguyên..." /></div><select id="auditDecisionFilter"><option value="ALL">Mọi quyết định</option><option value="ALLOW">Cho phép</option><option value="DENY">Từ chối</option></select></div>
+          <div class="table-wrap"><table><thead><tr><th>Thời gian</th><th>Sự kiện</th><th>Người thực hiện</th><th>Vai trò</th><th>Tài nguyên</th><th>Quyết định</th><th>Mã truy vết</th></tr></thead><tbody id="auditBody"></tbody></table></div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="assignModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="assignModalTitle">
+      <div class="modal-header"><div><span class="eyebrow">PHÂN QUYỀN NGƯỜI DÙNG</span><h2 id="assignModalTitle">Gán vai trò cho người dùng</h2></div><button class="icon-btn" id="closeAssignModal" aria-label="Đóng">×</button></div>
+      <form id="assignForm">
+        <div class="form-grid">
+          <label class="field full"><span>Người dùng</span><select id="assignUser" required></select></label>
+          <label class="field"><span>Vai trò</span><select id="assignRole" required></select></label>
+          <label class="field"><span>Tổ chức</span><select id="assignTenant" required></select></label>
+          <label class="field"><span>Hiệu lực từ</span><input id="assignFrom" type="date" required /></label>
+          <label class="field"><span>Hiệu lực đến</span><input id="assignTo" type="date" /></label>
         </div>
-      </div>
-
-      <div class="drawer-footer">
-        <button class="btn-outline" onclick="closePermissionDrawer()">Hủy bỏ</button>
-        <button class="btn-primary" onclick="savePermissionChanges()">
-          💾 Lưu Thay Đổi & Đồng Bộ Redis Cache
-        </button>
-      </div>
+        <div class="modal-actions"><button type="button" class="btn ghost" id="cancelAssignModal">Hủy</button><button type="submit" class="btn primary">Xác nhận gán vai trò</button></div>
+      </form>
     </div>
   </div>
 
-  <!-- ============================================================= -->
-  <!-- MODAL: AUDIT EVENT JSON INSPECTOR                             -->
-  <!-- ============================================================= -->
-  <div class="modal-overlay" id="modalAuditJson">
-    <div class="modal-card modal-large">
-      <div class="modal-header">
-        <span class="m-icon">📄</span>
-        <h3>CHI TIẾT SỰ KIỆN KIỂM TOÁN (AUDIT EVENT JSON PAYLOAD)</h3>
-        <button class="btn-close-modal" onclick="closeAuditModal()">✕</button>
-      </div>
-      <div class="modal-body">
-        <div class="json-viewer-header">
-          <span>Trace ID: <code id="modalTraceId">trace-8f92c9</code></span>
-          <span>Timestamp: <code>2026-08-20T23:23:02.148Z</code></span>
-          <button class="btn-copy" onclick="copyAuditJson()">📋 Copy JSON</button>
-        </div>
-        <pre class="json-code-block" id="modalJsonContent"></pre>
-      </div>
-      <div class="modal-footer">
-        <button class="btn-primary" onclick="closeAuditModal()">Đóng</button>
-      </div>
+  <div id="toast" class="toast" role="status"></div>
+  <script>
+const DOMAINS = ["IAM","GRANT","KNOWLEDGE","ORG","TECH","REPORT","AUDIT","SYSTEM","PUBLIC","EXPERT","PROJECT","CATALOG","SECURITY","BREAKGLASS"];
+const DOMAIN_LABELS = {
+  IAM:"Định danh & phân quyền",
+  GRANT:"Tài trợ nghiên cứu",
+  KNOWLEDGE:"Kho tri thức",
+  ORG:"Tổ chức & đơn vị",
+  TECH:"Chuyển giao công nghệ",
+  REPORT:"Báo cáo & thống kê",
+  AUDIT:"Kiểm toán",
+  SYSTEM:"Hệ thống",
+  PUBLIC:"Cổng thông tin công khai",
+  EXPERT:"Chuyên gia",
+  PROJECT:"Dự án",
+  CATALOG:"Danh mục dùng chung",
+  SECURITY:"An ninh hệ thống",
+  BREAKGLASS:"Truy cập khẩn cấp",
+  RESEARCHER:"Nhà khoa học"
+};
+
+const CATEGORY_LABELS = {WORKSPACE:"Nghiệp vụ",GOVERNANCE:"Quản trị"};
+const STATUS_LABELS = {ACTIVE:"Đang hiệu lực",REVOKED:"Đã thu hồi"};
+const DECISION_LABELS = {ALLOW:"Cho phép",DENY:"Từ chối"};
+const EVENT_LABELS = {AUTHZ_ALLOW:"Truy cập được cho phép",AUTHZ_DENIED:"Truy cập bị từ chối",ROLE_CHANGE:"Thay đổi vai trò"};
+const domainLabel=code=>DOMAIN_LABELS[code]||code;
+const categoryLabel=code=>CATEGORY_LABELS[code]||code;
+const statusLabel=code=>STATUS_LABELS[code]||code;
+const decisionLabel=code=>DECISION_LABELS[code]||code;
+const eventLabel=code=>EVENT_LABELS[code]||code;
+const permissionLabel=code=>permissions.find(p=>p.code===code)?.description||code;
+
+const permissions = [
+  ["PUBLIC.PORTAL.HOME_VIEW","Xem trang chủ, tin tức & sự kiện"],
+  ["KNOWLEDGE.DOC.SEARCH_PUBLIC","Tra cứu kho tri thức mở"],
+  ["EXPERT.DIRECTORY.SEARCH","Tìm kiếm hồ sơ chuyên gia công khai"],
+  ["GRANT.OPPORTUNITY.READ","Xem danh mục kêu gọi tài trợ mở"],
+  ["IAM.ONBOARDING.REGISTER_INDIVIDUAL","Đăng ký nhà khoa học độc lập"],
+  ["IAM.ONBOARDING.SUBMIT_AFFILIATION","Gửi minh chứng đồng ý của cơ quan"],
+  ["ORG.PARTNER.SUBMIT_MOU_REQUEST","Gửi hồ sơ thỏa thuận hợp tác"],
+  ["RESEARCHER.PROFILE.MANAGE","Quản lý hồ sơ nhà khoa học"],
+  ["GRANT.PROPOSAL.CREATE","Khởi tạo đề xuất tài trợ mới"],
+  ["GRANT.PROPOSAL.DRAFT_SUBMIT","Soạn và nộp đề xuất tài trợ"],
+  ["GRANT.PROPOSAL.READ_OWN","Xem đề xuất do chính mình sở hữu"],
+  ["PROJECT.MILESTONE.UPDATE_OWN","Cập nhật mốc dự án của mình"],
+  ["KNOWLEDGE.DOC.PUBLISH_DRAFT","Tạo bản nháp công bố tri thức"],
+  ["GRANT.ASSIGNMENT.VIEW_ASSIGNED","Xem danh sách hồ sơ được phân công"],
+  ["GRANT.PROPOSAL.READ_ASSIGNED","Đọc hồ sơ được phân công phản biện"],
+  ["GRANT.PROPOSAL.REVIEW","Nhập điểm và ý kiến đánh giá"],
+  ["GRANT.SCORE.INPUT_EVALUATION","Nhập điểm đánh giá chuyên gia"],
+  ["GRANT.REVIEW.SUBMIT_REPORT","Nộp báo cáo phản biện"],
+  ["ORG.PROFILE.UPDATE_INFO","Cập nhật thông tin tổ chức"],
+  ["ORG.MEMBER.MANAGE","Quản lý thành viên thuộc tổ chức"],
+  ["ORG.MEMBER.VERIFY_AFFILIATION","Duyệt quan hệ trực thuộc"],
+  ["GRANT.PROPOSAL.ENDORSE_ORG","Xác nhận đề xuất cấp tổ chức"],
+  ["GRANT.PROJECT.TRACK_ORG_DASHBOARD","Theo dõi dự án cấp tổ chức"],
+  ["ORG.MOU.VIEW_STATUS","Xem trạng thái thỏa thuận hợp tác"],
+  ["TECH.DEMAND.SUBMIT_RND_NEED","Gửi nhu cầu nghiên cứu và phát triển của doanh nghiệp"],
+  ["TECH.2PLUS2.SUBMIT","Nộp hồ sơ chuyển giao công nghệ 2+2"],
+  ["TECH.TRANSFER.PROPOSE_2PLUS2","Đề xuất mô hình hợp tác 2+2"],
+  ["TECH.CATALOG.SEARCH_PATENT","Tra cứu danh mục sáng chế"],
+  ["TECH.COMMERCIAL.TRACK_PROJECT","Theo dõi dự án thương mại hóa"],
+  ["REPORT.KPI.VIEW_EXECUTIVE_DASHBOARD","Xem bảng điều khiển chỉ số điều hành"],
+  ["REPORT.BILATERAL.VIEW_SUMMARY_STATS","Xem thống kê song phương tổng hợp"],
+  ["GRANT.DECISION.VIEW_FUND_SUMMARY","Xem tổng hợp quyết định tài trợ"],
+  ["TECH.TRANSFER.VIEW_MACRO_METRICS","Xem chỉ số chuyển giao vĩ mô"],
+  ["IAM.USER.MANAGE","Quản lý vòng đời tài khoản người dùng"],
+  ["IAM.USER.MANAGE_LIFECYCLE","Kích hoạt hoặc khóa tài khoản"],
+  ["IAM.ROLE.ASSIGN","Gán hoặc thu hồi vai trò"],
+  ["IAM.ROLE.ASSIGN_AND_REVOKE","Gán vai trò và thu hồi quyền"],
+  ["IAM.SESSION.FORCE_LOGOUT","Ngắt phiên khẩn cấp"],
+  ["IAM.MFA.RESET_CREDENTIAL","Đặt lại thông tin xác thực hai lớp"],
+  ["CATALOG.MASTER.MANAGE","Quản trị danh mục chuẩn"],
+  ["GRANT.CALL.PUBLISH_ROUND","Tạo đợt kêu gọi tài trợ"],
+  ["GRANT.REVIEW_BOARD.ALLOCATE","Phân bổ hồ sơ cho hội đồng"],
+  ["GRANT.BOARD.MANAGE","Quản trị hội đồng và phân công"],
+  ["GRANT.DECISION.EXECUTE_FUND_APPROVAL","Thực thi phê duyệt tài trợ"],
+  ["AUDIT.LOG.VIEW","Truy vấn nhật ký kiểm toán"],
+  ["AUDIT.LOG.VIEW_ALL_TRAILS","Xem toàn bộ vết kiểm toán"],
+  ["AUDIT.EVENT.ANALYZE_ANOMALY","Phân tích hành vi bất thường"],
+  ["AUDIT.EXPORT.COMPLIANCE_REPORT","Xuất báo cáo tuân thủ"],
+  ["SECURITY.ALERT.CONFIGURE_RULE","Cấu hình ngưỡng cảnh báo"],
+  ["SYSTEM.CONFIG.GLOBAL_PARAM_UPDATE","Cập nhật tham số hệ thống"],
+  ["SYSTEM.MAINTENANCE.TOGGLE_MODE","Bật/tắt chế độ bảo trì"],
+  ["BREAKGLASS.ACCESS.EMERGENCY_OVERRIDE","Ghi đè quyền truy cập trong tình huống khẩn cấp"]
+].map(([code,description],i)=>({id:`PERM-${String(i+1).padStart(3,"0")}`,code,description,domain:code.split(".")[0]}));
+
+const roleSeed = [
+  {id:"ROLE-RESEARCHER",code:"RESEARCHER",name:"Nhà khoa học",category:"WORKSPACE",icon:"🔬",description:"Không gian cá nhân của nhà khoa học; quản lý hồ sơ, đề xuất và dữ liệu do mình sở hữu.",perms:["RESEARCHER.PROFILE.MANAGE","GRANT.PROPOSAL.CREATE","GRANT.PROPOSAL.DRAFT_SUBMIT","GRANT.PROPOSAL.READ_OWN","PROJECT.MILESTONE.UPDATE_OWN","KNOWLEDGE.DOC.PUBLISH_DRAFT","TECH.2PLUS2.SUBMIT"]},
+  {id:"ROLE-REVIEWER",code:"REVIEWER",name:"Chuyên gia phản biện",category:"WORKSPACE",icon:"⚖",description:"Chỉ xem và đánh giá các hồ sơ được Hội đồng phân công trực tiếp.",perms:["GRANT.ASSIGNMENT.VIEW_ASSIGNED","GRANT.PROPOSAL.READ_ASSIGNED","GRANT.PROPOSAL.REVIEW","GRANT.SCORE.INPUT_EVALUATION","GRANT.REVIEW.SUBMIT_REPORT"]},
+  {id:"ROLE-ORG",code:"ORG_ADMIN",name:"Đại diện Viện / Trường",category:"WORKSPACE",icon:"🏛",description:"Quản trị nghiệp vụ trong đúng tổ chức hoặc đơn vị được gán.",perms:["ORG.PROFILE.UPDATE_INFO","ORG.MEMBER.MANAGE","ORG.MEMBER.VERIFY_AFFILIATION","GRANT.PROPOSAL.ENDORSE_ORG","GRANT.PROJECT.TRACK_ORG_DASHBOARD","ORG.MOU.VIEW_STATUS","TECH.2PLUS2.SUBMIT"]},
+  {id:"ROLE-ENTERPRISE",code:"ENTERPRISE",name:"Người dùng doanh nghiệp",category:"WORKSPACE",icon:"🏭",description:"Không gian doanh nghiệp cho nhu cầu nghiên cứu và phát triển, chuyển giao công nghệ và thương mại hóa.",perms:["TECH.DEMAND.SUBMIT_RND_NEED","TECH.2PLUS2.SUBMIT","TECH.TRANSFER.PROPOSE_2PLUS2","TECH.CATALOG.SEARCH_PATENT","TECH.COMMERCIAL.TRACK_PROJECT"]},
+  {id:"ROLE-LEADERSHIP",code:"LEADERSHIP",name:"Lãnh đạo Quỹ",category:"GOVERNANCE",icon:"🎖",description:"Quyền đọc dữ liệu tổng hợp song phương và KPI cấp điều hành.",perms:["REPORT.KPI.VIEW_EXECUTIVE_DASHBOARD","REPORT.BILATERAL.VIEW_SUMMARY_STATS","GRANT.DECISION.VIEW_FUND_SUMMARY","TECH.TRANSFER.VIEW_MACRO_METRICS"]},
+  {id:"ROLE-IAM",code:"IAM_ADMIN",name:"Quản trị Định danh & Phân quyền",category:"GOVERNANCE",icon:"👤",description:"Quản lý tài khoản, vai trò, phiên và xác thực hai lớp; không can thiệp kết quả chấm điểm chuyên gia.",perms:["IAM.USER.MANAGE","IAM.USER.MANAGE_LIFECYCLE","IAM.ROLE.ASSIGN","IAM.ROLE.ASSIGN_AND_REVOKE","IAM.SESSION.FORCE_LOGOUT","IAM.MFA.RESET_CREDENTIAL","AUDIT.LOG.VIEW"]},
+  {id:"ROLE-WORKFLOW",code:"WORKFLOW_GOVERNANCE_ADMIN",name:"Quản trị vận hành nghiệp vụ",category:"GOVERNANCE",icon:"📋",description:"Quản trị danh mục, đợt tài trợ, Hội đồng và quyết định nghiệp vụ của Quỹ.",perms:["CATALOG.MASTER.MANAGE","GRANT.CALL.PUBLISH_ROUND","GRANT.REVIEW_BOARD.ALLOCATE","GRANT.BOARD.MANAGE","GRANT.DECISION.EXECUTE_FUND_APPROVAL"]},
+  {id:"ROLE-AUDIT",code:"AUDIT_SECURITY_ADMIN",name:"Kiểm toán & An ninh",category:"GOVERNANCE",icon:"🛡",description:"Kiểm toán độc lập, phân tích bất thường và xuất báo cáo tuân thủ; không sửa nhật ký.",perms:["AUDIT.LOG.VIEW","AUDIT.LOG.VIEW_ALL_TRAILS","AUDIT.EVENT.ANALYZE_ANOMALY","AUDIT.EXPORT.COMPLIANCE_REPORT","SECURITY.ALERT.CONFIGURE_RULE","IAM.USER.MANAGE","IAM.ROLE.ASSIGN","GRANT.BOARD.MANAGE"]},
+  {id:"ROLE-SUPER",code:"SUPER_ADMIN",name:"Quản trị tối cao",category:"GOVERNANCE",icon:"⚡",description:"Quyền tối cao hệ thống; mọi thao tác nhạy cảm phải qua xác thực hai lớp và ghi nhật ký kiểm toán bắt buộc.",perms:permissions.map(p=>p.code)}
+];
+
+const users=[
+  {id:"USR-8821",name:"Nguyễn Minh Anh",email:"minhanh@vast.vn"},{id:"USR-1042",name:"Trần Quốc Huy",email:"qhuy@vnu.edu.vn"},{id:"USR-2207",name:"Lê Thu Hà",email:"thuha@nafosted.gov.vn"},{id:"USR-3981",name:"Alexei Petrov",email:"a.petrov@ras.ru"},{id:"USR-5109",name:"Phạm Gia Bảo",email:"baopg@enterprise.vn"}
+];
+const tenants=[
+  {id:"VAST-01",name:"Viện Hàn lâm KH&CN Việt Nam",code:"VAST"},{id:"VNU-01",name:"Đại học Quốc gia Hà Nội",code:"VNU"},{id:"FUND-01",name:"Quỹ vận hành song phương",code:"FUND"},{id:"RAS-01",name:"Viện Hàn lâm Khoa học Nga",code:"RAS"},{id:"ENT-01",name:"Doanh nghiệp Công nghệ Việt",code:"ENTERPRISE"}
+];
+let roles=JSON.parse(localStorage.getItem("rbac_roles")||"null")||structuredClone(roleSeed);
+let assignments=JSON.parse(localStorage.getItem("rbac_assignments")||"null")||[
+  {id:"ASN-001",userId:"USR-8821",roleCode:"REVIEWER",tenantId:"FUND-01",from:"2026-01-10",to:"2026-12-31",status:"ACTIVE"},
+  {id:"ASN-002",userId:"USR-1042",roleCode:"ORG_ADMIN",tenantId:"VNU-01",from:"2026-02-01",to:null,status:"ACTIVE"},
+  {id:"ASN-003",userId:"USR-2207",roleCode:"IAM_ADMIN",tenantId:"FUND-01",from:"2025-09-01",to:null,status:"ACTIVE"},
+  {id:"ASN-004",userId:"USR-3981",roleCode:"RESEARCHER",tenantId:"RAS-01",from:"2026-03-14",to:null,status:"ACTIVE"},
+  {id:"ASN-005",userId:"USR-5109",roleCode:"ENTERPRISE",tenantId:"ENT-01",from:"2026-04-05",to:"2027-04-05",status:"ACTIVE"}
+];
+let audits=JSON.parse(localStorage.getItem("rbac_audits")||"null")||[
+  {time:"21/08/2026 00:21:14",event:"AUTHZ_ALLOW",user:"USR-8821",role:"REVIEWER",resource:"proposal/PR-2026/review",decision:"ALLOW",trace:"TRC-9901-A7"},
+  {time:"21/08/2026 00:18:42",event:"AUTHZ_DENIED",user:"USR-8821",role:"REVIEWER",resource:"proposal/PR-2041",decision:"DENY",trace:"TRC-98F1-C2"},
+  {time:"20/08/2026 23:58:02",event:"ROLE_CHANGE",user:"USR-2207",role:"IAM_ADMIN",resource:"USR-5109 → ENTERPRISE",decision:"ALLOW",trace:"TRC-984A-91"},
+  {time:"20/08/2026 23:42:31",event:"AUTHZ_ALLOW",user:"USR-1042",role:"ORG_ADMIN",resource:"org/VNU-01/members",decision:"ALLOW",trace:"TRC-978C-55"},
+  {time:"20/08/2026 22:37:10",event:"AUTHZ_DENIED",user:"USR-5109",role:"ENTERPRISE",resource:"grant/PR-1932/review",decision:"DENY",trace:"TRC-961A-40"}
+];
+
+let selectedRoleCode="REVIEWER";
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const roleByCode=code=>roles.find(r=>r.code===code);
+const userById=id=>users.find(u=>u.id===id);
+const tenantById=id=>tenants.find(t=>t.id===id);
+const fmtDate=d=>d?new Date(`${d}T00:00:00`).toLocaleDateString("vi-VN"):"Không giới hạn";
+function saveState(){localStorage.setItem("rbac_roles",JSON.stringify(roles));localStorage.setItem("rbac_assignments",JSON.stringify(assignments));localStorage.setItem("rbac_audits",JSON.stringify(audits));}
+function toast(message){const t=$("#toast");t.textContent=message;t.classList.add("show");clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove("show"),2200)}
+
+const viewMeta={
+  overview:["Tổng quan phân quyền","Theo dõi trạng thái định danh, vai trò và quyết định truy cập."],
+  roles:["Quản lý vai trò & quyền hạn","Quản lý vai trò và quyền hạn chi tiết theo từng tổ chức."],
+  assignments:["Gán vai trò","Quản lý người dùng, vai trò, tổ chức và thời hạn hiệu lực."],
+  audit:["Nhật ký kiểm toán","Theo dõi mọi quyết định phân quyền và thay đổi liên quan đến định danh, vai trò và truy cập."]
+};
+function switchView(view){$$('.view-panel').forEach(x=>x.classList.remove('active'));$(`#view-${view}`).classList.add('active');$$('.nav-item').forEach(x=>x.classList.toggle('active',x.dataset.view===view));const [title,sub]=viewMeta[view];$("#pageTitle").textContent=title;$("#pageSubtitle").textContent=sub;$("#breadcrumbCurrent").textContent=title;}
+
+function initFilters(){const domainOpts=[...new Set(permissions.map(p=>p.domain))].sort();const el=$("#domainFilter");domainOpts.forEach(d=>el.insertAdjacentHTML("beforeend",`<option value="${d}">${domainLabel(d)}</option>`));$("#domainChips").innerHTML=domainOpts.map(d=>`<span class="chip">${domainLabel(d)}</span>`).join("");
+  $("#assignUser").innerHTML=users.map(u=>`<option value="${u.id}">${u.name} · ${u.email}</option>`).join("");
+  $("#assignRole").innerHTML=roles.map(r=>`<option value="${r.code}">${r.name}</option>`).join("");
+  $("#assignTenant").innerHTML=tenants.map(t=>`<option value="${t.id}">${t.name}</option>`).join("");
+  $("#assignFrom").value=new Date().toISOString().slice(0,10);
+}
+function renderOverview(){const activeAssignments=assignments.filter(a=>a.status==='ACTIVE').length;const denied=audits.filter(a=>a.decision==='DENY').length;const stats=[['◈',roles.length,'Vai trò hệ thống'],['⌘',permissions.length,'Quyền hạn chi tiết'],['◎',activeAssignments,'Gán vai trò đang hiệu lực'],['!',denied,'Lượt truy cập bị từ chối']];$("#overviewStats").innerHTML=stats.map(s=>`<div class="stat-card"><div class="stat-top"><span>${s[2]}</span><div class="stat-icon">${s[0]}</div></div><b>${s[1]}</b><span>Mô-đun 1 · Định danh & phân quyền</span></div>`).join('')}
+function renderRoles(){const q=$("#roleSearch").value.trim().toLowerCase();const list=roles.filter(r=>`${r.code} ${r.name} ${r.category}`.toLowerCase().includes(q));$("#roleCountText").textContent=`${roles.length} vai trò · ${roles.filter(r=>r.category==='WORKSPACE').length} nghiệp vụ · ${roles.filter(r=>r.category==='GOVERNANCE').length} quản trị`;$("#roleList").innerHTML=list.map(r=>`<button class="role-item ${r.code===selectedRoleCode?'active':''}" data-role="${r.code}"><span class="role-icon">${r.icon}</span><span class="role-meta"><strong>${r.name}</strong><span>${categoryLabel(r.category)}</span></span></button>`).join('');$$('.role-item').forEach(b=>b.onclick=()=>{selectedRoleCode=b.dataset.role;renderRoles();renderRoleDetail()})}
+function renderRoleDetail(){const r=roleByCode(selectedRoleCode);if(!r)return;$("#roleIcon").textContent=r.icon;$("#roleCategory").textContent=categoryLabel(r.category);$("#roleName").textContent=r.name;$("#roleDescription").textContent=r.description;renderPermissions();renderRoleMembers();$("#roleInfoGrid").innerHTML=[['Tên vai trò',r.name],['Mã nội bộ',r.id],['Phân loại',categoryLabel(r.category)],['Vai trò hệ thống','Có'],['Trạng thái','Đang hiệu lực']].map(([a,b])=>`<div class="info-box"><span>${a}</span><b>${b}</b></div>`).join('')}
+function renderPermissions(){
+  const r=roleByCode(selectedRoleCode);
+  const q=$("#permissionSearch").value.trim().toLowerCase();
+  const df=$("#domainFilter").value;
+  const groupsEl=$("#permissionGroups");
+  const previousOpen=new Set($$("#permissionGroups details[open]").map(x=>x.dataset.domain));
+  const filtered=permissions.filter(p=>(df==='ALL'||p.domain===df)&&`${p.code} ${p.description}`.toLowerCase().includes(q));
+  const grouped=Object.groupBy?Object.groupBy(filtered,p=>p.domain):filtered.reduce((a,p)=>((a[p.domain]??=[]).push(p),a),{});
+  const grantedVisible=filtered.filter(p=>r.perms.includes(p.code)).length;
+  $("#permissionSummary").innerHTML=`
+    <div class="permission-summary-main">
+      <span class="permission-summary-badge">${r.perms.length}</span>
+      <div><strong>Quyền đang cấp cho ${r.name}</strong><small>${grantedVisible}/${filtered.length} quyền trong bộ lọc hiện tại · ${permissions.length} quyền toàn hệ thống</small></div>
     </div>
-  </div>
+    <span class="permission-summary-note">Nhấn nhóm quyền để mở / thu gọn</span>`;
 
-  <!-- TOAST NOTIFICATION CONTAINER -->
-  <div class="toast-container" id="toastContainer"></div>
+  const domains=Object.keys(grouped).sort();
+  groupsEl.innerHTML=domains.map((domain,index)=>{
+    const list=grouped[domain];
+    const granted=list.filter(p=>r.perms.includes(p.code)).length;
+    const shouldOpen=Boolean(q)||df!=='ALL'||previousOpen.has(domain)||(previousOpen.size===0&&index===0);
+    return `<details class="permission-group" data-domain="${domain}" ${shouldOpen?'open':''}>
+      <summary class="permission-group-head">
+        <span class="permission-domain-icon">${domainLabel(domain).slice(0,2).toUpperCase()}</span>
+        <span class="permission-group-title"><strong>${domainLabel(domain)}</strong><small>${list.length} quyền trong nhóm</small></span>
+        <span class="permission-count">${granted}/${list.length} đang cấp</span>
+        <span class="permission-chevron">⌄</span>
+      </summary>
+      <div class="permission-group-body">
+        <div class="permission-group-actions">
+          <button type="button" class="permission-mini-btn" data-domain-enable="${domain}">Chọn tất cả</button>
+          <button type="button" class="permission-mini-btn" data-domain-disable="${domain}">Bỏ tất cả</button>
+        </div>
+        ${list.map(p=>{
+          const checked=r.perms.includes(p.code);
+          return `<div class="permission-row ${checked?'is-enabled':''}">
+            <label class="perm-check" title="${checked?'Thu hồi':'Cấp'} quyền: ${p.description}"><input type="checkbox" data-perm="${p.code}" ${checked?'checked':''}></label>
+            <div class="perm-code">${p.description}</div>
+            <div class="perm-desc">${domainLabel(p.domain)}</div>
+          </div>`
+        }).join('')}
+      </div>
+    </details>`
+  }).join('')||`<div style="padding:34px;text-align:center;color:#7b8798;font-size:11px">Không tìm thấy quyền hạn phù hợp.</div>`;
 
-  <script src="app.js"></script>
+  $$('[data-perm]').forEach(cb=>cb.onchange=()=>{
+    const code=cb.dataset.perm;
+    if(cb.checked&&!r.perms.includes(code))r.perms.push(code);
+    if(!cb.checked)r.perms=r.perms.filter(x=>x!==code);
+    renderPermissions();
+  });
+  $$('[data-domain-enable]').forEach(btn=>btn.onclick=e=>{
+    e.preventDefault();e.stopPropagation();
+    permissions.filter(p=>p.domain===btn.dataset.domain).forEach(p=>{if(!r.perms.includes(p.code))r.perms.push(p.code)});
+    renderPermissions();
+  });
+  $$('[data-domain-disable]').forEach(btn=>btn.onclick=e=>{
+    e.preventDefault();e.stopPropagation();
+    const domain=btn.dataset.domain;
+    r.perms=r.perms.filter(code=>permissions.find(p=>p.code===code)?.domain!==domain);
+    renderPermissions();
+  });
+}
+function renderRoleMembers(){const rows=assignments.filter(a=>a.roleCode===selectedRoleCode);$("#roleMembersBody").innerHTML=rows.map(a=>{const u=userById(a.userId),t=tenantById(a.tenantId),r=roleByCode(a.roleCode);return `<tr><td><strong>${u?.name||a.userId}</strong><small>${u?.email||''}</small></td><td><strong>${t?.name||a.tenantId}</strong><small>${t?.code||''}</small></td><td>${fmtDate(a.from)} → ${fmtDate(a.to)}</td><td><span class="badge ${a.status==='ACTIVE'?'status-active':'status-revoked'}">${statusLabel(a.status)}</span></td></tr>`}).join('')||`<tr><td colspan="4" style="text-align:center;color:#7b8798;padding:28px">Chưa có người dùng nào được gán vai trò này.</td></tr>`}
+function renderAssignments(){const q=$("#assignmentSearch").value.trim().toLowerCase(),sf=$("#assignmentStatusFilter").value;const rows=assignments.filter(a=>{const u=userById(a.userId),t=tenantById(a.tenantId),r=roleByCode(a.roleCode);return (sf==='ALL'||a.status===sf)&&`${u?.name} ${u?.email} ${t?.name} ${r?.name} ${r?.code}`.toLowerCase().includes(q)});$("#assignmentsBody").innerHTML=rows.map(a=>{const u=userById(a.userId),t=tenantById(a.tenantId),r=roleByCode(a.roleCode);return `<tr><td><strong>${u.name}</strong><small>${u.email}</small></td><td><strong>${r.name}</strong><small>${categoryLabel(r.category)}</small></td><td><strong>${t.name}</strong><small>${t.code}</small></td><td>${fmtDate(a.from)} → ${fmtDate(a.to)}</td><td><span class="badge ${a.status==='ACTIVE'?'status-active':'status-revoked'}">${statusLabel(a.status)}</span></td><td>${a.status==='ACTIVE'?`<button class="action-link" data-revoke="${a.id}">Thu hồi</button>`:''}</td></tr>`}).join('');$$('[data-revoke]').forEach(b=>b.onclick=()=>revokeAssignment(b.dataset.revoke))}
+function revokeAssignment(id){const a=assignments.find(x=>x.id===id);if(!a)return;a.status='REVOKED';audits.unshift({time:new Date().toLocaleString('vi-VN'),event:'ROLE_CHANGE',user:a.userId,role:'IAM_ADMIN',resource:`REVOKE ${a.roleCode}`,decision:'ALLOW',trace:`TRC-${Math.random().toString(16).slice(2,8).toUpperCase()}`});saveState();renderAssignments();renderRoleMembers();renderOverview();renderAudit();toast('Đã thu hồi vai trò và ghi nhật ký kiểm toán.')}
+function renderAudit(){const q=$("#auditSearch").value.trim().toLowerCase(),df=$("#auditDecisionFilter").value;const rows=audits.filter(a=>(df==='ALL'||a.decision===df)&&Object.values(a).join(' ').toLowerCase().includes(q));$("#auditBody").innerHTML=rows.map(a=>{const r=roleByCode(a.role);return `<tr><td>${a.time}</td><td><strong>${eventLabel(a.event)}</strong></td><td>${userById(a.user)?.name||a.user}</td><td><span class="badge">${r?.name||a.role}</span></td><td>${a.resource}</td><td><span class="badge ${a.decision==='ALLOW'?'status-active':'status-revoked'}">${decisionLabel(a.decision)}</span></td><td><code>${a.trace}</code></td></tr>`}).join('')}
+function openAssignModal(){const r=roleByCode(selectedRoleCode);if(r)$("#assignRole").value=r.code;$("#assignModal").classList.add('open');$("#assignModal").setAttribute('aria-hidden','false')}
+function closeAssignModal(){$("#assignModal").classList.remove('open');$("#assignModal").setAttribute('aria-hidden','true')}
+function handleAssign(e){e.preventDefault();const a={id:`ASN-${Date.now().toString().slice(-6)}`,userId:$("#assignUser").value,roleCode:$("#assignRole").value,tenantId:$("#assignTenant").value,from:$("#assignFrom").value,to:$("#assignTo").value||null,status:'ACTIVE'};assignments.unshift(a);audits.unshift({time:new Date().toLocaleString('vi-VN'),event:'ROLE_CHANGE',user:a.userId,role:'IAM_ADMIN',resource:`ASSIGN ${a.roleCode} @ ${a.tenantId}`,decision:'ALLOW',trace:`TRC-${Math.random().toString(16).slice(2,8).toUpperCase()}`});saveState();closeAssignModal();renderAssignments();renderRoleMembers();renderOverview();renderAudit();toast('Đã gán vai trò và ghi nhật ký kiểm toán.')}
+
+function bindEvents(){$$('.nav-item').forEach(b=>b.onclick=()=>switchView(b.dataset.view));$("#roleSearch").oninput=renderRoles;$("#permissionSearch").oninput=renderPermissions;$("#domainFilter").onchange=renderPermissions;$("#saveRolePermissions").onclick=()=>{saveState();renderPermissions();toast('Đã lưu cấu hình vai trò và quyền hạn.')};$$('.detail-tab').forEach(b=>b.onclick=()=>{$$('.detail-tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');$$('.detail-pane').forEach(x=>x.classList.remove('active'));$(`#detail-${b.dataset.detailTab}`).classList.add('active')});$("#assignmentSearch").oninput=renderAssignments;$("#assignmentStatusFilter").onchange=renderAssignments;$("#auditSearch").oninput=renderAudit;$("#auditDecisionFilter").onchange=renderAudit;$("#openAssignModal").onclick=openAssignModal;$("#openAssignModal2").onclick=openAssignModal;$("#closeAssignModal").onclick=closeAssignModal;$("#cancelAssignModal").onclick=closeAssignModal;$("#assignModal").onclick=e=>{if(e.target.id==='assignModal')closeAssignModal()};$("#assignForm").onsubmit=handleAssign}
+function init(){initFilters();bindEvents();renderOverview();renderRoles();renderRoleDetail();renderAssignments();renderAudit()}
+init();
+
+</script>
 </body>
 </html>
